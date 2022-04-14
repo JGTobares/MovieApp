@@ -16,3 +16,9 @@ protocol APIServiceProtocol {
     func getMoviesPopular(completion: @escaping (Result<[Movie], CustomError>) -> Void)
     func getListOfMovies(endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
 }
+
+protocol MovieDetailsViewControllerDelegate {
+    
+    // MARK: - Functions
+    func didSetMovie()
+}
