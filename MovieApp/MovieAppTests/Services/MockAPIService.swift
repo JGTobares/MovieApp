@@ -11,8 +11,8 @@ import Foundation
 final class MockAPIService: APIServiceProtocol {
     
     let movies: [Movie] = [
-        Movie(id: 1, genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: ""),
-        Movie(id: 675353, genres: [
+        Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil),
+        Movie(id: 675353, backdropPath: "/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg", genres: [
                 Genre(id: 28, name: "Action"),
                 Genre(id: 878, name: "Science Fiction"),
                 Genre(id: 35, name: "Comedy"),
@@ -22,10 +22,18 @@ final class MockAPIService: APIServiceProtocol {
               overview: "... Sonic is eager to prove he has what it takes to be a true hero...",
               popularity: 6401.627, posterPath: "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
               releaseDate: "2022-03-30", runtime: 122, status: "Released",
-              tagline: "Welcome to the next level.", title: "Sonic the Hedgehog 2")
+              tagline: "Welcome to the next level.", title: "Sonic the Hedgehog 2",
+              credits: Credits(crew: [
+                Crew(id: 3346056, gender: 0, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
+                Crew(id: 93364, gender: 2, name: "Jeff Fowler", profilePath: "/wExdubFgeBkEUP8MojKPKoOcgdZ.jpg", job: "Director")
+              ]))
     ]
     
     func getMovieDetails(id: Int?, completion: @escaping (Result<Movie, CustomError>) -> Void) {
+        if id == nil {
+            completion(.failure(.internalError))
+            return
+        }
         completion(.success(movies[1]))
     }
     

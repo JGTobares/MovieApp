@@ -56,8 +56,18 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         nowMovies.deselectItem(at: indexPath, animated: true)
-        
-        print("Item pressed")
+        let movie: Movie
+        if collectionView == self.nowMovies {
+            movie = self.movieManager.getNowMovie(at: indexPath.row)
+        } else if collectionView == self.popularMovies {
+            movie = self.movieManager.getPopularMovie(at: indexPath.row)
+        } else {
+            movie = self.movieManager.getUpcomingMovie(at: indexPath.row)
+        }
+        let vc = MovieDetailsViewController()
+        vc.movieID = movie.id
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }
 
