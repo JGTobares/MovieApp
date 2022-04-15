@@ -12,6 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet var nowMovies: UICollectionView!
     @IBOutlet var popularMovies: UICollectionView!
     @IBOutlet var upcomingMovies: UICollectionView!
+    @IBOutlet var searchButton: UIBarButtonItem!
+    @IBOutlet var nowSeeAllButton: UIButton!
+    @IBOutlet var popularSeeAllButton: UIButton!
+    @IBOutlet var upcomingSeeAllButton: UIButton!
     let movieManager: MovieManager = MovieManager()
     
     override func viewDidLoad() {
