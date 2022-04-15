@@ -382,6 +382,10 @@
                         <outlet property="NowMovies" destination="KUv-16-OhT" id="hgP-v3-aqM"/>
                         <outlet property="PopularMovies" destination="87S-MU-LLO" id="UpQ-ED-sxM"/>
                         <outlet property="UpcomingMovies" destination="FMA-ON-Y0v" id="yvM-Fk-k7H"/>
+                        <outlet property="nowSeeAllButton" destination="e2i-Iv-WfD" id="Sq4-Ee-ChU"/>
+                        <outlet property="popularSeeAllButton" destination="pqI-WS-8b3" id="9oe-uP-SIf"/>
+                        <outlet property="searchButton" destination="8XN-mA-80P" id="eV3-eu-byo"/>
+                        <outlet property="upcomingSeeAllButton" destination="D94-Ru-qgU" id="SOl-nI-7vD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
