@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieDetailsRepository {
+class MovieDetailsManager {
     
     // MARK: - Constants
     let apiService: APIServiceProtocol

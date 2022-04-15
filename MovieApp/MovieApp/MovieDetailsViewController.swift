@@ -10,7 +10,7 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     
     // MARK: - Constants
-    let repository = MovieDetailsRepository()
+    let manager = MovieDetailsManager()
     
     // MARK: - Variables
     var movieID: Int?
@@ -26,8 +26,8 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        repository.movieDetailsVCDelegate = self
-        repository.getMovieDetails(id: self.movieID)
+        manager.movieDetailsVCDelegate = self
+        manager.getMovieDetails(id: self.movieID)
     }
 }
 
@@ -35,18 +35,18 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie() {
         DispatchQueue.main.async {
-            self.backgroundImageView.image = UIImage(named: self.repository.movie?.backdropPath ?? "") ?? nil
-            self.posterImageView.image = UIImage(named: self.repository.movie?.posterPath ?? "") ?? nil
-            self.movieTitleLabel.text = self.repository.movie?.title ?? ""
-            self.movieTaglineLabel.text = self.repository.movie?.tagline ?? ""
-            self.movieGenresLabel.text = self.repository.movie?.getGenres()
-            let director = self.repository.movie?.getDirector() ?? ""
+            self.backgroundImageView.image = UIImage(named: self.manager.movie?.backdropPath ?? "") ?? nil
+            self.posterImageView.image = UIImage(named: self.manager.movie?.posterPath ?? "") ?? nil
+            self.movieTitleLabel.text = self.manager.movie?.title ?? ""
+            self.movieTaglineLabel.text = self.manager.movie?.tagline ?? ""
+            self.movieGenresLabel.text = self.manager.movie?.getGenres()
+            let director = self.manager.movie?.getDirector() ?? ""
             if director.isEmpty {
                 self.movieDirectorLabel.text = ""
             } else {
                 self.movieDirectorLabel.text = "Director: \(director)"
             }
-            self.movieOverviewLabel.text = self.repository.movie?.overview ?? ""
+            self.movieOverviewLabel.text = self.manager.movie?.overview ?? ""
         }
     }
 }

@@ -21,11 +21,11 @@
 		C102C0A428074E820025AEAE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A328074E820025AEAE /* Enums.swift */; };
 		C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A628075F070025AEAE /* MockAPIService.swift */; };
 		C1781C502808587000D060C3 /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C4F2808587000D060C3 /* Crew.swift */; };
-		C1781C5228085E9800D060C3 /* MovieDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5128085E9800D060C3 /* MovieDetailsRepository.swift */; };
+		C1781C5228085E9800D060C3 /* MovieDetailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */; };
 		C1781C55280862BE00D060C3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */; };
 		C1781C56280862BE00D060C3 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */; };
 		C1781C592808876200D060C3 /* MovieTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C582808876200D060C3 /* MovieTest.swift */; };
-		C1781C5B2808972E00D060C3 /* MovieDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5A2808972E00D060C3 /* MovieDetailsRepositoryTest.swift */; };
+		C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,11 +64,11 @@
 		C102C0A328074E820025AEAE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C102C0A628075F070025AEAE /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 		C1781C4F2808587000D060C3 /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
-		C1781C5128085E9800D060C3 /* MovieDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepository.swift; sourceTree = "<group>"; };
+		C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsManager.swift; sourceTree = "<group>"; };
 		C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		C1781C582808876200D060C3 /* MovieTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTest.swift; sourceTree = "<group>"; };
-		C1781C5A2808972E00D060C3 /* MovieDetailsRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsRepositoryTest.swift; sourceTree = "<group>"; };
+		C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 			children = (
 				C102C09F280728D10025AEAE /* Movie.swift */,
 				C1781C4F2808587000D060C3 /* Crew.swift */,
-				C1781C5128085E9800D060C3 /* MovieDetailsRepository.swift */,
+				C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				C1781C582808876200D060C3 /* MovieTest.swift */,
-				C1781C5A2808972E00D060C3 /* MovieDetailsRepositoryTest.swift */,
+				C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1781C55280862BE00D060C3 /* MovieDetailsViewController.swift in Sources */,
-				C1781C5228085E9800D060C3 /* MovieDetailsRepository.swift in Sources */,
+				C1781C5228085E9800D060C3 /* MovieDetailsManager.swift in Sources */,
 				C0871C4E2805CF4E00D29103 /* ViewController.swift in Sources */,
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
@@ -347,7 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1781C5B2808972E00D060C3 /* MovieDetailsRepositoryTest.swift in Sources */,
+				C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */,
 				C1781C592808876200D060C3 /* MovieTest.swift in Sources */,
 				C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */,
 			);
