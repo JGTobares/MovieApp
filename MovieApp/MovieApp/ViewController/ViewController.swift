@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var NowMovies: UICollectionView!
-    @IBOutlet var PopularMovies: UICollectionView!
-    @IBOutlet var UpcomingMovies: UICollectionView!
+    @IBOutlet var nowMovies: UICollectionView!
+    @IBOutlet var popularMovies: UICollectionView!
+    @IBOutlet var upcomingMovies: UICollectionView!
     let movieManager: MovieManager = MovieManager()
     
     override func viewDidLoad() {
@@ -23,20 +23,20 @@ class ViewController: UIViewController {
         layout.itemSize = CGSize(width: 133, height: 186)
         layout.scrollDirection = .horizontal
         
-        NowMovies.collectionViewLayout = layout
-        NowMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
-        NowMovies.delegate = self
-        NowMovies.dataSource = self
+        nowMovies.collectionViewLayout = layout
+        nowMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        nowMovies.delegate = self
+        nowMovies.dataSource = self
         
-        PopularMovies.collectionViewLayout = layout
-        PopularMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
-        PopularMovies.delegate = self
-        PopularMovies.dataSource = self
+        popularMovies.collectionViewLayout = layout
+        popularMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        popularMovies.delegate = self
+        popularMovies.dataSource = self
         
-        UpcomingMovies.collectionViewLayout = layout
-        UpcomingMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
-        UpcomingMovies.delegate = self
-        UpcomingMovies.dataSource = self
+        upcomingMovies.collectionViewLayout = layout
+        upcomingMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        upcomingMovies.delegate = self
+        upcomingMovies.dataSource = self
         
         movieManager.loadNowMovies()
         movieManager.loadPopularMovies()
@@ -45,39 +45,28 @@ class ViewController: UIViewController {
 
     func refreshMovies() {
         DispatchQueue.main.async { [weak self] in
-            self?.NowMovies.reloadData()
-            self?.PopularMovies.reloadData()
-            self?.UpcomingMovies.reloadData()
+            self?.nowMovies.reloadData()
+            self?.popularMovies.reloadData()
+            self?.upcomingMovies.reloadData()
         }
     }
-    /*
-    func refreshPopularMovies() {
-        DispatchQueue.main.async { [weak self] in
-            self?.PopularMovies.reloadData()
-        }
-    }
-    func refreshUpcomingMovies() {
-        DispatchQueue.main.async { [weak self] in
-            self?.UpcomingMovies.reloadData()
-        }
-    }
-     */
 }
 
 extension ViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NowMovies.deselectItem(at: indexPath, animated: true)
+        nowMovies.deselectItem(at: indexPath, animated: true)
         
         print("Item pressed")
     }
 }
 
 extension ViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if collectionView == self.NowMovies {
+        if collectionView == self.nowMovies {
             return movieManager.nowMovieCount
-        } else if collectionView == self.PopularMovies {
+        } else if collectionView == self.popularMovies {
             return movieManager.popularMovieCount
         } else {
             return movieManager.upcomingMovieCount
@@ -85,19 +74,18 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if collectionView == self.NowMovies {
-            let cell = NowMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+        if collectionView == self.nowMovies {
+            let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.nowMovies[indexPath.row]
             cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
             return cell
-        } else if collectionView == self.PopularMovies {
-            let cell = PopularMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+        } else if collectionView == self.popularMovies {
+            let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.popularMovies[indexPath.row]
             cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
             return cell
         } else {
-            let cell = UpcomingMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.upcomingMovies[indexPath.row]
             cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
             return cell
@@ -106,17 +94,16 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 extension ViewController: MovieManagerDelegate {
-    func onPopularLoaded(movie: Result<[Movie], CustomError>) {
+    
+    func onNowLoaded() {
         refreshMovies()
     }
     
-    func onUpcomingLoaded(movie: Result<[Movie], CustomError>) {
+    func onPopularLoaded() {
         refreshMovies()
     }
     
-    func onNowLoaded(movie: Result<[Movie], CustomError>) {
+    func onUpcomingLoaded() {
         refreshMovies()
     }
 }
-
-//extension ViewController: UICollectionViewFlowLayout {}

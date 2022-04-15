@@ -7,16 +7,10 @@
 
 import Foundation
 
-protocol MovieManagerDelegate {
-    func onNowLoaded(movie: Result<[Movie], CustomError>)
-    func onPopularLoaded(movie: Result<[Movie], CustomError>)
-    func onUpcomingLoaded(movie: Result<[Movie], CustomError>)
-}
-
 class MovieManager {
-    var nowMovies:[Movie] = []
-    var popularMovies:[Movie] = []
-    var upcomingMovies:[Movie] = []
+    var nowMovies: [Movie] = []
+    var popularMovies: [Movie] = []
+    var upcomingMovies: [Movie] = []
     
     var delegate: MovieManagerDelegate?
     var apiService = APIService()
@@ -26,7 +20,7 @@ class MovieManager {
             switch result {
             case .success(let movies ):
                 self.nowMovies = movies
-                self.delegate?.onNowLoaded(movie: result)
+                self.delegate?.onNowLoaded()
             case .failure(let error):
                 print(error)
             }
@@ -38,7 +32,7 @@ class MovieManager {
             switch result {
             case .success(let movies ):
                 self.popularMovies = movies
-                self.delegate?.onPopularLoaded(movie: result)
+                self.delegate?.onPopularLoaded()
             case .failure(let error):
                 print(error)
             }
@@ -50,7 +44,7 @@ class MovieManager {
             switch result {
             case .success(let movies ):
                 self.upcomingMovies = movies
-                self.delegate?.onUpcomingLoaded(movie: result)
+                self.delegate?.onUpcomingLoaded()
             case .failure(let error):
                 print(error)
             }
