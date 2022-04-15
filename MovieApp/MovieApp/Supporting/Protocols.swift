@@ -17,6 +17,10 @@ protocol APIServiceProtocol {
     func getListOfMovies(endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
 }
 
+protocol MovieManagerDelegate {
+    func onNowLoaded()
+    func onPopularLoaded()
+    func onUpcomingLoaded()
 protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - Functions
