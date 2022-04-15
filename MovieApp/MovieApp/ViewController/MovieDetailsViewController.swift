@@ -23,14 +23,24 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieGenresLabel: UILabel!
     @IBOutlet weak var movieDirectorLabel: UILabel!
     @IBOutlet weak var movieOverviewLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
+    // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.backButton.setTitle("", for: .normal)
+        self.backButton.addTarget(self, action: #selector(onBackPressed), for: .touchUpInside)
         manager.movieDetailsVCDelegate = self
         manager.getMovieDetails(id: self.movieID)
     }
+    
+    // MARK: - Functions
+    @objc func onBackPressed() {
+        self.dismiss(animated: true)
+    }
 }
 
+// MARK: - Extensions
 extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie() {

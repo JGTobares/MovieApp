@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailsViewController" customModule="MovieApp" customModuleProvider="target">
             <connections>
+                <outlet property="backButton" destination="q74-BN-aNK" id="iIc-tE-28n"/>
                 <outlet property="backgroundImageView" destination="Ybe-2j-4HF" id="jdP-rH-prF"/>
                 <outlet property="movieDirectorLabel" destination="wc8-7B-VGq" id="Fiu-nh-26h"/>
                 <outlet property="movieGenresLabel" destination="Kme-VE-BoR" id="jLe-i0-XfN"/>
@@ -90,6 +91,12 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jpp-vN-iNo" secondAttribute="trailing" constant="8" id="wVy-xn-i7k"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q74-BN-aNK">
+                                    <rect key="frame" x="20" y="20" width="80" height="31"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Button"/>
+                                </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K6w-at-qoD" userLabel="Info">
                                     <rect key="frame" x="0.0" y="554" width="414" height="280"/>
                                     <subviews>
@@ -125,6 +132,8 @@
                                 <constraint firstItem="w1o-wv-4gD" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="5CD-9M-VJG"/>
                                 <constraint firstAttribute="trailing" secondItem="K6w-at-qoD" secondAttribute="trailing" id="Ohb-GG-09Q"/>
                                 <constraint firstAttribute="trailing" secondItem="w1o-wv-4gD" secondAttribute="trailing" id="Rbn-Hf-dSJ"/>
+                                <constraint firstItem="q74-BN-aNK" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" constant="20" id="X8M-ZE-hHJ"/>
+                                <constraint firstItem="q74-BN-aNK" firstAttribute="top" secondItem="nne-za-zn1" secondAttribute="top" constant="20" id="XIs-Ye-DKb"/>
                                 <constraint firstItem="K6w-at-qoD" firstAttribute="top" secondItem="w1o-wv-4gD" secondAttribute="bottom" id="XUP-R7-tXe"/>
                                 <constraint firstAttribute="bottom" secondItem="K6w-at-qoD" secondAttribute="bottom" id="lDm-b4-XH7"/>
                                 <constraint firstItem="w1o-wv-4gD" firstAttribute="top" secondItem="nne-za-zn1" secondAttribute="top" id="ubz-pq-Tvh"/>
@@ -133,10 +142,10 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="nne-za-zn1" firstAttribute="top" secondItem="wl0-JZ-T7y" secondAttribute="top" constant="20" symbolic="YES" id="9QE-zn-vw5"/>
-                        <constraint firstItem="wl0-JZ-T7y" firstAttribute="bottom" secondItem="nne-za-zn1" secondAttribute="bottom" constant="20" symbolic="YES" id="9o1-K3-OLd"/>
+                        <constraint firstItem="nne-za-zn1" firstAttribute="top" secondItem="wl0-JZ-T7y" secondAttribute="top" symbolic="YES" id="9QE-zn-vw5"/>
+                        <constraint firstItem="wl0-JZ-T7y" firstAttribute="bottom" secondItem="nne-za-zn1" secondAttribute="bottom" symbolic="YES" id="9o1-K3-OLd"/>
                         <constraint firstItem="nne-za-zn1" firstAttribute="width" secondItem="Fq8-iI-QGy" secondAttribute="width" id="c0N-TU-A8R"/>
-                        <constraint firstItem="nne-za-zn1" firstAttribute="leading" secondItem="wl0-JZ-T7y" secondAttribute="leading" constant="20" symbolic="YES" id="sLu-Br-0uV"/>
+                        <constraint firstItem="nne-za-zn1" firstAttribute="leading" secondItem="wl0-JZ-T7y" secondAttribute="leading" symbolic="YES" id="sLu-Br-0uV"/>
                         <constraint firstItem="wl0-JZ-T7y" firstAttribute="trailing" secondItem="nne-za-zn1" secondAttribute="trailing" id="vOH-MF-iTU"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="wl0-JZ-T7y"/>
@@ -155,6 +164,7 @@
         </view>
     </objects>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="rectangle.bottomthird.inset.fill" catalog="system" width="128" height="93"/>
         <image name="rectangle.righthalf.inset.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
