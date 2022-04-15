@@ -44,7 +44,7 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
             if director.isEmpty {
                 self.movieDirectorLabel.text = ""
             } else {
-                self.movieDirectorLabel.text = "Director: \(director)"
+                self.movieDirectorLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.directorLabel, director)
             }
             self.movieOverviewLabel.text = self.manager.movie?.overview ?? ""
         }

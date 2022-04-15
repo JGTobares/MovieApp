@@ -29,6 +29,7 @@
 		C1781C56280862BE00D060C3 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */; };
 		C1781C592808876200D060C3 /* MovieTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C582808876200D060C3 /* MovieTest.swift */; };
 		C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */; };
+		C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEF7E02809CDAA0002FCA4 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		C1781C582808876200D060C3 /* MovieTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTest.swift; sourceTree = "<group>"; };
 		C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsManagerTest.swift; sourceTree = "<group>"; };
+		C1DEF7E02809CDAA0002FCA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				C0871C4D2805CF4E00D29103 /* ViewController.swift */,
+				C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -113,6 +116,9 @@
 		C06E5D9B2807F20F005C713E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0871C542805CF5500D29103 /* LaunchScreen.storyboard */,
+				C0871C4F2805CF4E00D29103 /* Main.storyboard */,
+				C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */,
 				C06E5D9C2807F217005C713E /* Cell */,
 			);
 			path = View;
@@ -157,12 +163,8 @@
 				C102C09A2807248B0025AEAE /* Model */,
 				C0871C492805CF4E00D29103 /* AppDelegate.swift */,
 				C0871C4B2805CF4E00D29103 /* SceneDelegate.swift */,
-				C0871C4F2805CF4E00D29103 /* Main.storyboard */,
 				C0871C522805CF5500D29103 /* Assets.xcassets */,
-				C0871C542805CF5500D29103 /* LaunchScreen.storyboard */,
 				C0871C572805CF5500D29103 /* Info.plist */,
-				C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */,
-				C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -209,6 +211,7 @@
 			children = (
 				C102C09D280726DD0025AEAE /* Protocols.swift */,
 				C102C0A328074E820025AEAE /* Enums.swift */,
+				C1DEF7E02809CDAA0002FCA4 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,
+				C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */,
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
 				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
 				C06E5DA228089B74005C713E /* MovieManager.swift in Sources */,

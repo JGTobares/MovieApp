@@ -18,9 +18,13 @@ protocol APIServiceProtocol {
 }
 
 protocol MovieManagerDelegate {
+    
+    // MARK: - Functions
     func onNowLoaded()
     func onPopularLoaded()
     func onUpcomingLoaded()
+}
+
 protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - Functions
