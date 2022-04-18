@@ -9,6 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
+    @IBOutlet var bannerBackground: UIImageView!
+    @IBOutlet var bannerPoster: UIImageView!
+    @IBOutlet var bannerTitle: UILabel!
+    @IBOutlet var bannerCategory: UILabel!
+    @IBOutlet var bannerRating: UILabel!
+    @IBOutlet var bannerDescription: UILabel!
+    @IBOutlet var bannerDetails: UIButton!
     @IBOutlet var nowMovies: UICollectionView!
     @IBOutlet var popularMovies: UICollectionView!
     @IBOutlet var upcomingMovies: UICollectionView!
@@ -17,15 +25,17 @@ class ViewController: UIViewController {
     @IBOutlet var popularSeeAllButton: UIButton!
     @IBOutlet var upcomingSeeAllButton: UIButton!
     @IBOutlet weak var searchButtonIcon: UIButton!
+
+    // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
     
+    // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
-
         movieManager.delegate = self
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 133, height: 186)
+        layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .horizontal
         
         nowMovies.collectionViewLayout = layout
@@ -50,12 +60,33 @@ class ViewController: UIViewController {
         self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
     }
 
+    // MARK: - Functions
     func refreshMovies() {
         DispatchQueue.main.async { [weak self] in
             self?.nowMovies.reloadData()
             self?.popularMovies.reloadData()
             self?.upcomingMovies.reloadData()
+            self?.refreshBanner()
         }
+    }
+    
+    func refreshBanner() {
+        let movie: Movie = movieManager.bannerMovie
+        self.bannerPoster.setImage(imageurl: movie.posterPath)
+        self.bannerBackground.setBackground(imageurl: movie.backdropPath)
+        self.bannerTitle.text = movie.title
+        self.bannerCategory.text = movie.releaseDate
+        self.bannerRating.isHidden = true
+        self.bannerDescription.text = movie.overview
+    }
+    
+    // MARK: - Actions
+    @IBAction func btnViewDetail(_ sender: Any) {
+        let movie: Movie = movieManager.bannerMovie
+        let vc = MovieDetailsViewController()
+        vc.movieID = movie.id
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     func showAlertMessage(title: String, message: String) {
@@ -133,17 +164,17 @@ extension ViewController: UICollectionViewDataSource {
         if collectionView == self.nowMovies {
             let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.nowMovies[indexPath.row]
-            cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
+            cell.card = movie
             return cell
         } else if collectionView == self.popularMovies {
             let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.popularMovies[indexPath.row]
-            cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
+            cell.card = movie
             return cell
         } else {
             let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.upcomingMovies[indexPath.row]
-            cell.configure(image: UIImage(named: "emptyImage")!, title: movie.title ?? "Empty")
+            cell.card = movie
             return cell
         }
     }

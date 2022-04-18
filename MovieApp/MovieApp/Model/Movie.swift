@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Codable{
     
     // MARK: - Constants
     let id: Int?

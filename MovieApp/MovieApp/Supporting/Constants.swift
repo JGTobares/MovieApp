@@ -24,6 +24,24 @@ struct Constants {
         static let directorLabel = "Director: %@"
     }
     
+    // MARK: - Images Constants
+    struct Images {
+        static let emptyImage = "emptyImage"
+        static let placeholder = "placeholder"
+    }
+    
+    // MARK: - URL Constants
+    struct Url {
+        static let urlBasePoster = "https://image.tmdb.org/t/p/w500"
+        static let urlBaseBackground = "https://image.tmdb.org/t/p/w1280"
+    }
+    
+    // MARK: - Cell Constants
+    struct Cell {
+        static let width = 120
+        static let height = 230
+    }
+    
     // MARK: - Search for Movie Constants
     struct SearchFor {
         static let dialogTitle = "Search"

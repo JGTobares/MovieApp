@@ -2,7 +2,7 @@
 //  SearchResultsViewController.swift
 //  MovieApp
 //
-//  Created by Jalasoft on 15/04/22.
+//  Created by Fernando Guerrero on 15/04/22.
 //
 
 import UIKit
