@@ -79,7 +79,7 @@ class ViewController: UIViewController {
             self.bannerBackground.image = UIImage(named: "emptyImage")!
         }
         self.bannerTitle.text = movie.title
-        self.bannerCategory.text = movie.releaseDate
+        self.bannerCategory.text = movie.getGenres()
         self.bannerRating.text = "\(String(describing: movie.popularity))"
         self.bannerDescription.text = movie.overview
     }
