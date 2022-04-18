@@ -13,4 +13,12 @@ struct Constants {
     struct MovieDetails {
         static let directorLabel = "Director: %@"
     }
+    
+    // MARK: - Search for Movie Constants
+    struct SearchFor {
+        static let dialogTitle = "Search"
+        static let dialogMessage = "Name of Movie"
+        static let dialogInput = "Input a Movie's name"
+        static let cancelLabel = "Cancel"
+    }
 }
