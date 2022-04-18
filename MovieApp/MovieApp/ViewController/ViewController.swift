@@ -24,7 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet var nowSeeAllButton: UIButton!
     @IBOutlet var popularSeeAllButton: UIButton!
     @IBOutlet var upcomingSeeAllButton: UIButton!
-    
+    @IBOutlet weak var searchButtonIcon: UIButton!
+
     // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
     
@@ -55,6 +56,8 @@ class ViewController: UIViewController {
         movieManager.loadNowMovies()
         movieManager.loadPopularMovies()
         movieManager.loadUpcomingMovies()
+        
+        self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
     }
 
     // MARK: - Functions
@@ -79,8 +82,8 @@ class ViewController: UIViewController {
             self.bannerBackground.image = UIImage(named: "emptyImage")!
         }
         self.bannerTitle.text = movie.title
-        self.bannerCategory.text = movie.getGenres()
-        self.bannerRating.text = "\(String(describing: movie.popularity))"
+        self.bannerCategory.text = movie.releaseDate
+        self.bannerRating.isHidden = true
         self.bannerDescription.text = movie.overview
     }
     
@@ -91,6 +94,45 @@ class ViewController: UIViewController {
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
+    }
+    
+    func showAlertMessage(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Constants.General.okLabel, style: .cancel, handler: { _ in
+                alert.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func onSearchPressed() {
+        let alert = UIAlertController(title: Constants.SearchFor.dialogTitle, message: Constants.SearchFor.dialogMessage, preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = Constants.SearchFor.dialogInput
+        })
+        alert.addAction(UIAlertAction(title: Constants.SearchFor.dialogTitle, style: .default, handler: { _ in
+            guard let textFields = alert.textFields, textFields.count > 0 else {
+                alert.dismiss(animated: true)
+                self.showAlertMessage(title: Constants.General.internalError, message: Constants.General.alertError)
+                return
+            }
+            let input = textFields[0].text?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            if input.isEmpty {
+                alert.dismiss(animated: true)
+                self.showAlertMessage(title: Constants.General.validationError, message: Constants.General.inputErrorMessage)
+                return
+            }
+            let vc = SearchResultsViewController()
+            vc.input = input
+            vc.modalPresentationStyle = .fullScreen
+            alert.dismiss(animated: true)
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: Constants.General.cancelLabel, style: .cancel, handler: { _ in
+            alert.dismiss(animated: true)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

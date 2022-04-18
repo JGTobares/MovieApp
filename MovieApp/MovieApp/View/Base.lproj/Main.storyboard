@@ -400,6 +400,7 @@
                         <outlet property="nowSeeAllButton" destination="e2i-Iv-WfD" id="Sq4-Ee-ChU"/>
                         <outlet property="popularSeeAllButton" destination="pqI-WS-8b3" id="9oe-uP-SIf"/>
                         <outlet property="searchButton" destination="8XN-mA-80P" id="eV3-eu-byo"/>
+                        <outlet property="searchButtonIcon" destination="3SY-h3-RdO" id="DmM-yG-hD6"/>
                         <outlet property="upcomingSeeAllButton" destination="D94-Ru-qgU" id="SOl-nI-7vD"/>
                     </connections>
                 </viewController>

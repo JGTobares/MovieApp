@@ -27,6 +27,8 @@
 		C102C0A228074BFA0025AEAE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A128074BFA0025AEAE /* APIService.swift */; };
 		C102C0A428074E820025AEAE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A328074E820025AEAE /* Enums.swift */; };
 		C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A628075F070025AEAE /* MockAPIService.swift */; };
+		C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */; };
+		C15B4DAD280A1FFE003F7161 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C15B4DAB280A1FFE003F7161 /* SearchResultsViewController.xib */; };
 		C1781C502808587000D060C3 /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C4F2808587000D060C3 /* Crew.swift */; };
 		C1781C5228085E9800D060C3 /* MovieDetailsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */; };
 		C1781C55280862BE00D060C3 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */; };
@@ -83,6 +85,8 @@
 		C102C0A128074BFA0025AEAE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C102C0A328074E820025AEAE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C102C0A628075F070025AEAE /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
+		C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		C15B4DAB280A1FFE003F7161 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
 		C1781C4F2808587000D060C3 /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
 		C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsManager.swift; sourceTree = "<group>"; };
 		C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 			children = (
 				C0871C4D2805CF4E00D29103 /* ViewController.swift */,
 				C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */,
+				C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				C0871C542805CF5500D29103 /* LaunchScreen.storyboard */,
 				C0871C4F2805CF4E00D29103 /* Main.storyboard */,
 				C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */,
+				C15B4DAB280A1FFE003F7161 /* SearchResultsViewController.xib */,
 				C06E5D9C2807F217005C713E /* Cell */,
 			);
 			path = View;
@@ -391,6 +397,7 @@
 				C0871C532805CF5500D29103 /* Assets.xcassets in Resources */,
 				C0871C512805CF4E00D29103 /* Main.storyboard in Resources */,
 				C06E5DA028088FD2005C713E /* CustomCollectionViewCell.xib in Resources */,
+				C15B4DAD280A1FFE003F7161 /* SearchResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +530,7 @@
 				C0871C4E2805CF4E00D29103 /* ViewController.swift in Sources */,
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
+				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,
 				C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */,
