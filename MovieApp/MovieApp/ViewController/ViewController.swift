@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet var bannerBackground: UIImageView!
     @IBOutlet var bannerPoster: UIImageView!
     @IBOutlet var bannerTitle: UILabel!
@@ -16,7 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet var bannerRating: UILabel!
     @IBOutlet var bannerDescription: UILabel!
     @IBOutlet var bannerDetails: UIButton!
-    
     @IBOutlet var nowMovies: UICollectionView!
     @IBOutlet var popularMovies: UICollectionView!
     @IBOutlet var upcomingMovies: UICollectionView!
@@ -24,8 +24,11 @@ class ViewController: UIViewController {
     @IBOutlet var nowSeeAllButton: UIButton!
     @IBOutlet var popularSeeAllButton: UIButton!
     @IBOutlet var upcomingSeeAllButton: UIButton!
+    
+    // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
     
+    // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
         movieManager.delegate = self
@@ -54,6 +57,7 @@ class ViewController: UIViewController {
         movieManager.loadUpcomingMovies()
     }
 
+    // MARK: - Functions
     func refreshMovies() {
         DispatchQueue.main.async { [weak self] in
             self?.nowMovies.reloadData()
@@ -80,7 +84,7 @@ class ViewController: UIViewController {
         self.bannerDescription.text = movie.overview
     }
     
-    
+    // MARK: - Actions
     @IBAction func btnViewDetail(_ sender: Any) {
         let movie: Movie = movieManager.bannerMovie
         let vc = MovieDetailsViewController()
