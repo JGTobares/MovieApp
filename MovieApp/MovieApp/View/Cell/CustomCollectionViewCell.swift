@@ -25,10 +25,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
     }
-
-    public func emptyImg(image: UIImage) {
-        imageView.image = image
-    }
     
     static func nib() -> UINib {
         return UINib(nibName: "CustomCollectionViewCell", bundle: nil)
