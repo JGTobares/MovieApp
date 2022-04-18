@@ -6,6 +6,7 @@ target 'MovieApp' do
   use_frameworks!
 
   # Pods for MovieApp
+  pod 'Kingfisher', '~> 7.0'
 
   target 'MovieAppTests' do
     inherit! :search_paths

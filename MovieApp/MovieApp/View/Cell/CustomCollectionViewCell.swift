@@ -14,14 +14,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "CustomCollectionViewCell"
     
+    var card: Movie! {
+        didSet {
+            self.labelTitle.text = self.card.title
+            self.imageView.setImage(imageurl: self.card.posterPath)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
 
-    public func configure(image: UIImage, title: String) {
+    public func emptyImg(image: UIImage) {
         imageView.image = image
-        labelTitle.text = title
     }
     
     static func nib() -> UINib {

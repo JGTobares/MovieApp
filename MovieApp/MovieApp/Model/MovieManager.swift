@@ -11,6 +11,7 @@ class MovieManager {
     var nowMovies: [Movie] = []
     var popularMovies: [Movie] = []
     var upcomingMovies: [Movie] = []
+    var bannerMovie: Movie!
     
     var delegate: MovieManagerDelegate?
     var apiService = APIService()
@@ -20,6 +21,7 @@ class MovieManager {
             switch result {
             case .success(let movies ):
                 self.nowMovies = movies
+                self.bannerMovie = movies.randomElement()
                 self.delegate?.onNowLoaded()
             case .failure(let error):
                 print(error)
