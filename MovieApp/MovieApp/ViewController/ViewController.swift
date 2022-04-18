@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         movieManager.delegate = self
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 120, height: 230)
+        layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .horizontal
         
         nowMovies.collectionViewLayout = layout
