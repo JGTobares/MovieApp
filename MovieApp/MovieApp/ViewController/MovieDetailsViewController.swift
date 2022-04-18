@@ -80,7 +80,7 @@ class MovieDetailsViewController: UIViewController {
         self.trailerContainer.isHidden = true
         
         // Add red bottom border to selected button
-        self.addBottomBorder(view: self.infoButton, tag: Constants.MovieDetails.infoTabTag, width: UIScreen.main.nativeBounds.width / 3)
+        self.addBottomBorder(view: self.infoButton, tag: Constants.MovieDetails.infoTabTag, width: UIScreen.main.bounds.width / 3)
         self.tabShown = Constants.MovieDetails.infoTabTag
     }
     
@@ -141,8 +141,8 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie() {
         DispatchQueue.main.async {
-            self.backgroundImageView.image = UIImage(named: self.manager.movie?.backdropPath ?? "") ?? nil
-            self.posterImageView.image = UIImage(named: self.manager.movie?.posterPath ?? "") ?? nil
+            self.backgroundImageView.setBackground(imageurl: self.manager.movie?.backdropPath)
+            self.posterImageView.setImage(imageurl: self.manager.movie?.posterPath)
             self.movieTitleLabel.text = self.manager.movie?.title ?? ""
             self.movieTaglineLabel.text = self.manager.movie?.tagline ?? ""
             self.movieGenresLabel.text = self.manager.movie?.getGenres()
