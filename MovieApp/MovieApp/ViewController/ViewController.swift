@@ -58,6 +58,16 @@ class ViewController: UIViewController {
         }
     }
     
+    func showAlertMessage(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Constants.General.okLabel, style: .cancel, handler: { _ in
+                alert.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     @objc func onSearchPressed() {
         let alert = UIAlertController(title: Constants.SearchFor.dialogTitle, message: Constants.SearchFor.dialogMessage, preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in
@@ -65,16 +75,23 @@ class ViewController: UIViewController {
         })
         alert.addAction(UIAlertAction(title: Constants.SearchFor.dialogTitle, style: .default, handler: { _ in
             guard let textFields = alert.textFields, textFields.count > 0 else {
+                alert.dismiss(animated: true)
+                self.showAlertMessage(title: Constants.General.internalError, message: Constants.General.alertError)
                 return
             }
-            let input = textFields[0].text ?? ""
+            let input = textFields[0].text?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            if input.isEmpty {
+                alert.dismiss(animated: true)
+                self.showAlertMessage(title: Constants.General.validationError, message: Constants.General.inputErrorMessage)
+                return
+            }
             let vc = SearchResultsViewController()
             vc.input = input
             vc.modalPresentationStyle = .fullScreen
             alert.dismiss(animated: true)
             self.present(vc, animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: Constants.SearchFor.cancelLabel, style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: Constants.General.cancelLabel, style: .cancel, handler: { _ in
             alert.dismiss(animated: true)
         }))
         self.present(alert, animated: true, completion: nil)
