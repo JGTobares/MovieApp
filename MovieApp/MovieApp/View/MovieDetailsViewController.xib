@@ -12,6 +12,10 @@
             <connections>
                 <outlet property="backButton" destination="q74-BN-aNK" id="iIc-tE-28n"/>
                 <outlet property="backgroundImageView" destination="Ybe-2j-4HF" id="jdP-rH-prF"/>
+                <outlet property="castButton" destination="xzW-Dz-M0N" id="Rjh-uC-DuS"/>
+                <outlet property="castContainer" destination="5my-Rt-tpf" id="kSP-sn-N2Z"/>
+                <outlet property="infoButton" destination="WH3-Qt-2gT" id="Yd3-1s-hwU"/>
+                <outlet property="infoContainer" destination="K6w-at-qoD" id="KM3-ov-Fel"/>
                 <outlet property="movieDateLabel" destination="qce-2h-YIT" id="yPR-MK-9IW"/>
                 <outlet property="movieDirectorLabel" destination="wc8-7B-VGq" id="Fiu-nh-26h"/>
                 <outlet property="movieGenresLabel" destination="Kme-VE-BoR" id="jLe-i0-XfN"/>
@@ -22,6 +26,9 @@
                 <outlet property="movieTitleLabel" destination="Jpp-vN-iNo" id="VXe-Te-ouK"/>
                 <outlet property="movieWebpageLabel" destination="6aq-5u-q9p" id="CJ8-23-pJ5"/>
                 <outlet property="posterImageView" destination="Gtv-mk-xVP" id="Phg-cZ-eG0"/>
+                <outlet property="tabsContainer" destination="0fx-la-gLp" id="3L3-4f-65d"/>
+                <outlet property="trailerButton" destination="E9K-XH-MuU" id="YdZ-cp-E5N"/>
+                <outlet property="trailerContainer" destination="T65-uD-ExA" id="F3O-gR-wJf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,47 +44,47 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="834"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-wv-4gD" userLabel="Header">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="554"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="524"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.righthalf.inset.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ybe-2j-4HF" userLabel="backdrop">
-                                            <rect key="frame" x="0.0" y="1" width="414" height="330"/>
+                                            <rect key="frame" x="0.0" y="1" width="414" height="312"/>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.bottomthird.inset.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gtv-mk-xVP" userLabel="poster">
-                                            <rect key="frame" x="20" y="283.5" width="145" height="221"/>
+                                            <rect key="frame" x="20" y="265.5" width="145" height="209"/>
                                             <color key="tintColor" systemColor="systemBrownColor"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain Fntasic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-vN-iNo" userLabel="title">
-                                            <rect key="frame" x="173" y="344.5" width="146.5" height="24"/>
+                                            <rect key="frame" x="173" y="326.5" width="146.5" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He prepared them for verything except the rea world." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2Z-tn-nRv" userLabel="tagline">
-                                            <rect key="frame" x="173" y="376.5" width="199" height="64.5"/>
+                                            <rect key="frame" x="173" y="358.5" width="199" height="64.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure Comedy Humor Horror Action Romance" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kme-VE-BoR" userLabel="genres">
-                                            <rect key="frame" x="173" y="449" width="221" height="33.5"/>
+                                            <rect key="frame" x="173" y="431" width="221" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Director: Christopher Columbus" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wc8-7B-VGq" userLabel="director">
-                                            <rect key="frame" x="173" y="490.5" width="205" height="17"/>
+                                            <rect key="frame" x="173" y="472.5" width="205" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date US: April 12th, 2022 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qce-2h-YIT" userLabel="date">
-                                            <rect key="frame" x="173" y="515.5" width="221.5" height="17"/>
+                                            <rect key="frame" x="173" y="497.5" width="221.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Runtime: 2h 2m" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ea-30-bDH" userLabel="runtime">
-                                            <rect key="frame" x="173" y="540.5" width="101.5" height="17"/>
+                                            <rect key="frame" x="173" y="522.5" width="101.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -119,29 +126,70 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Button"/>
                                 </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0fx-la-gLp" userLabel="Tabs">
+                                    <rect key="frame" x="0.0" y="524" width="414" height="30"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WH3-Qt-2gT" userLabel="Info">
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="INFO"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzW-Dz-M0N" userLabel="Cast">
+                                            <rect key="frame" x="138" y="0.0" width="138" height="30"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="CASTS"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9K-XH-MuU" userLabel="Trailer">
+                                            <rect key="frame" x="276" y="0.0" width="138" height="30"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="TRAILER"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="BMH-yh-3r6"/>
+                                    </constraints>
+                                </stackView>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T65-uD-ExA" userLabel="Trailer">
+                                    <rect key="frame" x="0.0" y="554" width="414" height="280"/>
+                                    <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="280" id="xds-HM-6nJ"/>
+                                    </constraints>
+                                </view>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5my-Rt-tpf" userLabel="Cast">
+                                    <rect key="frame" x="0.0" y="554" width="414" height="280"/>
+                                    <color key="backgroundColor" systemColor="systemCyanColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="280" id="EvU-8L-TVn"/>
+                                    </constraints>
+                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K6w-at-qoD" userLabel="Info">
                                     <rect key="frame" x="0.0" y="554" width="414" height="280"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-Pv-R0Q">
-                                            <rect key="frame" x="16" y="20" width="81" height="22"/>
+                                            <rect key="frame" x="16" y="20" width="81" height="21.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://webpage.domain" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-5u-q9p" userLabel="Webpage">
-                                            <rect key="frame" x="16" y="50" width="390" height="19.5"/>
+                                            <rect key="frame" x="16" y="49.5" width="390" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" systemColor="linkColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: Released" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8C-tD-nhf" userLabel="Status">
-                                            <rect key="frame" x="16" y="77.5" width="390" height="19.5"/>
+                                            <rect key="frame" x="16" y="77" width="390" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnf-de-0D4" userLabel="summary">
-                                            <rect key="frame" x="16" y="105" width="382" height="153"/>
+                                            <rect key="frame" x="16" y="104.5" width="382" height="153"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis, est id sagittis venenatis, metus est pellentesque nunc, tincidunt eleifend quam erat ac neque. Vivamus sagittis tortor ut orci hendrerit, ac malesuada orci tincidunt. In hac habitasse platea dictumst. Integer pellentesque elementum efficitur. Aenean egestas dignissim velit in gravida.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,14 +217,25 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="K6w-at-qoD" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="1mK-hH-awf"/>
+                                <constraint firstItem="5my-Rt-tpf" firstAttribute="top" secondItem="0fx-la-gLp" secondAttribute="bottom" id="3ch-Rv-T9a"/>
                                 <constraint firstItem="w1o-wv-4gD" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="5CD-9M-VJG"/>
+                                <constraint firstItem="0fx-la-gLp" firstAttribute="top" secondItem="w1o-wv-4gD" secondAttribute="bottom" id="9x8-7Z-map"/>
+                                <constraint firstItem="T65-uD-ExA" firstAttribute="top" secondItem="0fx-la-gLp" secondAttribute="bottom" id="AHJ-GE-xVy"/>
+                                <constraint firstAttribute="trailing" secondItem="0fx-la-gLp" secondAttribute="trailing" id="G6z-G7-jJa"/>
+                                <constraint firstAttribute="trailing" secondItem="5my-Rt-tpf" secondAttribute="trailing" id="GVE-8h-0d1"/>
+                                <constraint firstItem="T65-uD-ExA" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="O45-Df-1ab"/>
                                 <constraint firstAttribute="trailing" secondItem="K6w-at-qoD" secondAttribute="trailing" id="Ohb-GG-09Q"/>
                                 <constraint firstAttribute="trailing" secondItem="w1o-wv-4gD" secondAttribute="trailing" id="Rbn-Hf-dSJ"/>
                                 <constraint firstItem="q74-BN-aNK" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" constant="20" id="X8M-ZE-hHJ"/>
                                 <constraint firstItem="q74-BN-aNK" firstAttribute="top" secondItem="nne-za-zn1" secondAttribute="top" constant="20" id="XIs-Ye-DKb"/>
-                                <constraint firstItem="K6w-at-qoD" firstAttribute="top" secondItem="w1o-wv-4gD" secondAttribute="bottom" id="XUP-R7-tXe"/>
+                                <constraint firstItem="K6w-at-qoD" firstAttribute="top" secondItem="0fx-la-gLp" secondAttribute="bottom" id="ZSA-dK-Ouw"/>
+                                <constraint firstItem="0fx-la-gLp" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="cG9-Wv-WOv"/>
+                                <constraint firstAttribute="bottom" secondItem="5my-Rt-tpf" secondAttribute="bottom" id="gta-or-VFf"/>
                                 <constraint firstAttribute="bottom" secondItem="K6w-at-qoD" secondAttribute="bottom" id="lDm-b4-XH7"/>
+                                <constraint firstItem="5my-Rt-tpf" firstAttribute="leading" secondItem="nne-za-zn1" secondAttribute="leading" id="rVU-q2-iZo"/>
+                                <constraint firstAttribute="bottom" secondItem="T65-uD-ExA" secondAttribute="bottom" id="t1w-7i-Cq9"/>
                                 <constraint firstItem="w1o-wv-4gD" firstAttribute="top" secondItem="nne-za-zn1" secondAttribute="top" id="ubz-pq-Tvh"/>
+                                <constraint firstAttribute="trailing" secondItem="T65-uD-ExA" secondAttribute="trailing" id="wAA-ER-3JB"/>
                                 <constraint firstAttribute="height" constant="834" id="wIa-P4-LHS"/>
                             </constraints>
                         </view>
@@ -215,6 +274,12 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

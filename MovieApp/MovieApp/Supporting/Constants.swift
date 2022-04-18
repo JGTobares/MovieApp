@@ -26,6 +26,9 @@ struct Constants {
         static let runtimeLabel = "Runtime: %@"
         static let statusLabel = "Status: %@"
         static let statusUnknown = "Unknown"
+        static let infoTabTag = 111
+        static let castTabTag = 222
+        static let trailerTabTag = 333
     }
     
     // MARK: - Search for Movie Constants
