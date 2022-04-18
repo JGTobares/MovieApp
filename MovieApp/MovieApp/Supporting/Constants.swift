@@ -22,6 +22,13 @@ struct Constants {
     // MARK: - Movie Details Constants
     struct MovieDetails {
         static let directorLabel = "Director: %@"
+        static let releaseDateLabel = "Release Date: %@"
+        static let runtimeLabel = "Runtime: %@"
+        static let statusLabel = "Status: %@"
+        static let statusUnknown = "Unknown"
+        static let infoTabTag = 111
+        static let castTabTag = 222
+        static let trailerTabTag = 333
     }
     
     // MARK: - Images Constants

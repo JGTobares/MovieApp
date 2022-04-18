@@ -32,7 +32,7 @@ class MovieManager {
     func loadNowMovies() {
         apiService.getMoviesNowPlaying() { result in
             switch result {
-            case .success(let movies ):
+            case .success(let movies):
                 self.nowMovies = movies
                 self.bannerMovie = movies.randomElement()
                 self.delegate?.onNowLoaded()
@@ -45,7 +45,7 @@ class MovieManager {
     func loadPopularMovies() {
         apiService.getMoviesPopular() { result in
             switch result {
-            case .success(let movies ):
+            case .success(let movies):
                 self.popularMovies = movies
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
@@ -57,7 +57,7 @@ class MovieManager {
     func loadUpcomingMovies() {
         apiService.getMoviesUpcoming() { result in
             switch result {
-            case .success(let movies ):
+            case .success(let movies):
                 self.upcomingMovies = movies
                 self.delegate?.onUpcomingLoaded()
             case .failure(let error):

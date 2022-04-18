@@ -12,7 +12,6 @@ import Kingfisher
 extension UIImageView {
     
     func setImage(imageurl: String?) {
-        
         if let imgURL = imageurl {
             let imgUrl = Constants.Url.urlBasePoster + imgURL
             self.kf.setImage(with: URL(string: imgUrl), placeholder: UIImage(named: Constants.Images.placeholder), options: nil, progressBlock: nil, completionHandler: nil)
@@ -22,7 +21,6 @@ extension UIImageView {
     }
     
     func setBackground(imageurl: String?) {
-        
         if let imgURL = imageurl {
             let imgUrl = Constants.Url.urlBaseBackground + imgURL
             self.kf.setImage(with: URL(string: imgUrl), placeholder: UIImage(named: Constants.Images.placeholder), options: nil, progressBlock: nil, completionHandler: nil)
