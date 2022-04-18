@@ -2,7 +2,7 @@
 //  SearchResultsManager.swift
 //  MovieApp
 //
-//  Created by Jalasoft on 18/04/22.
+//  Created by Fernando Guerrero on 18/04/22.
 //
 
 import Foundation
