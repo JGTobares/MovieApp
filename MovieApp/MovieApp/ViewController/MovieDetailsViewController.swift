@@ -22,7 +22,11 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var movieTaglineLabel: UILabel!
     @IBOutlet weak var movieGenresLabel: UILabel!
     @IBOutlet weak var movieDirectorLabel: UILabel!
+    @IBOutlet weak var movieDateLabel: UILabel!
+    @IBOutlet weak var movieRuntimeLabel: UILabel!
     @IBOutlet weak var movieOverviewLabel: UILabel!
+    @IBOutlet weak var movieWebpageLabel: UILabel!
+    @IBOutlet weak var movieStatusLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
     // MARK: - Constructors
@@ -56,7 +60,13 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
             } else {
                 self.movieDirectorLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.directorLabel, director)
             }
+            self.movieDateLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.releaseDateLabel, self.manager.movie?.getFormattedReleaseDate() ?? "")
+            self.movieRuntimeLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.runtimeLabel, self.manager.movie?.getRuntimeString() ?? "")
             self.movieOverviewLabel.text = self.manager.movie?.overview ?? ""
+            self.movieStatusLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.statusLabel, self.manager.movie?.status ?? Constants.MovieDetails.statusUnknown)
+            // Make text italics and underlined
+            self.movieWebpageLabel.attributedText = NSAttributedString(string: self.manager.movie?.homepage ?? "", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+            self.movieWebpageLabel.font = UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
         }
     }
 }
