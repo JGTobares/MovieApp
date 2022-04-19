@@ -25,6 +25,12 @@ protocol MovieManagerDelegate {
     func onUpcomingLoaded()
 }
 
+protocol SearchResultsManagerDelegate {
+    
+    // MARK: - Functions
+    func onSeeAllLoaded()
+}
+
 protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - Functions

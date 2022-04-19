@@ -18,19 +18,24 @@ class SearchResultsViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var collectionMovies: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .vertical
-        
         collectionMovies.collectionViewLayout = layout
         collectionMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         collectionMovies.delegate = self
         collectionMovies.dataSource = self
-        self.manager.loadNowMovies()
+        
+        self.manager.delegate = self
+        self.manager.loadMoviesFromCategory(self.category)
+        
+        self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
     }
     
     // MARK: - Functions
@@ -75,17 +80,9 @@ extension SearchResultsViewController: UICollectionViewDataSource {
     }
 }
 
-extension SearchResultsViewController: MovieManagerDelegate {
+extension SearchResultsViewController: SearchResultsManagerDelegate {
     
-    func onNowLoaded() {
-        refreshMovies()
-    }
-    
-    func onPopularLoaded() {
-        refreshMovies()
-    }
-    
-    func onUpcomingLoaded() {
-        refreshMovies()
+    func onSeeAllLoaded() {
+        self.refreshMovies()
     }
 }

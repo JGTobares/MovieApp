@@ -15,10 +15,10 @@ class SearchResultsManager {
     // MARK: - Variables
     var movies: [Movie]? {
         didSet {
-            self.movieDetailsVCDelegate?.didSetMovie()
+            self.delegate?.onSeeAllLoaded()
         }
     }
-    var movieDetailsVCDelegate: MovieDetailsViewControllerDelegate?
+    var delegate: SearchResultsManagerDelegate?
     
     // MARK: - Initializers
     init() {
@@ -30,14 +30,43 @@ class SearchResultsManager {
     }
     
     // MARK: - Functions
-    func loadNowMovies() {
-        apiService.getMoviesNowPlaying() { result in
-            switch result {
-            case .success(let movies):
-                self.movies = movies
-            case .failure(let error):
-                print(error)
-            }
+    func getTitleLabel(category: MoviesCategory?) -> String {
+        let title = Constants.SeeAll.categoryTitle
+        switch category {
+        case .now:
+            return title + Constants.SeeAll.categoryNow
+        case .popular:
+            return title + Constants.SeeAll.categoryPopular
+        case .upcoming:
+            return title + Constants.SeeAll.categoryUpcoming
+        default:
+            return ""
+        }
+    }
+    
+    func loadMoviesFromCategory(_ category: MoviesCategory?) {
+        switch category {
+        case .now:
+            self.apiService.getMoviesNowPlaying(completion: self.loadResult(_:))
+            break
+        case .popular:
+            self.apiService.getMoviesPopular(completion: self.loadResult(_:))
+            break
+        case .upcoming:
+            self.apiService.getMoviesUpcoming(completion: self.loadResult(_:))
+            break
+        default:
+            break
+        }
+    }
+    
+    func loadResult(_ result: Result<[Movie], CustomError>) {
+        switch result {
+        case .success(let movies):
+            self.movies = movies
+            break
+        case .failure(let error):
+            print(error.localizedDescription)
         }
     }
 }
