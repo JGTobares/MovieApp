@@ -85,7 +85,16 @@ class ViewController: UIViewController {
     }
     
     func refreshBanner() {
-        let movie: Movie = movieManager.bannerMovie
+        guard let movie: Movie = movieManager.bannerMovie else {
+            self.bannerPoster.setImage(imageurl: nil)
+            self.bannerBackground.setBackground(imageurl: nil)
+            self.bannerTitle.text = ""
+            self.bannerCategory.text = ""
+            self.bannerRating.isHidden = true
+            self.bannerDescription.text = ""
+            self.bannerDetails.isHidden = true
+            return
+        }
         self.bannerPoster.setImage(imageurl: movie.posterPath)
         self.bannerBackground.setBackground(imageurl: movie.backdropPath)
         self.bannerTitle.text = movie.title
