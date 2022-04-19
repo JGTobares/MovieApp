@@ -1,16 +1,20 @@
 PODS:
   - Kingfisher (7.2.1)
+  - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
+  - SideMenu
 
 SPEC REPOS:
   trunk:
     - Kingfisher
+    - SideMenu
 
 SPEC CHECKSUMS:
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 0fc1d334bba9fc2524f3c4184fb18c257b02912c
+PODFILE CHECKSUM: 301e224e65f65be582a3a73a0a7414d0d5599891
 
 COCOAPODS: 1.11.2

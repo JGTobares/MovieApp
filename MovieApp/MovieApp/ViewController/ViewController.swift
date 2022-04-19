@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class ViewController: UIViewController {
 
@@ -29,10 +30,15 @@ class ViewController: UIViewController {
     // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
     
+    // MARK: - Variables
+    var menu: SideMenuNavigationController?
+    
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
         movieManager.delegate = self
+        
+        menu = SideMenuNavigationController(rootViewController: ViewController())
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
@@ -87,6 +93,11 @@ class ViewController: UIViewController {
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func didTapMenu(_ sender: Any) {
+        present(menu!, animated: true)
     }
     
     func showAlertMessage(title: String, message: String) {
