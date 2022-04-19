@@ -88,5 +88,15 @@ struct Credits: Codable {
 }
 
 struct MoviesResponse: Codable {
+    
+    // MARK: - Constants
+    let page: Int?
     let results: [Movie]?
+    let totalPages: Int?
+    
+    // MARK: - Coding Keys
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+    }
 }

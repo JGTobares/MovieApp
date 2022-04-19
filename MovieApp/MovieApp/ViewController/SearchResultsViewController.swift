@@ -19,6 +19,9 @@ class SearchResultsViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var collectionMovies: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var pageLabel: UILabel!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -33,7 +36,7 @@ class SearchResultsViewController: UIViewController {
         collectionMovies.dataSource = self
         
         self.manager.delegate = self
-        self.manager.loadMoviesFromCategory(self.category)
+        self.manager.getMovieResponse(category: self.category)
         
         self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
     }

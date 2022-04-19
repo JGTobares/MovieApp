@@ -18,6 +18,8 @@ class SearchResultsManager {
             self.delegate?.onSeeAllLoaded()
         }
     }
+    var currentPage: Int? = 1
+    var totalPages: Int?
     var delegate: SearchResultsManagerDelegate?
     
     // MARK: - Initializers
@@ -44,16 +46,30 @@ class SearchResultsManager {
         }
     }
     
+    func getMovieResponse(category: MoviesCategory?) {
+        self.apiService.getMoviesResponse(category: category) { result in
+            switch result {
+            case .success(let response):
+                self.currentPage = response.page
+                self.totalPages = response.totalPages
+                self.movies = response.results ?? []
+                break
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func loadMoviesFromCategory(_ category: MoviesCategory?) {
         switch category {
         case .now:
-            self.apiService.getMoviesNowPlaying(completion: self.loadResult(_:))
+            self.apiService.getMoviesNowPlaying(page: self.currentPage, completion: self.loadResult(_:))
             break
         case .popular:
-            self.apiService.getMoviesPopular(completion: self.loadResult(_:))
+            self.apiService.getMoviesPopular(page: self.currentPage, completion: self.loadResult(_:))
             break
         case .upcoming:
-            self.apiService.getMoviesUpcoming(completion: self.loadResult(_:))
+            self.apiService.getMoviesUpcoming(page: self.currentPage, completion: self.loadResult(_:))
             break
         default:
             break

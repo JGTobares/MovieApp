@@ -19,6 +19,15 @@ struct Constants {
         static let inputErrorMessage = "Your input text is wrong. Please input corectly your search query."
     }
     
+    // MARK: - API Constants
+    struct Api {
+        static let baseUrlBundle = "urlBase"
+        static let apiKeyBundle = "apiKey"
+        static let nowEndpoint = "now_playing"
+        static let popularEndpoint = "upcoming"
+        static let upcomingEndpoint = "popular"
+    }
+    
     // MARK: - Movie Details Constants
     struct MovieDetails {
         static let directorLabel = "Director: %@"
