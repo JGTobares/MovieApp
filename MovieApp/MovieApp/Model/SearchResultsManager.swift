@@ -46,12 +46,19 @@ class SearchResultsManager {
         }
     }
     
+    func setTotalPages(total: Int?) {
+        guard let total = total else {
+            return
+        }
+        self.totalPages = total < Constants.Api.maxTotalPages ? total : Constants.Api.maxTotalPages
+    }
+    
     func getMovieResponse(category: MoviesCategory?) {
         self.apiService.getMoviesResponse(category: category) { result in
             switch result {
             case .success(let response):
                 self.currentPage = response.page
-                self.totalPages = response.totalPages
+                self.setTotalPages(total: response.totalPages)
                 self.movies = response.results ?? []
                 break
             case .failure(let error):
@@ -83,6 +90,34 @@ class SearchResultsManager {
             break
         case .failure(let error):
             print(error.localizedDescription)
+        }
+    }
+    
+    func nextPage() {
+        if self.currentPage != nil {
+            self.currentPage! += 1
+        }
+    }
+    
+    func previousPage() {
+        if self.currentPage != nil {
+            self.currentPage! -= 1
+        }
+    }
+    
+    func hasPreviousPage() -> Bool {
+        if let page = self.currentPage, page != 1 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func hasNextPage() -> Bool {
+        if let page = self.currentPage, let total = self.totalPages, page != total {
+            return true
+        } else {
+            return false
         }
     }
 }

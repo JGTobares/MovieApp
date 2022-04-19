@@ -26,6 +26,7 @@ struct Constants {
         static let nowEndpoint = "now_playing"
         static let popularEndpoint = "upcoming"
         static let upcomingEndpoint = "popular"
+        static let maxTotalPages = 500
     }
     
     // MARK: - Movie Details Constants

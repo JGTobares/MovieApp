@@ -39,18 +39,43 @@ class SearchResultsViewController: UIViewController {
         self.manager.getMovieResponse(category: self.category)
         
         self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
+        
+        self.nextButton.addTarget(self, action: #selector(onNextPressed), for: .touchUpInside)
+        self.previousButton.addTarget(self, action: #selector(onPreviousPressed), for: .touchUpInside)
+        
+        self.nextButton.isHidden = !self.manager.hasNextPage()
+        self.previousButton.isHidden = !self.manager.hasPreviousPage()
     }
     
     // MARK: - Functions
     func refreshMovies() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionMovies.reloadData()
+            self?.pageLabel.text = "\(self?.manager.currentPage ?? 0)/\(self?.manager.totalPages ?? 0)"
+            self?.nextButton.isHidden = !(self?.manager.hasNextPage() ?? true)
+            self?.previousButton.isHidden = !(self?.manager.hasPreviousPage() ?? true)
         }
     }
     
     // MARK: - Actions
     @IBAction func onBackPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+    
+    @objc func onNextPressed() {
+        if !self.manager.hasNextPage() {
+            return
+        }
+        self.manager.nextPage()
+        self.manager.loadMoviesFromCategory(self.category)
+    }
+    
+    @objc func onPreviousPressed() {
+        if !self.manager.hasPreviousPage() {
+            return
+        }
+        self.manager.previousPage()
+        self.manager.loadMoviesFromCategory(self.category)
     }
 }
 
