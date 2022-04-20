@@ -116,10 +116,6 @@ class ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func didTapMenu(_ sender: Any) {
-    
-    }
-    
     func onSeeAllPressed(category: MoviesCategory) {
         let vc = SearchResultsViewController()
         vc.category = category

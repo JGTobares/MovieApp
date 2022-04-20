@@ -10,7 +10,7 @@ import UIKit
 
 class MenuListController: UITableViewController {
     
-    //MARK: - Variables
+    //MARK: - Constants
     var pages = [Constants.SideMenu.movies, Constants.SideMenu.tvShows, Constants.SideMenu.favorites]
     var darkColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     
@@ -18,7 +18,7 @@ class MenuListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = darkColor
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.SideMenu.cell)
     }
 
     //MARK: - Functions
@@ -27,7 +27,7 @@ class MenuListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.SideMenu.cell, for: indexPath)
         cell.textLabel?.text = pages[indexPath.row]
         cell.textLabel?.textColor = .white
         cell.backgroundColor = darkColor
@@ -39,17 +39,17 @@ class MenuListController: UITableViewController {
         let id = pages[indexPath.row]
         switch id {
         case Constants.SideMenu.movies:
-            let story = UIStoryboard(name: "Main", bundle:nil)
+            let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: "movieVC") as! ViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case Constants.SideMenu.tvShows:
-            let story = UIStoryboard(name: "Main", bundle:nil)
+            let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: "tvShowVC") as! TVShowsViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case Constants.SideMenu.favorites:
-            let story = UIStoryboard(name: "Main", bundle:nil)
+            let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: "favoritesVC") as! FavoritesViewController
             self.navigationController?.pushViewController(vc, animated: true)
             break
