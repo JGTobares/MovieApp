@@ -372,9 +372,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="NowMovies" destination="KUv-16-OhT" id="hgP-v3-aqM"/>
-                        <outlet property="PopularMovies" destination="87S-MU-LLO" id="UpQ-ED-sxM"/>
-                        <outlet property="UpcomingMovies" destination="FMA-ON-Y0v" id="yvM-Fk-k7H"/>
                         <outlet property="bannerBackground" destination="EXS-Ff-haw" id="KNf-HH-GD3"/>
                         <outlet property="bannerCategory" destination="nxR-bJ-o1s" id="Gpd-f4-tKS"/>
                         <outlet property="bannerDescription" destination="A5h-Zx-6Vr" id="D6L-Ws-N37"/>
@@ -382,9 +379,12 @@
                         <outlet property="bannerPoster" destination="CYd-Mf-1XU" id="cS5-tU-d1D"/>
                         <outlet property="bannerRating" destination="lSx-hb-vdE" id="209-qf-QWj"/>
                         <outlet property="bannerTitle" destination="605-Mg-OGJ" id="kdf-lI-Epc"/>
+                        <outlet property="nowMovies" destination="KUv-16-OhT" id="aP5-hg-aY4"/>
                         <outlet property="nowSeeAllButton" destination="e2i-Iv-WfD" id="Sq4-Ee-ChU"/>
+                        <outlet property="popularMovies" destination="87S-MU-LLO" id="31u-Uz-waH"/>
                         <outlet property="popularSeeAllButton" destination="pqI-WS-8b3" id="9oe-uP-SIf"/>
                         <outlet property="searchButtonIcon" destination="5s9-cE-pyb" id="JuE-U1-dwG"/>
+                        <outlet property="upcomingMovies" destination="FMA-ON-Y0v" id="Wbv-C2-aGR"/>
                         <outlet property="upcomingSeeAllButton" destination="D94-Ru-qgU" id="SOl-nI-7vD"/>
                     </connections>
                 </viewController>
