@@ -30,7 +30,7 @@ class MovieManager {
     
     // MARK: - Functions
     func loadNowMovies() {
-        apiService.getMoviesNowPlaying() { result in
+        apiService.getMoviesNowPlaying { result in
             switch result {
             case .success(let movies):
                 self.nowMovies = movies
@@ -43,7 +43,7 @@ class MovieManager {
     }
     
     func loadPopularMovies() {
-        apiService.getMoviesPopular() { result in
+        apiService.getMoviesPopular { result in
             switch result {
             case .success(let movies):
                 self.popularMovies = movies
@@ -55,7 +55,7 @@ class MovieManager {
     }
     
     func loadUpcomingMovies() {
-        apiService.getMoviesUpcoming() { result in
+        apiService.getMoviesUpcoming { result in
             switch result {
             case .success(let movies):
                 self.upcomingMovies = movies

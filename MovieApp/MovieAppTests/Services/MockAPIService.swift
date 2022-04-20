@@ -50,7 +50,29 @@ final class MockAPIService: APIServiceProtocol {
     }
     
     func getListOfMovies(endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
-        let moviesResponse = MoviesResponse(results: movies)
+        let moviesResponse = MoviesResponse(page: 1, results: movies, totalPages: 1)
         completion(.success(moviesResponse.results!))
+    }
+    
+    func getMoviesNowPlaying(page: Int? = nil, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
+        completion(.success(movies))
+    }
+    
+    func getMoviesUpcoming(page: Int? = nil, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
+        completion(.success(movies))
+    }
+    
+    func getMoviesPopular(page: Int? = nil, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
+        completion(.success(movies))
+    }
+    
+    func getListOfMovies(page: Int? = nil, endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void) {
+        let moviesResponse = MoviesResponse(page: 1, results: movies, totalPages: 1)
+        completion(.success(moviesResponse.results!))
+    }
+    
+    func getMoviesResponse(category: MoviesCategory?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
+        let moviesResponse = MoviesResponse(page: 1, results: movies, totalPages: 10)
+        completion(.success(moviesResponse))
     }
 }
