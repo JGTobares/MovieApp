@@ -42,6 +42,8 @@
 		C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */; };
 		C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEF7E02809CDAA0002FCA4 /* Constants.swift */; };
 		C1E48120280E17EB009A625F /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E4811F280E17EB009A625F /* SearchResultsManager.swift */; };
+		D46F4F902810529D003848CC /* MovieRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F8F2810529D003848CC /* MovieRealm.swift */; };
+		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManagerTest.swift; sourceTree = "<group>"; };
 		C1DEF7E02809CDAA0002FCA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C1E4811F280E17EB009A625F /* SearchResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
+		D46F4F8F2810529D003848CC /* MovieRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealm.swift; sourceTree = "<group>"; };
+		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +252,7 @@
 				C1781C4F2808587000D060C3 /* Crew.swift */,
 				C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */,
 				C1E4811F280E17EB009A625F /* SearchResultsManager.swift */,
+				D46F4F8F2810529D003848CC /* MovieRealm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				C102C0A128074BFA0025AEAE /* APIService.swift */,
+				D46F4F9128105642003848CC /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -559,6 +565,8 @@
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
 				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
 				C06E5DA228089B74005C713E /* MovieManager.swift in Sources */,
+				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
+				D46F4F902810529D003848CC /* MovieRealm.swift in Sources */,
 				C1781C502808587000D060C3 /* Crew.swift in Sources */,
 				C102C0A0280728D10025AEAE /* Movie.swift in Sources */,
 				C05B982A280D87AE0023FE35 /* Extensions.swift in Sources */,
