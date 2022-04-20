@@ -102,6 +102,10 @@ class ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    
+    @IBAction func didTapMenu(_ sender: Any) {
+    }
+    
     func showAlertMessage(title: String, message: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
