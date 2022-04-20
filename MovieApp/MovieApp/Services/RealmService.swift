@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class RealmService {
+class RealmService: RealmServiceProtocol {
     
     // MARK: - Constants
     let realm = try? Realm()

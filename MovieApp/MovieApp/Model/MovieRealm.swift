@@ -10,6 +10,7 @@ import RealmSwift
 
 class MovieRealm: Object {
     
+    // MARK: - Properties
     @Persisted(primaryKey: true) var id: Int
     @Persisted var backdropPath: String
     @Persisted var genres: String
@@ -25,6 +26,7 @@ class MovieRealm: Object {
     @Persisted var director: String
     @Persisted var category: Int?
     
+    // MARK: - Initializers
     convenience init(movie: Movie) {
         self.init()
         self.id = movie.id ?? 0

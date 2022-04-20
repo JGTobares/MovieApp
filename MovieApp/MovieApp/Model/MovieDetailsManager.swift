@@ -12,10 +12,13 @@ class MovieDetailsManager {
     // MARK: - Constants
     let apiService: APIServiceProtocol
     
+    
     // MARK: - Variables
     var movie: Movie? {
         didSet {
-            self.movieDetailsVCDelegate?.didSetMovie()
+            if let movie = movie {
+                self.movieDetailsVCDelegate?.didSetMovie(movie)
+            }
         }
     }
     var movieDetailsVCDelegate: MovieDetailsViewControllerDelegate?

@@ -10,7 +10,7 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     
     // MARK: - Constants
-    let manager = MovieDetailsManager()
+    let manager = StorageManager()
     
     // MARK: - Variables
     var movieID: Int?
@@ -41,7 +41,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureButtons()
-        manager.movieDetailsVCDelegate = self
+        manager.setDetailsDelegate(self)
         manager.getMovieDetails(id: self.movieID)
     }
     
@@ -139,25 +139,25 @@ class MovieDetailsViewController: UIViewController {
 // MARK: - Extensions
 extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
-    func didSetMovie() {
+    func didSetMovie(_ movie: Movie) {
         DispatchQueue.main.async {
-            self.backgroundImageView.setBackground(imageurl: self.manager.movie?.backdropPath)
-            self.posterImageView.setImage(imageurl: self.manager.movie?.posterPath)
-            self.movieTitleLabel.text = self.manager.movie?.title ?? ""
-            self.movieTaglineLabel.text = self.manager.movie?.tagline ?? ""
-            self.movieGenresLabel.text = self.manager.movie?.getGenres()
-            let director = self.manager.movie?.getDirector() ?? ""
+            self.backgroundImageView.setBackground(imageurl: movie.backdropPath)
+            self.posterImageView.setImage(imageurl: movie.posterPath)
+            self.movieTitleLabel.text = movie.title ?? ""
+            self.movieTaglineLabel.text = movie.tagline ?? ""
+            self.movieGenresLabel.text = movie.getGenres()
+            let director = movie.getDirector()
             if director.isEmpty {
                 self.movieDirectorLabel.text = ""
             } else {
                 self.movieDirectorLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.directorLabel, director)
             }
-            self.movieDateLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.releaseDateLabel, self.manager.movie?.getFormattedReleaseDate() ?? "")
-            self.movieRuntimeLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.runtimeLabel, self.manager.movie?.getRuntimeString() ?? "")
-            self.movieOverviewLabel.text = self.manager.movie?.overview ?? ""
-            self.movieStatusLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.statusLabel, self.manager.movie?.status ?? Constants.MovieDetails.statusUnknown)
+            self.movieDateLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.releaseDateLabel, movie.getFormattedReleaseDate())
+            self.movieRuntimeLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.runtimeLabel, movie.getRuntimeString())
+            self.movieOverviewLabel.text = movie.overview ?? ""
+            self.movieStatusLabel.text = String.localizedStringWithFormat(Constants.MovieDetails.statusLabel, movie.status ?? Constants.MovieDetails.statusUnknown)
             // Make text italics and underlined
-            self.movieWebpageLabel.attributedText = NSAttributedString(string: self.manager.movie?.homepage ?? "", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+            self.movieWebpageLabel.attributedText = NSAttributedString(string: movie.homepage ?? "", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
             self.movieWebpageLabel.font = UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
         }
     }
