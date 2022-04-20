@@ -35,10 +35,10 @@ class StorageManager {
         self.realmManager = MovieRealmManager()
     }
     
-    init(apiService: APIServiceProtocol) {
+    init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
         self.movieManager = MovieManager(apiService: apiService)
         self.detailsManager = MovieDetailsManager(apiService: apiService)
-        self.realmManager = MovieRealmManager()
+        self.realmManager = MovieRealmManager(service: realmService)
     }
     
     // MARK: - Functions

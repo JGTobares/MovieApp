@@ -46,6 +46,9 @@
 		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 		D46F4F9428106B73003848CC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9328106B73003848CC /* StorageManager.swift */; };
 		D46F4F9628106CE3003848CC /* MovieRealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9528106CE3003848CC /* MovieRealmManager.swift */; };
+		D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F972810B33A003848CC /* MockRealmService.swift */; };
+		D46F4F9A2810B614003848CC /* MovieRealmManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */; };
+		D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9B2810B737003848CC /* StorageManagerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +117,9 @@
 		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		D46F4F9328106B73003848CC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D46F4F9528106CE3003848CC /* MovieRealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealmManager.swift; sourceTree = "<group>"; };
+		D46F4F972810B33A003848CC /* MockRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmService.swift; sourceTree = "<group>"; };
+		D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealmManagerTest.swift; sourceTree = "<group>"; };
+		D46F4F9B2810B737003848CC /* StorageManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTest.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				C102C0A628075F070025AEAE /* MockAPIService.swift */,
+				D46F4F972810B33A003848CC /* MockRealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -298,6 +305,8 @@
 				C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */,
 				C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */,
 				C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */,
+				D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */,
+				D46F4F9B2810B737003848CC /* StorageManagerTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -586,6 +595,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */,
+				D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */,
+				D46F4F9A2810B614003848CC /* MovieRealmManagerTest.swift in Sources */,
+				D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */,
 				C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */,
 				C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */,
 				C1781C592808876200D060C3 /* MovieTest.swift in Sources */,
