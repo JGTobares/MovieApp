@@ -62,4 +62,11 @@ struct Constants {
         static let tvShows = "TV Shows"
         static let favorites = "Favorites"
     }
+    // MARK: - See All Constants
+    struct SeeAll {
+        static let categoryTitle = "Category: "
+        static let categoryNow = "Movies Now Playing"
+        static let categoryPopular = "Popular Movies"
+        static let categoryUpcoming = "Upcoming Movies"
+    }
 }

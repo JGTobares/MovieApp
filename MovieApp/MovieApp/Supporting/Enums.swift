@@ -15,3 +15,9 @@ enum CustomError: Error, Equatable {
     case notFoundError
     case jsonError
 }
+
+enum MoviesCategory {
+    case now
+    case popular
+    case upcoming
+}

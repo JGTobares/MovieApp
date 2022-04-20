@@ -39,7 +39,9 @@
 		C1781C56280862BE00D060C3 /* MovieDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */; };
 		C1781C592808876200D060C3 /* MovieTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C582808876200D060C3 /* MovieTest.swift */; };
 		C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */; };
+		C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */; };
 		C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEF7E02809CDAA0002FCA4 /* Constants.swift */; };
+		C1E48120280E17EB009A625F /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E4811F280E17EB009A625F /* SearchResultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,7 +103,9 @@
 		C1781C54280862BE00D060C3 /* MovieDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsViewController.xib; sourceTree = "<group>"; };
 		C1781C582808876200D060C3 /* MovieTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTest.swift; sourceTree = "<group>"; };
 		C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsManagerTest.swift; sourceTree = "<group>"; };
+		C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManagerTest.swift; sourceTree = "<group>"; };
 		C1DEF7E02809CDAA0002FCA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1E4811F280E17EB009A625F /* SearchResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +247,7 @@
 				C06E5DA128089B74005C713E /* MovieManager.swift */,
 				C1781C4F2808587000D060C3 /* Crew.swift */,
 				C1781C5128085E9800D060C3 /* MovieDetailsManager.swift */,
+				C1E4811F280E17EB009A625F /* SearchResultsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				C1781C582808876200D060C3 /* MovieTest.swift */,
 				C1781C5A2808972E00D060C3 /* MovieDetailsManagerTest.swift */,
 				C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */,
+				C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,
 				C05E6EE7280EEE220074B72A /* MenuListController.swift in Sources */,
 				C05E6EEE280F00B40074B72A /* FavoritesViewController.swift in Sources */,
+				C1E48120280E17EB009A625F /* SearchResultsManager.swift in Sources */,
 				C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */,
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
 				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
@@ -563,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */,
+				C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */,
 				C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */,
 				C1781C592808876200D060C3 /* MovieTest.swift in Sources */,
 				C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */,

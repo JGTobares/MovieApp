@@ -46,11 +46,11 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-wv-4gD" userLabel="Header">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="524"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.righthalf.inset.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ybe-2j-4HF" userLabel="backdrop">
-                                            <rect key="frame" x="0.0" y="1" width="414" height="312"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyImage" translatesAutoresizingMaskIntoConstraints="NO" id="Ybe-2j-4HF" userLabel="backdrop">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="314.5"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle.bottomthird.inset.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Gtv-mk-xVP" userLabel="poster">
-                                            <rect key="frame" x="20" y="265.5" width="145" height="209"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Gtv-mk-xVP" userLabel="poster">
+                                            <rect key="frame" x="20" y="264.5" width="145" height="211.5"/>
                                             <color key="tintColor" systemColor="systemBrownColor"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain Fntasic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-vN-iNo" userLabel="title">
@@ -264,8 +264,8 @@
     </objects>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="rectangle.bottomthird.inset.fill" catalog="system" width="128" height="93"/>
-        <image name="rectangle.righthalf.inset.fill" catalog="system" width="128" height="93"/>
+        <image name="emptyImage" width="225" height="225"/>
+        <image name="placeholder" width="225" height="225"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

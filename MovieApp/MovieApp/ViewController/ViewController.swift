@@ -61,10 +61,24 @@ class ViewController: UIViewController {
         movieManager.loadPopularMovies()
         movieManager.loadUpcomingMovies()
         
-        self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
+        self.configureButtons()
     }
 
     // MARK: - Functions
+    func configureButtons() {
+        self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
+        
+        self.nowSeeAllButton.addAction(UIAction(handler: { [weak self] action in
+            self?.onSeeAllPressed(category: .now)
+        }), for: .touchUpInside)
+        self.popularSeeAllButton.addAction(UIAction(handler: { [weak self] action in
+            self?.onSeeAllPressed(category: .popular)
+        }), for: .touchUpInside)
+        self.upcomingSeeAllButton.addAction(UIAction(handler: { [weak self] action in
+            self?.onSeeAllPressed(category: .upcoming)
+        }), for: .touchUpInside)
+    }
+    
     func refreshMovies() {
         DispatchQueue.main.async { [weak self] in
             self?.nowMovies.reloadData()
@@ -102,8 +116,15 @@ class ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    
     @IBAction func didTapMenu(_ sender: Any) {
+    
+    }
+    
+    func onSeeAllPressed(category: MoviesCategory) {
+        let vc = SearchResultsViewController()
+        vc.category = category
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     func showAlertMessage(title: String, message: String) {
@@ -146,6 +167,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
