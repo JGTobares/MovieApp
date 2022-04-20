@@ -11,8 +11,8 @@ import UIKit
 class MenuListController: UITableViewController {
     
     //MARK: - Constants
-    var pages = [Constants.SideMenu.movies, Constants.SideMenu.tvShows, Constants.SideMenu.favorites]
-    var darkColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
+    let pages = [Constants.SideMenu.movies, Constants.SideMenu.tvShows, Constants.SideMenu.favorites]
+    let darkColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     
     //MARK: - Initializers
     override func viewDidLoad() {
