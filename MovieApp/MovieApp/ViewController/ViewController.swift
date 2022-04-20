@@ -38,8 +38,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         movieManager.delegate = self
         
-        menu = SideMenuNavigationController(rootViewController: ViewController())
-        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .horizontal
@@ -102,11 +100,6 @@ class ViewController: UIViewController {
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
-    }
-    
-    
-    @IBAction func didTapMenu(_ sender: Any) {
-        present(menu!, animated: true)
     }
     
     func showAlertMessage(title: String, message: String) {

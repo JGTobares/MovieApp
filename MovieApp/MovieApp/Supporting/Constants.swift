@@ -55,4 +55,11 @@ struct Constants {
         static let dialogMessage = "Name of Movie"
         static let dialogInput = "Input a Movie's name"
     }
+    
+    // MARK: - Side Menu
+    struct SideMenu {
+        static let movies = "Movies"
+        static let tvShows = "TV Shows"
+        static let favorites = "Favorites"
+    }
 }
