@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class ViewController: UIViewController {
 
@@ -20,7 +21,6 @@ class ViewController: UIViewController {
     @IBOutlet var nowMovies: UICollectionView!
     @IBOutlet var popularMovies: UICollectionView!
     @IBOutlet var upcomingMovies: UICollectionView!
-    @IBOutlet var searchButton: UIBarButtonItem!
     @IBOutlet var nowSeeAllButton: UIButton!
     @IBOutlet var popularSeeAllButton: UIButton!
     @IBOutlet var upcomingSeeAllButton: UIButton!
@@ -28,6 +28,9 @@ class ViewController: UIViewController {
 
     // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
+    
+    // MARK: - Variables
+    var menu: SideMenuNavigationController?
     
     // MARK: - Constructors
     override func viewDidLoad() {

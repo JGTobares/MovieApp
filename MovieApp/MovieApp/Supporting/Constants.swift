@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
  
@@ -64,6 +65,19 @@ struct Constants {
         static let dialogTitle = "Search"
         static let dialogMessage = "Name of Movie"
         static let dialogInput = "Input a Movie's name"
+    }
+    
+    // MARK: - Side Menu
+    struct SideMenu {
+        static let movies = "Movies"
+        static let tvShows = "TV Shows"
+        static let favorites = "Favorites"
+        static let cell = "cell"
+        static let main = "Main"
+        static let movieVC = "movieVC"
+        static let tvShowVC = "tvShowVC"
+        static let favoritesVC = "favoritesVC"
+        static let darkColor = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     }
     
     // MARK: - See All Constants

@@ -7,6 +7,7 @@ target 'MovieApp' do
 
   # Pods for MovieApp
   pod 'Kingfisher', '~> 7.0'
+  pod 'SideMenu'
 
   target 'MovieAppTests' do
     inherit! :search_paths
