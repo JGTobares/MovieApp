@@ -12,6 +12,9 @@
 		70271EC91701080E139C379A /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB58FC3271D9CB0E4D64C96 /* Pods_MovieApp.framework */; };
 		C05B982A280D87AE0023FE35 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B9829280D87AE0023FE35 /* Extensions.swift */; };
 		C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */; };
+		C05E6EE7280EEE220074B72A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE6280EEE220074B72A /* MenuListController.swift */; };
+		C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */; };
+		C05E6EEE280F00B40074B72A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */; };
 		C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E5D9D28088FD2005C713E /* CustomCollectionViewCell.swift */; };
 		C06E5DA028088FD2005C713E /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06E5D9E28088FD2005C713E /* CustomCollectionViewCell.xib */; };
 		C06E5DA228089B74005C713E /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E5DA128089B74005C713E /* MovieManager.swift */; };
@@ -67,6 +70,9 @@
 		B59599DDBA5C148D8B206AF9 /* Pods-MovieApp-MovieAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-MovieAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MovieApp-MovieAppUITests/Pods-MovieApp-MovieAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C05B9829280D87AE0023FE35 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManagerTest.swift; sourceTree = "<group>"; };
+		C05E6EE6280EEE220074B72A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
+		C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewController.swift; sourceTree = "<group>"; };
+		C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C06E5D9D28088FD2005C713E /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		C06E5D9E28088FD2005C713E /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		C06E5DA128089B74005C713E /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
@@ -146,6 +152,9 @@
 				C0871C4D2805CF4E00D29103 /* ViewController.swift */,
 				C1781C53280862BE00D060C3 /* MovieDetailsViewController.swift */,
 				C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */,
+				C05E6EE6280EEE220074B72A /* MenuListController.swift */,
+				C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */,
+				C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -532,10 +541,13 @@
 				C1781C5228085E9800D060C3 /* MovieDetailsManager.swift in Sources */,
 				C0871C4E2805CF4E00D29103 /* ViewController.swift in Sources */,
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
+				C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
 				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,
+				C05E6EE7280EEE220074B72A /* MenuListController.swift in Sources */,
+				C05E6EEE280F00B40074B72A /* FavoritesViewController.swift in Sources */,
 				C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */,
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
 				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
