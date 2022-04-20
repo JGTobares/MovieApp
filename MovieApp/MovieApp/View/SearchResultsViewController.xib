@@ -4,12 +4,16 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchResultsViewController" customModule="MovieApp" customModuleProvider="target">
             <connections>
                 <outlet property="collectionMovies" destination="XNV-TY-h8i" id="sXz-sf-IiC"/>
+                <outlet property="nextButton" destination="WFM-p8-Yru" id="czS-rC-iAT"/>
+                <outlet property="pageLabel" destination="mjK-1o-shu" id="73G-LY-32z"/>
+                <outlet property="previousButton" destination="ghn-bE-EyX" id="e9j-k5-2om"/>
                 <outlet property="titleLabel" destination="tb5-RL-NAf" id="DF6-wF-Kdj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,7 +33,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XNV-TY-h8i">
-                    <rect key="frame" x="8" y="103" width="398" height="739"/>
+                    <rect key="frame" x="8" y="103" width="398" height="707"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Skw-Uh-YCq">
                         <size key="itemSize" width="128" height="128"/>
@@ -44,16 +48,45 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hCo-ec-J7G" userLabel="Pages">
+                    <rect key="frame" x="40" y="826" width="334" height="20"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghn-bE-EyX">
+                            <rect key="frame" x="0.0" y="0.0" width="111.5" height="20"/>
+                            <color key="tintColor" systemColor="systemGray5Color"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Previous"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjK-1o-shu" userLabel="Page">
+                            <rect key="frame" x="111.5" y="0.0" width="111" height="20"/>
+                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFM-p8-Yru">
+                            <rect key="frame" x="222.5" y="0.0" width="111.5" height="20"/>
+                            <color key="tintColor" systemColor="systemGray5Color"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system" imagePlacement="trailing" title="Next"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Ida-p0-zXu"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hCo-ec-J7G" secondAttribute="bottom" constant="16" id="1IW-Sj-7bN"/>
                 <constraint firstItem="A1M-fu-Yac" firstAttribute="bottom" secondItem="tb5-RL-NAf" secondAttribute="bottom" id="4fz-vX-ENA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hCo-ec-J7G" secondAttribute="trailing" constant="40" id="J2a-Gf-i8E"/>
                 <constraint firstItem="tb5-RL-NAf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Kaw-aT-WkX"/>
                 <constraint firstItem="A1M-fu-Yac" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Rx5-pK-uzG"/>
+                <constraint firstItem="hCo-ec-J7G" firstAttribute="top" secondItem="XNV-TY-h8i" secondAttribute="bottom" constant="16" id="SgA-zQ-FpP"/>
                 <constraint firstItem="XNV-TY-h8i" firstAttribute="top" secondItem="tb5-RL-NAf" secondAttribute="bottom" constant="8" id="WNX-5n-lLO"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XNV-TY-h8i" secondAttribute="bottom" constant="20" id="crK-aj-Wsh"/>
                 <constraint firstItem="A1M-fu-Yac" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="fWy-qB-jEl"/>
+                <constraint firstItem="hCo-ec-J7G" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="mJ2-zc-iKq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XNV-TY-h8i" secondAttribute="trailing" constant="8" id="mdt-fs-aBx"/>
                 <constraint firstItem="XNV-TY-h8i" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="nHd-dJ-z8k"/>
                 <constraint firstItem="tb5-RL-NAf" firstAttribute="top" secondItem="A1M-fu-Yac" secondAttribute="top" id="nqF-zH-jd0"/>
@@ -64,5 +97,9 @@
     </objects>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
