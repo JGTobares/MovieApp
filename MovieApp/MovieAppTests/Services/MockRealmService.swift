@@ -33,6 +33,11 @@ final class MockRealmService: RealmServiceProtocol {
         ), category: .now)
     ]
     
+    init() {
+        self.movies[1].favorite = false
+        self.movies[2].favorite = true
+    }
+    
     func addMovie(_ movie: Movie) -> CustomError? {
         if movie.id == nil {
             return .internalError
@@ -64,6 +69,9 @@ final class MockRealmService: RealmServiceProtocol {
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError> {
         if id == nil {
             return .failure(.internalError)
+        }
+        if id == 675353 {
+            return .success(self.movies[1])
         }
         return .success(self.movies[2])
     }
