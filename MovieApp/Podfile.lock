@@ -1,20 +1,30 @@
 PODS:
   - Kingfisher (7.2.1)
+  - Realm (10.25.1):
+    - Realm/Headers (= 10.25.1)
+  - Realm/Headers (10.25.1)
+  - RealmSwift (10.25.1):
+    - Realm (= 10.25.1)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
+  - RealmSwift (~> 10)
   - SideMenu
 
 SPEC REPOS:
   trunk:
     - Kingfisher
+    - Realm
+    - RealmSwift
     - SideMenu
 
 SPEC CHECKSUMS:
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
+  Realm: 1a6e9b4f6983711655d8c0bcb6d2d29c3afbb1f3
+  RealmSwift: e72669550d27082aa4fad5d176f5076cfe806245
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 301e224e65f65be582a3a73a0a7414d0d5599891
+PODFILE CHECKSUM: b93b6e67668f5c8b1299f1a3bce7d56e44cd1b0f
 
 COCOAPODS: 1.11.3

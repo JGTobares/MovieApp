@@ -36,6 +36,28 @@ class MovieTest: XCTestCase {
         XCTAssertEqual("Director", movie.credits?.crew?.last?.job)
     }
     
+    func testPropertiesRealm() throws {
+        let movieRealm = MovieRealm(movie: self.movie)
+        let movie = Movie(movie: movieRealm)
+        XCTAssertEqual(675353, movie.id)
+        XCTAssertEqual("/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg", movie.backdropPath)
+        XCTAssertEqual("Action Science Fiction Comedy Family", movie.getGenres())
+        XCTAssertEqual(nil, movie.genres?.first?.id)
+        XCTAssertEqual("Family", movie.genres?.last?.name)
+        XCTAssertEqual("https://www.sonicthehedgehogmovie.com", movie.homepage)
+        XCTAssertEqual("... Sonic is eager to prove he has what it takes to be a true hero...", movie.overview)
+        XCTAssertEqual(6401.627, movie.popularity)
+        XCTAssertEqual("/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg", movie.posterPath)
+        XCTAssertEqual("2022-03-30", movie.releaseDate)
+        XCTAssertEqual(122, movie.runtime)
+        XCTAssertEqual("Released", movie.status)
+        XCTAssertEqual("Welcome to the next level.", movie.tagline)
+        XCTAssertEqual("Sonic the Hedgehog 2", movie.title)
+        XCTAssertEqual(1, movie.credits?.crew?.count)
+        XCTAssertEqual("Jeff Fowler", movie.credits?.crew?.first?.name)
+        XCTAssertEqual("Director", movie.credits?.crew?.last?.job)
+    }
+    
     func testGetGenres() throws {
         XCTAssertEqual("Action Science Fiction Comedy Family", movie.getGenres())
         var movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil)
