@@ -44,17 +44,17 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         nowMovies.collectionViewLayout = layout
-        nowMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        nowMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         nowMovies.delegate = self
         nowMovies.dataSource = self
         
         popularMovies.collectionViewLayout = layout
-        popularMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        popularMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         popularMovies.delegate = self
         popularMovies.dataSource = self
         
         upcomingMovies.collectionViewLayout = layout
-        upcomingMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        upcomingMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         upcomingMovies.delegate = self
         upcomingMovies.dataSource = self
         
@@ -198,17 +198,17 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.nowMovies {
-            let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.getNowMovie(at: indexPath.row)
             cell.card = movie
             return cell
         } else if collectionView == self.popularMovies {
-            let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.getPopularMovie(at: indexPath.row)
             cell.card = movie
             return cell
         } else {
-            let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
             let movie = movieManager.getUpcomingMovie(at: indexPath.row)
             cell.card = movie
             return cell

@@ -418,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exd-pE-IPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="759"/>
+            <point key="canvasLocation" x="158" y="1549"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="zdK-nd-EGm">
@@ -428,25 +428,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVORITES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwf-8E-rcH">
-                                <rect key="frame" x="163.5" y="437.5" width="87.5" height="21"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2AI-UV-9QX">
+                                <rect key="frame" x="0.0" y="80" width="414" height="770"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="770" id="j5s-O6-0CJ"/>
+                                    <constraint firstAttribute="width" constant="414" id="vLi-eq-Nyp"/>
+                                </constraints>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwf-8E-rcH">
+                                <rect key="frame" x="25" y="102" width="360" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0gY-7C-fd3"/>
+                                    <constraint firstAttribute="width" constant="360" id="dA3-Or-hjH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PHf-Ve-cDF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kwf-8E-rcH" firstAttribute="centerY" secondItem="u7O-Kc-knB" secondAttribute="centerY" id="7jG-1L-4j1"/>
-                            <constraint firstItem="kwf-8E-rcH" firstAttribute="centerX" secondItem="u7O-Kc-knB" secondAttribute="centerX" id="lDt-U3-2r3"/>
+                            <constraint firstItem="kwf-8E-rcH" firstAttribute="leading" secondItem="PHf-Ve-cDF" secondAttribute="leading" constant="25" id="9lL-s6-HeE"/>
+                            <constraint firstItem="PHf-Ve-cDF" firstAttribute="bottom" secondItem="2AI-UV-9QX" secondAttribute="bottom" constant="12" id="Dow-9q-E4L"/>
+                            <constraint firstItem="PHf-Ve-cDF" firstAttribute="trailing" secondItem="kwf-8E-rcH" secondAttribute="trailing" constant="29" id="Sv8-IU-Dsp"/>
+                            <constraint firstItem="2AI-UV-9QX" firstAttribute="leading" secondItem="PHf-Ve-cDF" secondAttribute="leading" id="Ywl-5n-gmD"/>
+                            <constraint firstItem="kwf-8E-rcH" firstAttribute="leading" secondItem="PHf-Ve-cDF" secondAttribute="leading" constant="25" id="dqe-D8-9vB"/>
+                            <constraint firstItem="2AI-UV-9QX" firstAttribute="trailing" secondItem="PHf-Ve-cDF" secondAttribute="trailing" id="haA-YT-Ctx"/>
+                            <constraint firstItem="kwf-8E-rcH" firstAttribute="top" secondItem="PHf-Ve-cDF" secondAttribute="top" constant="58" id="s1V-4q-8Tl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iOw-Do-D8F"/>
+                    <connections>
+                        <outlet property="emptyMessage" destination="kwf-8E-rcH" id="e8m-wk-u9i"/>
+                        <outlet property="favoritesTableView" destination="2AI-UV-9QX" id="yrs-A2-zdO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPv-f3-dWu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2684" y="759"/>
+            <point key="canvasLocation" x="155.07246376811597" y="808.92857142857144"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="gY4-j7-5o9">
