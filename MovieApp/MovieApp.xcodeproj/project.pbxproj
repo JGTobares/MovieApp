@@ -49,6 +49,7 @@
 		D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F972810B33A003848CC /* MockRealmService.swift */; };
 		D46F4F9A2810B614003848CC /* MovieRealmManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */; };
 		D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9B2810B737003848CC /* StorageManagerTest.swift */; };
+		D495AE472811B126006A5238 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE462811B126006A5238 /* FavoritesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		D46F4F972810B33A003848CC /* MockRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmService.swift; sourceTree = "<group>"; };
 		D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealmManagerTest.swift; sourceTree = "<group>"; };
 		D46F4F9B2810B737003848CC /* StorageManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTest.swift; sourceTree = "<group>"; };
+		D495AE462811B126006A5238 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +267,7 @@
 				D46F4F8F2810529D003848CC /* MovieRealm.swift */,
 				D46F4F9328106B73003848CC /* StorageManager.swift */,
 				D46F4F9528106CE3003848CC /* MovieRealmManager.swift */,
+				D495AE462811B126006A5238 /* FavoritesManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
 				C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
+				D495AE472811B126006A5238 /* FavoritesManager.swift in Sources */,
 				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,

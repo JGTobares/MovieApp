@@ -13,6 +13,7 @@ class StorageManager {
     let movieManager: MovieManager
     let detailsManager: MovieDetailsManager
     let realmManager: MovieRealmManager
+    let favoritesManager: FavoritesManager
     
     // MARK: - Variables
     var movieBanner: Movie! {
@@ -33,12 +34,14 @@ class StorageManager {
         self.movieManager = MovieManager()
         self.detailsManager = MovieDetailsManager()
         self.realmManager = MovieRealmManager()
+        self.favoritesManager = FavoritesManager()
     }
     
     init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
         self.movieManager = MovieManager(apiService: apiService)
         self.detailsManager = MovieDetailsManager(apiService: apiService)
         self.realmManager = MovieRealmManager(service: realmService)
+        self.favoritesManager = FavoritesManager(service: realmService)
     }
     
     // MARK: - Functions

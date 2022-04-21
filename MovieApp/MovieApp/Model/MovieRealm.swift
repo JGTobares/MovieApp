@@ -25,6 +25,7 @@ class MovieRealm: Object {
     @Persisted var title: String
     @Persisted var director: String
     @Persisted var category: Int?
+    @Persisted var favorite: Bool?
     
     // MARK: - Initializers
     convenience init(movie: Movie) {

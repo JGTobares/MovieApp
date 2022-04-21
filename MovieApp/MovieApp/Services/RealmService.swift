@@ -105,6 +105,21 @@ class RealmService: RealmServiceProtocol {
         return nil
     }
     
+    func updateMovie(_ movie: MovieRealm, isFavorite favorite: Bool) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        movie.favorite = favorite
+        do {
+            try realm.write {
+                realm.add(movie, update: .modified)
+            }
+        } catch {
+            return .realmUpdateError
+        }
+        return nil
+    }
+    
     // MARK: - Delete
     func deleteMovie(_ movie: Movie) -> CustomError? {
         guard let realm = self.realm else {
