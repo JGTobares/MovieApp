@@ -25,6 +25,7 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Constants
     let movieManager: MovieManager = MovieManager()
+    let storageManager: StorageManager = StorageManager()
     
     // MARK: - Variables
     var favoritesMock = [Favorites]()
@@ -92,7 +93,7 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         favoritesTableView.deselectRow(at: indexPath, animated: true)
         let movie: Movie
-        movie = self.movieManager.getNowMovie(at: indexPath.row)
+        movie = self.movieManager.nowMovies[indexPath.row]
         let vc = MovieDetailsViewController()
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
