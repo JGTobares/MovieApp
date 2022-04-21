@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +14,7 @@
                 <outlet property="backgroundImageView" destination="Ybe-2j-4HF" id="jdP-rH-prF"/>
                 <outlet property="castButton" destination="xzW-Dz-M0N" id="Rjh-uC-DuS"/>
                 <outlet property="castContainer" destination="5my-Rt-tpf" id="kSP-sn-N2Z"/>
+                <outlet property="heartButton" destination="QUx-GF-Lyr" id="vfV-Qz-aGQ"/>
                 <outlet property="infoButton" destination="WH3-Qt-2gT" id="Yd3-1s-hwU"/>
                 <outlet property="infoContainer" destination="K6w-at-qoD" id="KM3-ov-Fel"/>
                 <outlet property="movieDateLabel" destination="qce-2h-YIT" id="yPR-MK-9IW"/>
@@ -54,13 +55,13 @@
                                             <color key="tintColor" systemColor="systemBrownColor"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Captain Fntasic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-vN-iNo" userLabel="title">
-                                            <rect key="frame" x="173" y="326.5" width="146.5" height="24"/>
+                                            <rect key="frame" x="173" y="326.5" width="175" height="24"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He prepared them for verything except the rea world." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2Z-tn-nRv" userLabel="tagline">
-                                            <rect key="frame" x="173" y="358.5" width="199" height="64.5"/>
+                                            <rect key="frame" x="173" y="358.5" width="198.5" height="64.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -89,6 +90,19 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUx-GF-Lyr">
+                                            <rect key="frame" x="364" y="329.5" width="35" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="IXH-wi-w4m"/>
+                                                <constraint firstAttribute="width" constant="35" id="sqE-Gt-Xyr"/>
+                                            </constraints>
+                                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                            <connections>
+                                                <action selector="didTapHeart:" destination="-1" eventType="touchUpInside" id="eT0-sI-aWX"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -98,6 +112,7 @@
                                         <constraint firstItem="8Ea-30-bDH" firstAttribute="leading" secondItem="Gtv-mk-xVP" secondAttribute="trailing" constant="8" id="76N-vC-Yfo"/>
                                         <constraint firstItem="Ybe-2j-4HF" firstAttribute="leading" secondItem="w1o-wv-4gD" secondAttribute="leading" id="782-lw-Ok7"/>
                                         <constraint firstItem="wc8-7B-VGq" firstAttribute="top" secondItem="Kme-VE-BoR" secondAttribute="bottom" constant="8" id="BwG-C1-RrI"/>
+                                        <constraint firstAttribute="trailing" secondItem="QUx-GF-Lyr" secondAttribute="trailing" constant="15" id="EoD-ke-9KT"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Ea-30-bDH" secondAttribute="trailing" constant="8" id="Fde-zO-ZTa"/>
                                         <constraint firstItem="t2Z-tn-nRv" firstAttribute="leading" secondItem="Gtv-mk-xVP" secondAttribute="trailing" constant="8" id="HbN-Wz-ZOo"/>
                                         <constraint firstAttribute="trailing" secondItem="Ybe-2j-4HF" secondAttribute="trailing" id="HuD-t7-4p0"/>
@@ -105,6 +120,7 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qce-2h-YIT" secondAttribute="trailing" constant="8" id="IeK-c4-bfb"/>
                                         <constraint firstItem="8Ea-30-bDH" firstAttribute="top" secondItem="qce-2h-YIT" secondAttribute="bottom" constant="8" id="MUT-OS-8VL"/>
                                         <constraint firstItem="Gtv-mk-xVP" firstAttribute="top" secondItem="Ybe-2j-4HF" secondAttribute="bottom" constant="-50" id="Nue-tc-0wY"/>
+                                        <constraint firstItem="QUx-GF-Lyr" firstAttribute="top" secondItem="Ybe-2j-4HF" secondAttribute="bottom" constant="15" id="PNc-pG-lLm"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="t2Z-tn-nRv" secondAttribute="trailing" constant="8" id="ROx-Kf-MmM"/>
                                         <constraint firstItem="Gtv-mk-xVP" firstAttribute="leading" secondItem="w1o-wv-4gD" secondAttribute="leading" constant="20" id="Rk1-cp-suJ"/>
                                         <constraint firstItem="Ybe-2j-4HF" firstAttribute="height" secondItem="w1o-wv-4gD" secondAttribute="height" multiplier="0.6" id="Z8x-AD-SPo"/>
@@ -116,12 +132,13 @@
                                         <constraint firstItem="Jpp-vN-iNo" firstAttribute="leading" secondItem="Gtv-mk-xVP" secondAttribute="trailing" constant="8" id="fRZ-r3-tUh"/>
                                         <constraint firstItem="Ybe-2j-4HF" firstAttribute="top" secondItem="w1o-wv-4gD" secondAttribute="top" id="kpu-lv-w7w"/>
                                         <constraint firstItem="t2Z-tn-nRv" firstAttribute="top" secondItem="Jpp-vN-iNo" secondAttribute="bottom" constant="8" id="lfg-ht-9TL"/>
+                                        <constraint firstItem="QUx-GF-Lyr" firstAttribute="leading" secondItem="Jpp-vN-iNo" secondAttribute="trailing" constant="16" id="nmT-z3-6iI"/>
                                         <constraint firstItem="Kme-VE-BoR" firstAttribute="leading" secondItem="Gtv-mk-xVP" secondAttribute="trailing" constant="8" id="oBc-TV-m14"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jpp-vN-iNo" secondAttribute="trailing" constant="8" id="wVy-xn-i7k"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q74-BN-aNK" userLabel="backButton">
-                                    <rect key="frame" x="20" y="20" width="80" height="31"/>
+                                    <rect key="frame" x="20" y="20" width="79" height="31"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Button"/>
@@ -265,6 +282,7 @@
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="emptyImage" width="225" height="225"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="placeholder" width="225" height="225"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

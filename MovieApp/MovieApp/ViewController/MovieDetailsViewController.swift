@@ -36,6 +36,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var castContainer: UIView!
     @IBOutlet weak var trailerContainer: UIView!
     @IBOutlet weak var tabsContainer: UIStackView!
+    @IBOutlet var heartButton: UIButton!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -43,6 +44,7 @@ class MovieDetailsViewController: UIViewController {
         self.configureButtons()
         manager.movieDetailsVCDelegate = self
         manager.getMovieDetails(id: self.movieID)
+        self.heartButton.tintColor = .lightGray
     }
     
     // MARK: - Functions
@@ -133,6 +135,18 @@ class MovieDetailsViewController: UIViewController {
         self.castButton.subviews.first(where: { $0.tag == Constants.MovieDetails.castTabTag })?.removeFromSuperview()
         self.infoButton.subviews.first(where: { $0.tag == Constants.MovieDetails.infoTabTag })?.removeFromSuperview()
         self.tabShown = Constants.MovieDetails.trailerTabTag
+    }
+    
+    //MARK: - Outlets
+    
+    @IBAction func didTapHeart(_ sender: Any) {
+        if (self.heartButton.tintColor == .lightGray) {
+            print("ADD NEW FAVORITE")
+            self.heartButton.tintColor = .red
+        } else {
+            print("REMOVE FAVORITE ITEM")
+            self.heartButton.tintColor = .lightGray
+        }
     }
 }
 
