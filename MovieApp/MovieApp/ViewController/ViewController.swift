@@ -27,15 +27,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchButtonIcon: UIButton!
 
     // MARK: - Constants
-    let movieManager: MovieManager = MovieManager()
+    let movieManager = StorageManager()
+    
     
     // MARK: - Variables
     var menu: SideMenuNavigationController?
     
+    
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieManager.delegate = self
+        movieManager.setMoviesDelegate(self)
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
@@ -56,9 +58,7 @@ class ViewController: UIViewController {
         upcomingMovies.delegate = self
         upcomingMovies.dataSource = self
         
-        movieManager.loadNowMovies()
-        movieManager.loadPopularMovies()
-        movieManager.loadUpcomingMovies()
+        movieManager.getMovies()
         
         self.configureButtons()
     }
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
     }
     
     func refreshBanner() {
-        guard let movie: Movie = movieManager.bannerMovie else {
+        guard let movie: Movie = movieManager.movieBanner else {
             self.bannerPoster.setImage(imageurl: nil)
             self.bannerBackground.setBackground(imageurl: nil)
             self.bannerTitle.text = ""
@@ -108,7 +108,9 @@ class ViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func btnViewDetail(_ sender: Any) {
-        let movie: Movie = movieManager.bannerMovie
+        guard let movie: Movie = movieManager.movieBanner else {
+            return
+        }
         let vc = MovieDetailsViewController()
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
@@ -196,18 +198,18 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.nowMovies {
-            let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
-            let movie = movieManager.nowMovies[indexPath.row]
+            let cell = nowMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let movie = movieManager.getNowMovie(at: indexPath.row)
             cell.card = movie
             return cell
         } else if collectionView == self.popularMovies {
-            let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
-            let movie = movieManager.popularMovies[indexPath.row]
+            let cell = popularMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let movie = movieManager.getPopularMovie(at: indexPath.row)
             cell.card = movie
             return cell
         } else {
-            let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as! CustomCollectionViewCell
-            let movie = movieManager.upcomingMovies[indexPath.row]
+            let cell = upcomingMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as! CustomCollectionViewCell
+            let movie = movieManager.getUpcomingMovie(at: indexPath.row)
             cell.card = movie
             return cell
         }

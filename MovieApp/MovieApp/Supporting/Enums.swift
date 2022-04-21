@@ -14,10 +14,14 @@ enum CustomError: Error, Equatable {
     case authorizationError
     case notFoundError
     case jsonError
+    case realmInstantiationError
+    case realmAddError
+    case realmUpdateError
+    case realmDeleteError
 }
 
-enum MoviesCategory {
-    case now
-    case popular
-    case upcoming
+enum MoviesCategory: Int {
+    case now = 1
+    case popular = 2
+    case upcoming = 3
 }

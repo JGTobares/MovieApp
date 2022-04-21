@@ -12,6 +12,7 @@ class SearchResultsManager {
     // MARK: - Constants
     let apiService: APIServiceProtocol
     
+    
     // MARK: - Variables
     var movies: [Movie]? {
         didSet {

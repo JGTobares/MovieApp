@@ -30,6 +30,18 @@ struct Constants {
         static let maxTotalPages = 500
     }
     
+    // MARK: - Movie Model Constants
+    struct Movie {
+        static let dateLocaleDefault = "en_US"
+        static let releaseDateFormat = "MMM d, yyyy"
+        static let releaseDateAPIFormat = "yyyy-MM-dd"
+        static let releaseDateUnknown = "N/A"
+        static let creditsJobDirector = "Director"
+        static let runtimeHoursFormat = "%dh"
+        static let runtimeMinutesFormat = "%dm"
+        static let runtimeCompleteFormat = runtimeHoursFormat + " " + runtimeMinutesFormat
+    }
+    
     // MARK: - Movie Details Constants
     struct MovieDetails {
         static let directorLabel = "Director: %@"

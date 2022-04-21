@@ -16,19 +16,19 @@ class MovieManagerTest: XCTestCase {
     func testLoadNowMovies() throws {
         manager.loadNowMovies()
         XCTAssertNotNil(manager.nowMovies)
-        XCTAssertEqual(manager.nowMovies.count, manager.nowMovieCount)
+        XCTAssertEqual(manager.nowMovies.count, 2)
     }
     
     func testLoadPopularMovies() throws {
         manager.loadPopularMovies()
         XCTAssertNotNil(manager.popularMovies)
-        XCTAssertEqual(manager.popularMovies.count, manager.popularMovieCount)
+        XCTAssertEqual(manager.popularMovies.count, 2)
     }
     
     func testLoadUpcomingMovies() throws {
         manager.loadUpcomingMovies()
         XCTAssertNotNil(manager.upcomingMovies)
-        XCTAssertEqual(manager.upcomingMovies.count, manager.upcomingMovieCount)
+        XCTAssertEqual(manager.upcomingMovies.count, 2)
     }
     
 }
