@@ -53,6 +53,10 @@ class StorageManager {
         self.detailsManager.movieDetailsVCDelegate = delegate
     }
     
+    func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
+        self.favoritesManager.delegate = delegate
+    }
+    
     func getMovies() {
         self.movieManager.loadNowMovies()
         self.movieManager.loadPopularMovies()
@@ -80,5 +84,25 @@ class StorageManager {
             return
         }
         self.detailsManager.movie = Movie(movie: movieRealm)
+    }
+    
+    func addFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.favoritesManager.addFavorite(movie: movie)
+        }
+    }
+    
+    func removeFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.favoritesManager.removeFavorite(movie: movie)
+        }
+    }
+    
+    func isMovieFavorite(movieId: Int?) -> Bool {
+        return self.favoritesManager.isMovieFavorite(id: movieId)
+    }
+    
+    func updateFavoriteStatus(movieId: Int?, isFavorite favorite: Bool) {
+        self.favoritesManager.updateFavoriteStatus(id: movieId, isFavorite: favorite)
     }
 }

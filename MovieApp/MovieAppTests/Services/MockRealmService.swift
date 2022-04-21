@@ -54,6 +54,13 @@ final class MockRealmService: RealmServiceProtocol {
         return nil
     }
     
+    func addFavorite(_ movie: Movie) -> CustomError? {
+        if movie.id == nil {
+            return .internalError
+        }
+        return nil
+    }
+    
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError> {
         if id == nil {
             return .failure(.internalError)
@@ -65,6 +72,10 @@ final class MockRealmService: RealmServiceProtocol {
         if category == nil {
             return .failure(.internalError)
         }
+        return .success(self.movies)
+    }
+    
+    func getFavoriteMovies() -> Result<[MovieRealm], CustomError> {
         return .success(self.movies)
     }
     
@@ -84,6 +95,13 @@ final class MockRealmService: RealmServiceProtocol {
     
     func deleteMovie(_ movie: Movie) -> CustomError? {
         if movie.id == nil {
+            return .internalError
+        }
+        return nil
+    }
+    
+    func deleteMovie(withID id: Int?) -> CustomError? {
+        if id == nil {
             return .internalError
         }
         return nil

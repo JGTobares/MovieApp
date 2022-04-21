@@ -62,6 +62,22 @@ class RealmService: RealmServiceProtocol {
         return nil
     }
     
+    func addFavorite(_ movie: Movie) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        let movie = MovieRealm(movie: movie)
+        movie.favorite = true
+        do {
+            try realm.write {
+                realm.add(movie)
+            }
+        } catch {
+            return .realmAddError
+        }
+        return nil
+    }
+    
     // MARK: - Read
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError> {
         guard let realm = self.realm else {
@@ -89,6 +105,16 @@ class RealmService: RealmServiceProtocol {
         return .success(Array(movies))
     }
     
+    func getFavoriteMovies() -> Result<[MovieRealm], CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let movies = realm.objects(MovieRealm.self).where {
+            $0.favorite == true
+        }
+        return .success(Array(movies))
+    }
+    
     // MARK: - Update
     func updateMovie(_ movie: Movie, byID id: Int?) -> CustomError? {
         guard let realm = self.realm else {
@@ -109,10 +135,9 @@ class RealmService: RealmServiceProtocol {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
-        movie.favorite = favorite
         do {
             try realm.write {
-                realm.add(movie, update: .modified)
+                movie.favorite = favorite
             }
         } catch {
             return .realmUpdateError
@@ -125,13 +150,37 @@ class RealmService: RealmServiceProtocol {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
-        let movie = MovieRealm(movie: movie)
-        do {
-            try realm.write {
-                realm.delete(movie)
+        switch self.getMovieByID(movie.id) {
+        case .success(let movieRealm):
+            do {
+                try realm.write {
+                    realm.delete(movieRealm)
+                }
+            } catch {
+                return .realmDeleteError
             }
-        } catch {
-            return .realmDeleteError
+        case .failure(let error):
+            return error
+        }
+        return nil
+    }
+    
+    func deleteMovie(withID id: Int?) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        switch self.getMovieByID(id) {
+        case .success(let movieRealm):
+            do {
+                try realm.write {
+                    realm.delete(movieRealm)
+                }
+            } catch {
+                return .realmDeleteError
+            }
+            break
+        case .failure(let error):
+            return error
         }
         return nil
     }
@@ -161,6 +210,20 @@ class RealmService: RealmServiceProtocol {
         do {
             try realm.write {
                 realm.delete(movies)
+            }
+        } catch {
+            return .realmDeleteError
+        }
+        return nil
+    }
+    
+    func deleteAll() -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        do {
+            try realm.write {
+                realm.deleteAll()
             }
         } catch {
             return .realmDeleteError
