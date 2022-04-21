@@ -70,6 +70,9 @@ struct Constants {
     struct Cell {
         static let width = 120
         static let height = 230
+        static let collectionCell = "CustomCollectionViewCell"
+        static let tableCell = "CustomTableViewCell"
+        
     }
     
     // MARK: - Search for Movie Constants
@@ -98,5 +101,10 @@ struct Constants {
         static let categoryNow = "Movies Now Playing"
         static let categoryPopular = "Popular Movies"
         static let categoryUpcoming = "Upcoming Movies"
+    }
+    
+    // MARK: - Notifications Constants
+    struct NotificationNameKeys {
+        static let updateFavoriteItem = "updateFavoriteItem"
     }
 }

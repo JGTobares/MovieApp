@@ -10,6 +10,8 @@
 		27954BAD80AD26BED5C1E09D /* Pods_MovieApp_MovieAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF1322C27A69A23BF338E7A /* Pods_MovieApp_MovieAppUITests.framework */; };
 		4E024FBE0490342A3102759D /* Pods_MovieAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C62ECF6A4A41527C26BF181 /* Pods_MovieAppTests.framework */; };
 		70271EC91701080E139C379A /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FB58FC3271D9CB0E4D64C96 /* Pods_MovieApp.framework */; };
+		C02C8732281083FD006EDDF0 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C8730281083FD006EDDF0 /* CustomTableViewCell.swift */; };
+		C02C8733281083FD006EDDF0 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C02C8731281083FD006EDDF0 /* CustomTableViewCell.xib */; };
 		C05B982A280D87AE0023FE35 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B9829280D87AE0023FE35 /* Extensions.swift */; };
 		C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */; };
 		C05E6EE7280EEE220074B72A /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE6280EEE220074B72A /* MenuListController.swift */; };
@@ -77,6 +79,8 @@
 		9FB58FC3271D9CB0E4D64C96 /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF1322C27A69A23BF338E7A /* Pods_MovieApp_MovieAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp_MovieAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59599DDBA5C148D8B206AF9 /* Pods-MovieApp-MovieAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp-MovieAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-MovieApp-MovieAppUITests/Pods-MovieApp-MovieAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C02C8730281083FD006EDDF0 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C02C8731281083FD006EDDF0 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		C05B9829280D87AE0023FE35 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManagerTest.swift; sourceTree = "<group>"; };
 		C05E6EE6280EEE220074B72A /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			children = (
 				C06E5D9D28088FD2005C713E /* CustomCollectionViewCell.swift */,
 				C06E5D9E28088FD2005C713E /* CustomCollectionViewCell.xib */,
+				C02C8730281083FD006EDDF0 /* CustomTableViewCell.swift */,
+				C02C8731281083FD006EDDF0 /* CustomTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1781C56280862BE00D060C3 /* MovieDetailsViewController.xib in Resources */,
+				C02C8733281083FD006EDDF0 /* CustomTableViewCell.xib in Resources */,
 				C0871C562805CF5500D29103 /* LaunchScreen.storyboard in Resources */,
 				C0871C532805CF5500D29103 /* Assets.xcassets in Resources */,
 				C0871C512805CF4E00D29103 /* Main.storyboard in Resources */,
@@ -571,6 +578,7 @@
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
 				C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
+				C02C8732281083FD006EDDF0 /* CustomTableViewCell.swift in Sources */,
 				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,

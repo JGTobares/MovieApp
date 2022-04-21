@@ -9,11 +9,11 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - Outlets
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var labelTitle: UILabel!
     
-    static let identifier = "CustomCollectionViewCell"
-    
+    // MARK: - Variables
     var card: Movie! {
         didSet {
             self.labelTitle.text = self.card.title
@@ -26,7 +26,8 @@ class CustomCollectionViewCell: UICollectionViewCell {
 
     }
     
+    // MARK: - Functions
     static func nib() -> UINib {
-        return UINib(nibName: "CustomCollectionViewCell", bundle: nil)
+        return UINib(nibName: Constants.Cell.collectionCell, bundle: nil)
     }
 }

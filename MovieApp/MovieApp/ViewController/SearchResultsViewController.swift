@@ -31,7 +31,7 @@ class SearchResultsViewController: UIViewController {
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .vertical
         collectionMovies.collectionViewLayout = layout
-        collectionMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        collectionMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         collectionMovies.delegate = self
         collectionMovies.dataSource = self
         
@@ -100,7 +100,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionMovies.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell, let movie = manager.movies?[indexPath.row] else {
+        guard let cell = collectionMovies.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell, let movie = manager.movies?[indexPath.row] else {
             return UICollectionViewCell()
         }
         cell.card = movie
