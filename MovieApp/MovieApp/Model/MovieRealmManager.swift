@@ -32,4 +32,16 @@ class MovieRealmManager {
         }
         return nil
     }
+    
+    func addMovieDetails(movie: Movie) {
+        if self.getMovieDetails(id: movie.id) != nil {
+            if let error = service.updateMovie(movie, byID: movie.id) {
+                print(error.localizedDescription)
+            }
+        } else {
+            if let error = service.addMovie(movie) {
+                print(error.localizedDescription)
+            }
+        }
+    }
 }

@@ -33,11 +33,12 @@ class MovieDetailsManager {
     }
     
     // MARK: - Functions
-    func getMovieDetails(id: Int?) {
+    func getMovieDetails(id: Int?, completion: @escaping (Movie) -> Void) {
         self.apiService.getMovieDetails(id: id) { result in
             switch(result) {
             case .success(let movie):
                 self.movie = movie
+                completion(movie)
                 break
             case .failure(let error):
                 print(error.localizedDescription)

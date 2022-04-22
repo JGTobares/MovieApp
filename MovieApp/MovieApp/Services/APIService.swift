@@ -69,7 +69,7 @@ class APIService: APIServiceProtocol {
     }
     
     func getMoviesUpcoming(completion: @escaping (Result<[Movie], CustomError>) -> Void) {
-        self.getListOfMovies(endpoint: Constants.Api.popularEndpoint) { result in
+        self.getListOfMovies(endpoint: Constants.Api.upcomingEndpoint) { result in
             switch(result) {
             case .success(let movies):
                 completion(.success(movies))
@@ -81,7 +81,7 @@ class APIService: APIServiceProtocol {
     }
     
     func getMoviesPopular(completion: @escaping (Result<[Movie], CustomError>) -> Void) {
-        self.getListOfMovies(endpoint: Constants.Api.upcomingEndpoint) { result in
+        self.getListOfMovies(endpoint: Constants.Api.popularEndpoint) { result in
             switch(result) {
             case .success(let movies):
                 completion(.success(movies))

@@ -11,7 +11,7 @@ import RealmSwift
 class RealmService: RealmServiceProtocol {
     
     // MARK: - Constants
-    let realm = try? Realm()
+    let realm = try? Realm(queue: DispatchQueue.main)
     
     
     // MARK: - Create

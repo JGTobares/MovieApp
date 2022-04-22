@@ -75,8 +75,18 @@ class StorageManager {
         return self.movieManager.upcomingMovies[index]
     }
     
+    let internet = true
+    
     func getMovieDetails(id: Int?) {
-        self.detailsManager.getMovieDetails(id: id)
+        if internet {
+            self.detailsManager.getMovieDetails(id: id) { movie in
+                DispatchQueue.main.async {
+                    self.realmManager.addMovieDetails(movie: movie)
+                }
+            }
+        } else {
+            self.getMovieDetailsRealm(id: id)
+        }
     }
     
     func getMovieDetailsRealm(id: Int?) {

@@ -41,7 +41,6 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.manager.favoritesManager.deleteAll()
         self.configureButtons()
         manager.setDetailsDelegate(self)
         manager.getMovieDetails(id: self.movieID)
@@ -75,6 +74,7 @@ class MovieDetailsViewController: UIViewController {
         self.infoButton.addTarget(self, action: #selector(onInfoPressed), for: .touchUpInside)
         self.castButton.addTarget(self, action: #selector(onCastPressed), for: .touchUpInside)
         self.trailerButton.addTarget(self, action: #selector(onTrailerPressed), for: .touchUpInside)
+        self.heartButton.isHidden = self.movieID == nil
         
         // Show Info Tab first
         self.infoContainer.isHidden = false
