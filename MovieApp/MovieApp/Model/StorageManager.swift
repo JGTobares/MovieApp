@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Reachability
 
 class StorageManager {
     
@@ -13,8 +14,9 @@ class StorageManager {
     let movieManager: MovieManager
     let detailsManager: MovieDetailsManager
     let realmManager: MovieRealmManager
+    let reachability = try! Reachability()
     let favoritesManager: FavoritesManager
-    
+  
     // MARK: - Variables
     var movieBanner: Movie! {
         return self.movieManager.bannerMovie
@@ -35,6 +37,7 @@ class StorageManager {
         self.detailsManager = MovieDetailsManager()
         self.realmManager = MovieRealmManager()
         self.favoritesManager = FavoritesManager()
+        self.configureNetwork()
     }
     
     init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
@@ -45,6 +48,29 @@ class StorageManager {
     }
     
     // MARK: - Functions
+    func configureNetwork() {
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print(Constants.Network.errorInit)
+        }
+    }
+
+    func networkStatus(){
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print( Constants.Network.toastWifiStatus )
+            } else {
+                print ( Constants.Network.toastCellularStatus )
+            }
+            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOnline])
+        }
+        
+        reachability.whenUnreachable = { _ in
+            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+        }
+    }
+    
     func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
         self.movieManager.delegate = delegate
     }

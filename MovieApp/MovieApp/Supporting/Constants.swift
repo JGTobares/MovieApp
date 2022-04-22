@@ -112,4 +112,15 @@ struct Constants {
     struct NotificationNameKeys {
         static let updateFavoriteItem = "updateFavoriteItem"
     }
+    
+    //MARK: - Network Constants
+    struct Network {
+        static let updateNetworkStatus = "updateNetworkStatus"
+        static let statusOnline = "statusOnline"
+        static let statusOffline = "statusOffline"
+        static let toastWifiStatus = "STATUS: WIFI CONNECTED"
+        static let toastCellularStatus = "STATUS: CELLULAR CONNECTED"
+        static let toastOfflineStatus = "STATUS: NO INTERNET CONNECTION"
+        static let errorInit = "Unable to start notifier"
+    }
 }
