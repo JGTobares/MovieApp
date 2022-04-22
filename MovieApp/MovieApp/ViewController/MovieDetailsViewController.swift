@@ -42,11 +42,11 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.networkStatus()
+        //self.manager.favoritesManager.deleteAll()
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
         manager.getMovieDetails(id: self.movieID)
-        self.heartButton.tintColor = .lightGray
     }
     
     // MARK: - Functions
@@ -101,6 +101,12 @@ class MovieDetailsViewController: UIViewController {
         // Add red bottom border to selected button
         self.addBottomBorder(view: self.infoButton, tag: Constants.MovieDetails.infoTabTag, width: UIScreen.main.bounds.width / 3)
         self.tabShown = Constants.MovieDetails.infoTabTag
+        
+        // Check if Movie is in Favorites
+        self.heartButton.tintColor = .lightGray
+        if manager.isMovieFavorite(movieId: self.movieID) {
+            self.heartButton.tintColor = .red
+        }
     }
     
     func addBottomBorder(view: UIView, tag: Int, width: CGFloat? = nil) {
@@ -158,10 +164,10 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func didTapHeart(_ sender: Any) {
         if (self.heartButton.tintColor == .lightGray) {
-            print("ADD NEW FAVORITE")
+            manager.addFavorite()
             self.heartButton.tintColor = .red
         } else {
-            print("REMOVE FAVORITE ITEM")
+            manager.removeFavorite()
             self.heartButton.tintColor = .lightGray
         }
     }
