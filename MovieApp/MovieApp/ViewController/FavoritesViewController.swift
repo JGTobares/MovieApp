@@ -32,7 +32,6 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.dataSource = self
         
         emptyMessage.text = ""
-        self.configureObservers()
         manager.delegate = self
         manager.getFavorites()
     }

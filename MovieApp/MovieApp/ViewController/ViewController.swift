@@ -38,7 +38,6 @@ class ViewController: UIViewController {
         movieManager.networkStatus()
         self.configureObservers()
         movieManager.setMoviesDelegate(self)
-        movieManager.getMovies()
         self.configureButtons()
         self.configureCollections()
     }
@@ -51,7 +50,7 @@ class ViewController: UIViewController {
     @objc func checkNetworkStatus(notification: NSNotification) {
         let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
             if statusNetwork == Constants.Network.statusOnline {
-                //GET DATA FROM API
+                movieManager.getMovies()
                 CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
             } else {
                 //GET DATA FROM REALM
