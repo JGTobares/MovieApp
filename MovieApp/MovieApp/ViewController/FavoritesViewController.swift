@@ -33,7 +33,6 @@ class FavoritesViewController: UIViewController {
         
         emptyMessage.text = ""
         manager.delegate = self
-        manager.getFavorites()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

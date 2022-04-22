@@ -87,7 +87,7 @@ final class MockRealmService: RealmServiceProtocol {
         return .success(self.movies)
     }
     
-    func updateMovie(_ movie: Movie, byID id: Int?) -> CustomError? {
+    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool) -> CustomError? {
         if id == nil {
             return .internalError
         }

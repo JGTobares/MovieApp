@@ -42,11 +42,9 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.networkStatus()
-        //self.manager.favoritesManager.deleteAll()
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
-        manager.getMovieDetails(id: self.movieID)
     }
     
     // MARK: - Functions
@@ -78,11 +76,11 @@ class MovieDetailsViewController: UIViewController {
     @objc func checkNetworkStatus(notification: NSNotification) {
         let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
         if statusNetwork == Constants.Network.statusOnline {
-            //GET DATA FROM API
-            CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            manager.getMovieDetails(id: self.movieID)
         } else {
-            //GET DATA FROM REALM
-            CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            if !manager.getMovieDetailsRealm(id: self.movieID) {
+                CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            }
         }
     }
     

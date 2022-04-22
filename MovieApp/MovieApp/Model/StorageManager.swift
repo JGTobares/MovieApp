@@ -101,25 +101,20 @@ class StorageManager {
         return self.movieManager.upcomingMovies[index]
     }
     
-    let internet = true
-    
     func getMovieDetails(id: Int?) {
-        if internet {
-            self.detailsManager.getMovieDetails(id: id) { movie in
-                DispatchQueue.main.async {
-                    self.realmManager.addMovieDetails(movie: movie)
-                }
+        self.detailsManager.getMovieDetails(id: id) { movie in
+            DispatchQueue.main.async {
+                self.realmManager.addMovieDetails(movie: movie)
             }
-        } else {
-            self.getMovieDetailsRealm(id: id)
         }
     }
     
-    func getMovieDetailsRealm(id: Int?) {
+    func getMovieDetailsRealm(id: Int?) -> Bool {
         guard let movieRealm = self.realmManager.getMovieDetails(id: id) else {
-            return
+            return false
         }
         self.detailsManager.movie = Movie(movie: movieRealm)
+        return true
     }
     
     func addFavorite() {

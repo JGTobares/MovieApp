@@ -116,11 +116,12 @@ class RealmService: RealmServiceProtocol {
     }
     
     // MARK: - Update
-    func updateMovie(_ movie: Movie, byID id: Int?) -> CustomError? {
+    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
         let movie = MovieRealm(movie: movie)
+        movie.favorite = favorite
         do {
             try realm.write {
                 realm.add(movie, update: .modified)

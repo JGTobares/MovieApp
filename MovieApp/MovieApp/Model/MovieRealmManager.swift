@@ -34,8 +34,8 @@ class MovieRealmManager {
     }
     
     func addMovieDetails(movie: Movie) {
-        if self.getMovieDetails(id: movie.id) != nil {
-            if let error = service.updateMovie(movie, byID: movie.id) {
+        if let movieRealm = self.getMovieDetails(id: movie.id) {
+            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false) {
                 print(error.rawValue)
             }
         } else {
