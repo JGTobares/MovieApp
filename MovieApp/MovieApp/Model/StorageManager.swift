@@ -13,6 +13,7 @@ class StorageManager {
     let movieManager: MovieManager
     let detailsManager: MovieDetailsManager
     let realmManager: MovieRealmManager
+    let favoritesManager: FavoritesManager
     
     // MARK: - Variables
     var movieBanner: Movie! {
@@ -33,12 +34,14 @@ class StorageManager {
         self.movieManager = MovieManager()
         self.detailsManager = MovieDetailsManager()
         self.realmManager = MovieRealmManager()
+        self.favoritesManager = FavoritesManager()
     }
     
     init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
         self.movieManager = MovieManager(apiService: apiService)
         self.detailsManager = MovieDetailsManager(apiService: apiService)
         self.realmManager = MovieRealmManager(service: realmService)
+        self.favoritesManager = FavoritesManager(service: realmService)
     }
     
     // MARK: - Functions
@@ -48,6 +51,10 @@ class StorageManager {
     
     func setDetailsDelegate(_ delegate: MovieDetailsViewControllerDelegate) {
         self.detailsManager.movieDetailsVCDelegate = delegate
+    }
+    
+    func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
+        self.favoritesManager.delegate = delegate
     }
     
     func getMovies() {
@@ -77,5 +84,25 @@ class StorageManager {
             return
         }
         self.detailsManager.movie = Movie(movie: movieRealm)
+    }
+    
+    func addFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.favoritesManager.addFavorite(movie: movie)
+        }
+    }
+    
+    func removeFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.favoritesManager.removeFavorite(movie: movie)
+        }
+    }
+    
+    func isMovieFavorite(movieId: Int?) -> Bool {
+        return self.favoritesManager.isMovieFavorite(id: movieId)
+    }
+    
+    func updateFavoriteStatus(movieId: Int?, isFavorite favorite: Bool) {
+        self.favoritesManager.updateFavoriteStatus(id: movieId, isFavorite: favorite)
     }
 }

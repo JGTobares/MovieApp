@@ -28,10 +28,14 @@ protocol RealmServiceProtocol {
     func addMovie(_ movie: Movie) -> CustomError?
     func addMovie(_ movie: Movie, withCategory category: MoviesCategory) -> CustomError?
     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError?
+    func addFavorite(_ movie: Movie) -> CustomError?
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError>
     func getMovieByCategory(_ category: MoviesCategory?) -> Result<[MovieRealm], CustomError>
+    func getFavoriteMovies() -> Result<[MovieRealm], CustomError>
     func updateMovie(_ movie: Movie, byID id: Int?) -> CustomError?
+    func updateMovie(_ movie: MovieRealm, isFavorite favorite: Bool) -> CustomError?
     func deleteMovie(_ movie: Movie) -> CustomError?
+    func deleteMovie(withID id: Int?) -> CustomError?
     func deleteMovie(_ movie: Movie, withCategory category: MoviesCategory) -> CustomError?
     func deleteMoviesOfCategory(_ category: MoviesCategory) -> CustomError?
 }
@@ -48,6 +52,13 @@ protocol SearchResultsManagerDelegate {
     
     // MARK: - Functions
     func onSeeAllLoaded()
+}
+
+protocol FavoritesManagerDelegate {
+    
+    // MARK: - Functions
+    func onLoadFavorites()
+    func onUpdateFavorites()
 }
 
 protocol MovieDetailsViewControllerDelegate {
