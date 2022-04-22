@@ -36,8 +36,8 @@ class StorageManager {
         self.movieManager = MovieManager()
         self.detailsManager = MovieDetailsManager()
         self.realmManager = MovieRealmManager()
-        self.configureNetwork()
         self.favoritesManager = FavoritesManager()
+        self.configureNetwork()
     }
     
     init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
