@@ -27,6 +27,19 @@ class FavoritesManagerTest: XCTestCase {
         XCTAssertEqual(2, manager.sections)
     }
     
+    func testNoFavoritesFlag() throws {
+        manager.favoriteMovies = []
+        manager.favoriteTvShows = []
+        XCTAssertTrue(manager.noFavorites)
+        manager.favoriteTvShows = anyObjectArray
+        XCTAssertFalse(manager.noFavorites)
+        manager.getFavorites()
+        manager.favoriteTvShows = []
+        XCTAssertFalse(manager.noFavorites)
+        manager.favoriteTvShows = anyObjectArray
+        XCTAssertFalse(manager.noFavorites)
+    }
+    
     func testGetFavorites() throws {
         manager.favoriteMovies = []
         manager.favoriteTvShows = []

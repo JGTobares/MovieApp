@@ -31,7 +31,7 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.delegate = self
         favoritesTableView.dataSource = self
         
-        emptyMessage.isHidden = true
+        emptyMessage.text = ""
         
         manager.delegate = self
         manager.getFavorites()
@@ -46,6 +46,11 @@ class FavoritesViewController: UIViewController {
     func refreshFavorites() {
         DispatchQueue.main.async { [weak self] in
             self?.favoritesTableView.reloadData()
+            if self?.manager.noFavorites == true {
+                self?.emptyMessage.text = Constants.Favorites.noFavoritesMessage
+            } else {
+                self?.emptyMessage.text = ""
+            }
         }
     }
     

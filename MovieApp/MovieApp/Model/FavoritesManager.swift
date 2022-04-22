@@ -19,6 +19,9 @@ class FavoritesManager {
     var sections: Int {
         return !favoriteMovies.isEmpty && !favoriteTvShows.isEmpty ? 2 : favoriteMovies.isEmpty && favoriteTvShows.isEmpty ? 0 : 1
     }
+    var noFavorites: Bool {
+        return favoriteMovies.isEmpty && favoriteTvShows.isEmpty
+    }
     var delegate: FavoritesManagerDelegate?
     
     // MARK: - Initializers

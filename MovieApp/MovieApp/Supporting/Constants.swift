@@ -103,6 +103,11 @@ struct Constants {
         static let categoryUpcoming = "Upcoming Movies"
     }
     
+    // MARK: - Favorites Constants
+    struct Favorites {
+        static let noFavoritesMessage = "You have no Favorites yet."
+    }
+    
     // MARK: - Notifications Constants
     struct NotificationNameKeys {
         static let updateFavoriteItem = "updateFavoriteItem"
