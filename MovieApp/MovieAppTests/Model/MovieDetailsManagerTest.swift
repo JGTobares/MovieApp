@@ -16,10 +16,10 @@ class MovieDetailsManagerTest: XCTestCase {
     func testGetMovieDetails() throws {
         manager.movie = nil
         XCTAssertNil(manager.movie)
-        manager.getMovieDetails(id: 675353)
+        manager.getMovieDetails(id: 675353) { _ in }
         XCTAssertEqual(675353, manager.movie?.id)
         manager.movie = nil
-        manager.getMovieDetails(id: nil)
+        manager.getMovieDetails(id: nil) { _ in }
         XCTAssertNil(manager.movie)
     }
 }
