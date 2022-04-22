@@ -9,6 +9,7 @@ target 'MovieApp' do
   pod 'Kingfisher', '~> 7.0'
   pod 'SideMenu'
   pod 'RealmSwift', '~>10'
+  pod 'ReachabilitySwift'
 
   target 'MovieAppTests' do
     inherit! :search_paths

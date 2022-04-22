@@ -41,7 +41,9 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.networkStatus()
         self.configureButtons()
+        self.configureObservers()
         manager.setDetailsDelegate(self)
         manager.getMovieDetails(id: self.movieID)
         self.heartButton.tintColor = .lightGray
@@ -66,6 +68,21 @@ class MovieDetailsViewController: UIViewController {
             break
         default:
             break
+        }
+    }
+    
+    func configureObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNetworkStatus(notification: )), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
+    }
+    
+    @objc func checkNetworkStatus(notification: NSNotification) {
+        let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
+        if statusNetwork == Constants.Network.statusOnline {
+            //GET DATA FROM API
+            CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+        } else {
+            //GET DATA FROM REALM
+            CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
         }
     }
     

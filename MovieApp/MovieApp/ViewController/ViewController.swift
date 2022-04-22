@@ -29,16 +29,37 @@ class ViewController: UIViewController {
     // MARK: - Constants
     let movieManager = StorageManager()
     
-    
     // MARK: - Variables
     var menu: SideMenuNavigationController?
-    
     
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieManager.networkStatus()
+        self.configureObservers()
         movieManager.setMoviesDelegate(self)
-        
+        movieManager.getMovies()
+        self.configureButtons()
+        self.configureCollections()
+    }
+
+    // MARK: - Functions
+    func configureObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNetworkStatus(notification:)), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
+    }
+    
+    @objc func checkNetworkStatus(notification: NSNotification) {
+        let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
+            if statusNetwork == Constants.Network.statusOnline {
+                //GET DATA FROM API
+                CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            } else {
+                //GET DATA FROM REALM
+                CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            }
+    }
+    
+    func configureCollections() {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: Constants.Cell.width, height: Constants.Cell.height)
         layout.scrollDirection = .horizontal
@@ -57,13 +78,8 @@ class ViewController: UIViewController {
         upcomingMovies.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         upcomingMovies.delegate = self
         upcomingMovies.dataSource = self
-        
-        movieManager.getMovies()
-        
-        self.configureButtons()
     }
-
-    // MARK: - Functions
+    
     func configureButtons() {
         self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
         

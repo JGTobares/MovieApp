@@ -47,7 +47,7 @@ class FavoritesViewController: UIViewController {
         
         emptyMessage.isHidden = true
         
-        configureObservers()
+        self.configureObservers()
     }
     
     // MARK: - Functions
