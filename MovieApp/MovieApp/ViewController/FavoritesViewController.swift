@@ -32,7 +32,6 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.dataSource = self
         
         emptyMessage.text = ""
-        
         manager.delegate = self
         manager.getFavorites()
     }
@@ -40,7 +39,7 @@ class FavoritesViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-    }
+     }
     
     // MARK: - Functions
     func refreshFavorites() {
