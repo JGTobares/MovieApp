@@ -33,7 +33,6 @@ class FavoritesViewController: UIViewController {
         
         emptyMessage.text = ""
         manager.delegate = self
-        manager.getFavorites()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,7 +58,7 @@ class FavoritesViewController: UIViewController {
     
     @objc func deleteFavoriteItem(notification: NSNotification) {
         if let itemId = notification.userInfo?[Constants.NotificationNameKeys.updateFavoriteItem] as? Int {
-            manager.removeFavorite(id: itemId)
+            manager.updateFavoriteStatus(id: itemId, isFavorite: false)
         }
     }
 }

@@ -38,7 +38,7 @@ class MovieManager {
                 self.bannerMovie = movies.randomElement()
                 self.delegate?.onNowLoaded()
             case .failure(let error):
-                print(error)
+                print(error.rawValue)
             }
         }
     }
@@ -50,7 +50,7 @@ class MovieManager {
                 self.popularMovies = movies
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
-                print(error)
+                print(error.rawValue)
             }
         }
     }
@@ -62,7 +62,7 @@ class MovieManager {
                 self.upcomingMovies = movies
                 self.delegate?.onUpcomingLoaded()
             case .failure(let error):
-                print(error)
+                print(error.rawValue)
             }
         }
     }

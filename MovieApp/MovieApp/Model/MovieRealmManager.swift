@@ -28,8 +28,20 @@ class MovieRealmManager {
         case .success(let movie):
             return movie
         case .failure(let error):
-            print(error.localizedDescription)
+            print(error.rawValue)
         }
         return nil
+    }
+    
+    func addMovieDetails(movie: Movie) {
+        if let movieRealm = self.getMovieDetails(id: movie.id) {
+            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false) {
+                print(error.rawValue)
+            }
+        } else {
+            if let error = service.addMovie(movie) {
+                print(error.rawValue)
+            }
+        }
     }
 }

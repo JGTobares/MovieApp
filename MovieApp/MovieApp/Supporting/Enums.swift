@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum CustomError: Error, Equatable {
-    case internalError
-    case urlError
-    case connectionError
-    case authorizationError
-    case notFoundError
-    case jsonError
-    case realmInstantiationError
-    case realmAddError
-    case realmUpdateError
-    case realmDeleteError
+enum CustomError: String, Error, Equatable {
+    case internalError = "Internal Error"
+    case urlError = "URL Error"
+    case connectionError = "Error connecting with API"
+    case authorizationError = "No authorization"
+    case notFoundError = "Item Not Found"
+    case jsonError = "JSON parsing exception"
+    case realmInstantiationError = "Realm DB Error"
+    case realmAddError = "Couldn't add Item to Realm"
+    case realmUpdateError = "Couldn't update Item in Realm"
+    case realmDeleteError = "Couldn't delete Item in Realm"
 }
 
 enum MoviesCategory: Int {

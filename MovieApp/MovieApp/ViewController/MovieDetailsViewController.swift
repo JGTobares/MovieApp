@@ -42,11 +42,9 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.networkStatus()
-        //self.manager.favoritesManager.deleteAll()
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
-        manager.getMovieDetails(id: self.movieID)
     }
     
     // MARK: - Functions
@@ -78,11 +76,11 @@ class MovieDetailsViewController: UIViewController {
     @objc func checkNetworkStatus(notification: NSNotification) {
         let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
         if statusNetwork == Constants.Network.statusOnline {
-            //GET DATA FROM API
-            CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            manager.getMovieDetails(id: self.movieID)
         } else {
-            //GET DATA FROM REALM
-            CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            if !manager.getMovieDetailsRealm(id: self.movieID) {
+                CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+            }
         }
     }
     
@@ -92,6 +90,7 @@ class MovieDetailsViewController: UIViewController {
         self.infoButton.addTarget(self, action: #selector(onInfoPressed), for: .touchUpInside)
         self.castButton.addTarget(self, action: #selector(onCastPressed), for: .touchUpInside)
         self.trailerButton.addTarget(self, action: #selector(onTrailerPressed), for: .touchUpInside)
+        self.heartButton.isHidden = true
         
         // Show Info Tab first
         self.infoContainer.isHidden = false
@@ -164,10 +163,10 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func didTapHeart(_ sender: Any) {
         if (self.heartButton.tintColor == .lightGray) {
-            manager.addFavorite()
+            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: true)
             self.heartButton.tintColor = .red
         } else {
-            manager.removeFavorite()
+            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: false)
             self.heartButton.tintColor = .lightGray
         }
     }
@@ -178,6 +177,7 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie(_ movie: Movie) {
         DispatchQueue.main.async {
+            self.heartButton.isHidden = false
             self.backgroundImageView.setBackground(imageurl: movie.backdropPath)
             self.posterImageView.setImage(imageurl: movie.posterPath)
             self.movieTitleLabel.text = movie.title ?? ""

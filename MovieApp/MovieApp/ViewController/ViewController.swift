@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
             if statusNetwork == Constants.Network.statusOnline {
                 movieManager.getMovies()
-                CustomToast.show(message: Constants.Network.toastWifiStatus, bgColor: .white, textColor: .black, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
             } else {
                 //GET DATA FROM REALM
                 CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)

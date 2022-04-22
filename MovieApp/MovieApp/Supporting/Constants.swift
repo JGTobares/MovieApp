@@ -25,8 +25,8 @@ struct Constants {
         static let baseUrlBundle = "urlBase"
         static let apiKeyBundle = "apiKey"
         static let nowEndpoint = "now_playing"
-        static let popularEndpoint = "upcoming"
-        static let upcomingEndpoint = "popular"
+        static let popularEndpoint = "popular"
+        static let upcomingEndpoint = "upcoming"
         static let maxTotalPages = 500
     }
     

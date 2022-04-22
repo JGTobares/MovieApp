@@ -63,7 +63,7 @@ class SearchResultsManager {
                 self.movies = response.results ?? []
                 break
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.rawValue)
             }
         }
     }
@@ -90,7 +90,7 @@ class SearchResultsManager {
             self.movies = movies
             break
         case .failure(let error):
-            print(error.localizedDescription)
+            print(error.rawValue)
         }
     }
     
