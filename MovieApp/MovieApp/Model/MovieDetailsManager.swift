@@ -41,7 +41,7 @@ class MovieDetailsManager {
                 completion(movie)
                 break
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error.rawValue)
             }
         }
     }

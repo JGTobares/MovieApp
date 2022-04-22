@@ -60,7 +60,7 @@ class FavoritesViewController: UIViewController {
     
     @objc func deleteFavoriteItem(notification: NSNotification) {
         if let itemId = notification.userInfo?[Constants.NotificationNameKeys.updateFavoriteItem] as? Int {
-            manager.removeFavorite(id: itemId)
+            manager.updateFavoriteStatus(id: itemId, isFavorite: false)
         }
     }
 }

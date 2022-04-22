@@ -74,7 +74,7 @@ class MovieDetailsViewController: UIViewController {
         self.infoButton.addTarget(self, action: #selector(onInfoPressed), for: .touchUpInside)
         self.castButton.addTarget(self, action: #selector(onCastPressed), for: .touchUpInside)
         self.trailerButton.addTarget(self, action: #selector(onTrailerPressed), for: .touchUpInside)
-        self.heartButton.isHidden = self.movieID == nil
+        self.heartButton.isHidden = true
         
         // Show Info Tab first
         self.infoContainer.isHidden = false
@@ -147,10 +147,10 @@ class MovieDetailsViewController: UIViewController {
     
     @IBAction func didTapHeart(_ sender: Any) {
         if (self.heartButton.tintColor == .lightGray) {
-            manager.addFavorite()
+            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: true)
             self.heartButton.tintColor = .red
         } else {
-            manager.removeFavorite()
+            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: false)
             self.heartButton.tintColor = .lightGray
         }
     }
@@ -161,6 +161,7 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie(_ movie: Movie) {
         DispatchQueue.main.async {
+            self.heartButton.isHidden = false
             self.backgroundImageView.setBackground(imageurl: movie.backdropPath)
             self.posterImageView.setImage(imageurl: movie.posterPath)
             self.movieTitleLabel.text = movie.title ?? ""

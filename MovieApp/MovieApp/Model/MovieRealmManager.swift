@@ -28,7 +28,7 @@ class MovieRealmManager {
         case .success(let movie):
             return movie
         case .failure(let error):
-            print(error.localizedDescription)
+            print(error.rawValue)
         }
         return nil
     }
@@ -36,11 +36,11 @@ class MovieRealmManager {
     func addMovieDetails(movie: Movie) {
         if self.getMovieDetails(id: movie.id) != nil {
             if let error = service.updateMovie(movie, byID: movie.id) {
-                print(error.localizedDescription)
+                print(error.rawValue)
             }
         } else {
             if let error = service.addMovie(movie) {
-                print(error.localizedDescription)
+                print(error.rawValue)
             }
         }
     }

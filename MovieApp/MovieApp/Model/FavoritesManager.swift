@@ -43,7 +43,7 @@ class FavoritesManager {
             self.delegate?.onLoadFavorites()
             break
         case .failure(let error):
-            print(error.localizedDescription)
+            print(error.rawValue)
         }
     }
     
@@ -69,7 +69,7 @@ class FavoritesManager {
             }
             break
         case .failure(let error):
-            print(error.localizedDescription)
+            print(error.rawValue)
         }
     }
     
