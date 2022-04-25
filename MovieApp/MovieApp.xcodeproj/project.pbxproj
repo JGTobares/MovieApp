@@ -54,6 +54,8 @@
 		D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9B2810B737003848CC /* StorageManagerTest.swift */; };
 		D495AE472811B126006A5238 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE462811B126006A5238 /* FavoritesManager.swift */; };
 		D495AE49281206C7006A5238 /* FavoritesManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */; };
+		D4BBC2032816E659006BFA53 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC2022816E659006BFA53 /* SeeAllViewController.swift */; };
+		D4BBC2052816E672006BFA53 /* SearchForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC2042816E672006BFA53 /* SearchForViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		D46F4F9B2810B737003848CC /* StorageManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTest.swift; sourceTree = "<group>"; };
 		D495AE462811B126006A5238 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerTest.swift; sourceTree = "<group>"; };
+		D4BBC2022816E659006BFA53 /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
+		D4BBC2042816E672006BFA53 /* SearchForViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForViewController.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +195,8 @@
 				C05E6EE6280EEE220074B72A /* MenuListController.swift */,
 				C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */,
 				C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */,
+				D4BBC2022816E659006BFA53 /* SeeAllViewController.swift */,
+				D4BBC2042816E672006BFA53 /* SearchForViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -596,6 +602,7 @@
 				C0871C4A2805CF4E00D29103 /* AppDelegate.swift in Sources */,
 				C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */,
 				C0871C4C2805CF4E00D29103 /* SceneDelegate.swift in Sources */,
+				D4BBC2052816E672006BFA53 /* SearchForViewController.swift in Sources */,
 				C02C8732281083FD006EDDF0 /* CustomTableViewCell.swift in Sources */,
 				D495AE472811B126006A5238 /* FavoritesManager.swift in Sources */,
 				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
@@ -612,6 +619,7 @@
 				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
 				D46F4F902810529D003848CC /* MovieRealm.swift in Sources */,
 				C1781C502808587000D060C3 /* Crew.swift in Sources */,
+				D4BBC2032816E659006BFA53 /* SeeAllViewController.swift in Sources */,
 				C102C0A0280728D10025AEAE /* Movie.swift in Sources */,
 				C05B982A280D87AE0023FE35 /* Extensions.swift in Sources */,
 			);
