@@ -76,7 +76,7 @@ struct Movie: Codable {
     
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
-        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits
+        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits, videos
         case backdropPath = "backdrop_path"
         case posterPath = "poster_path"
         case releaseDate = "release_date"
