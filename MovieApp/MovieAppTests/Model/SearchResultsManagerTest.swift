@@ -47,6 +47,19 @@ class SearchResultsManagerTest: XCTestCase {
         XCTAssertEqual(manager.totalPages, 10)
     }
     
+    func testSearchFor() throws {
+        manager.movies = nil
+        manager.totalPages = nil
+        manager.currentPage = nil
+        manager.searchFor(query: "Avengers")
+        XCTAssertNotNil(manager.movies)
+        XCTAssertEqual(manager.movies?.count, 2)
+        XCTAssertNotNil(manager.currentPage)
+        XCTAssertEqual(manager.currentPage, 1)
+        XCTAssertNotNil(manager.totalPages)
+        XCTAssertEqual(manager.totalPages, 10)
+    }
+    
     func testLoadNowMovies() throws {
         manager.movies = nil
         manager.loadMoviesFromCategory(.now)

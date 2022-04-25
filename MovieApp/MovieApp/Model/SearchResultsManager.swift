@@ -68,6 +68,20 @@ class SearchResultsManager {
         }
     }
     
+    func searchFor(query: String) {
+        self.apiService.searchFor(query: query, page: self.currentPage) { result in
+            switch result {
+            case .success(let response):
+                self.currentPage = response.page
+                self.setTotalPages(total: response.totalPages)
+                self.movies = response.results ?? []
+                break
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
+    }
+    
     func loadMoviesFromCategory(_ category: MoviesCategory?) {
         switch category {
         case .now:

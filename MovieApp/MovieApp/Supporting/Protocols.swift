@@ -20,6 +20,7 @@ protocol APIServiceProtocol {
     func getMoviesPopular(page: Int?, completion: @escaping (Result<[Movie], CustomError>) -> Void)
     func getListOfMovies(page: Int?, endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
     func getMoviesResponse(category: MoviesCategory?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
+    func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
 }
 
 protocol RealmServiceProtocol {

@@ -75,4 +75,13 @@ final class MockAPIService: APIServiceProtocol {
         let moviesResponse = MoviesResponse(page: 1, results: movies, totalPages: 10)
         completion(.success(moviesResponse))
     }
+    
+    func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
+        if query == "fail" {
+            completion(.failure(.internalError))
+            return
+        }
+        let moviesResponse = MoviesResponse(page: 1, results: movies, totalPages: 10)
+        completion(.success(moviesResponse))
+    }
 }

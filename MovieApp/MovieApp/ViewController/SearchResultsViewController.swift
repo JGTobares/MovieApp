@@ -36,9 +36,13 @@ class SearchResultsViewController: UIViewController {
         collectionMovies.dataSource = self
         
         self.manager.delegate = self
-        self.manager.getMovieResponse(category: self.category)
-        
-        self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
+        if let input = self.input {
+            self.titleLabel.text = "Searched for: \"\(input.removingPercentEncoding ?? "")\""
+            self.manager.searchFor(query: input)
+        } else {
+            self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
+            self.manager.getMovieResponse(category: self.category)
+        }
         
         self.nextButton.addTarget(self, action: #selector(onNextPressed), for: .touchUpInside)
         self.previousButton.addTarget(self, action: #selector(onPreviousPressed), for: .touchUpInside)
@@ -67,7 +71,11 @@ class SearchResultsViewController: UIViewController {
             return
         }
         self.manager.nextPage()
-        self.manager.loadMoviesFromCategory(self.category)
+        if let input = self.input {
+            self.manager.searchFor(query: input)
+        } else {
+            self.manager.loadMoviesFromCategory(self.category)
+        }
     }
     
     @objc func onPreviousPressed() {
@@ -75,7 +83,11 @@ class SearchResultsViewController: UIViewController {
             return
         }
         self.manager.previousPage()
-        self.manager.loadMoviesFromCategory(self.category)
+        if let input = self.input {
+            self.manager.searchFor(query: input)
+        } else {
+            self.manager.loadMoviesFromCategory(self.category)
+        }
     }
 }
 
