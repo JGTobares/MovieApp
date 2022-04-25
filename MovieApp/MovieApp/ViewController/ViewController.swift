@@ -132,7 +132,7 @@ class ViewController: UIViewController {
     }
     
     func onSeeAllPressed(category: MoviesCategory) {
-        let vc = SearchResultsViewController()
+        let vc = SeeAllViewController(nibName: Constants.Nib.searchResults, bundle: nil)
         vc.category = category
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
@@ -165,7 +165,7 @@ class ViewController: UIViewController {
                 self.showAlertMessage(title: Constants.General.validationError, message: Constants.General.inputErrorMessage)
                 return
             }
-            let vc = SearchResultsViewController()
+            let vc = SearchForViewController(nibName: Constants.Nib.searchResults, bundle: nil)
             vc.input = input
             vc.modalPresentationStyle = .fullScreen
             alert.dismiss(animated: true)

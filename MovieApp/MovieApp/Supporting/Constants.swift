@@ -30,6 +30,11 @@ struct Constants {
         static let maxTotalPages = 500
     }
     
+    // MARK: Nib Names
+    struct Nib {
+        static let searchResults = "SearchResultsViewController"
+    }
+    
     // MARK: - Movie Model Constants
     struct Movie {
         static let dateLocaleDefault = "en_US"
@@ -80,6 +85,7 @@ struct Constants {
         static let dialogTitle = "Search"
         static let dialogMessage = "Name of Movie"
         static let dialogInput = "Input a Movie's name"
+        static let searchedForTitle = "Searched for: \"%@\""
     }
     
     // MARK: - Side Menu
