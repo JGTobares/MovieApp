@@ -20,7 +20,7 @@ class APIService: APIServiceProtocol {
         guard let id = id else {
             return
         }
-        let urlString = "\(self.baseUrl)movie/\(id)?api_key=\(apiKey)&append_to_response=credits"
+        let urlString = "\(self.baseUrl)movie/\(id)?api_key=\(apiKey)&append_to_response=credits,videos"
         guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return

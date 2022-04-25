@@ -23,6 +23,7 @@ struct Movie: Codable {
     let tagline: String?
     let title: String?
     let credits: Credits?
+    var videos: Videos? = nil
     
     // MARK: - Initializers
     init(id: Int?, backdropPath: String?, genres: [Genre]?, homepage: String?,
@@ -75,7 +76,7 @@ struct Movie: Codable {
     
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
-        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits
+        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits, videos
         case backdropPath = "backdrop_path"
         case posterPath = "poster_path"
         case releaseDate = "release_date"
@@ -128,6 +129,13 @@ struct Movie: Codable {
                 String.localizedStringWithFormat(Constants.Movie.runtimeHoursFormat, hours) :
                 String.localizedStringWithFormat(Constants.Movie.runtimeMinutesFormat, minutes)
     }
+    
+    func getYouTubeTrailer() -> Video? {
+        guard let videos = videos?.results else {
+            return nil
+        }
+        return videos.first(where: { $0.isYouTubeTrailer() })
+    }
 }
 
 struct Genre: Codable {
@@ -137,6 +145,10 @@ struct Genre: Codable {
 
 struct Credits: Codable {
     let crew: [Crew]?
+}
+
+struct Videos: Codable {
+    let results: [Video]?
 }
 
 struct MoviesResponse: Codable {

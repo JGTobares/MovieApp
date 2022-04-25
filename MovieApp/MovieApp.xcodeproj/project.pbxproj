@@ -56,6 +56,7 @@
 		D495AE49281206C7006A5238 /* FavoritesManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */; };
 		D4BBC2032816E659006BFA53 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC2022816E659006BFA53 /* SeeAllViewController.swift */; };
 		D4BBC2052816E672006BFA53 /* SearchForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC2042816E672006BFA53 /* SearchForViewController.swift */; };
+		D4BBC2072816FCA2006BFA53 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BBC2062816FCA2006BFA53 /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerTest.swift; sourceTree = "<group>"; };
 		D4BBC2022816E659006BFA53 /* SeeAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
 		D4BBC2042816E672006BFA53 /* SearchForViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchForViewController.swift; sourceTree = "<group>"; };
+		D4BBC2062816FCA2006BFA53 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,6 +295,7 @@
 				D46F4F9328106B73003848CC /* StorageManager.swift */,
 				D46F4F9528106CE3003848CC /* MovieRealmManager.swift */,
 				D495AE462811B126006A5238 /* FavoritesManager.swift */,
+				D4BBC2062816FCA2006BFA53 /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
 				D46F4F902810529D003848CC /* MovieRealm.swift in Sources */,
 				C1781C502808587000D060C3 /* Crew.swift in Sources */,
+				D4BBC2072816FCA2006BFA53 /* Video.swift in Sources */,
 				D4BBC2032816E659006BFA53 /* SeeAllViewController.swift in Sources */,
 				C102C0A0280728D10025AEAE /* Movie.swift in Sources */,
 				C05B982A280D87AE0023FE35 /* Extensions.swift in Sources */,

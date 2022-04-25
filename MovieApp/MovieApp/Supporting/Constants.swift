@@ -45,6 +45,8 @@ struct Constants {
         static let runtimeHoursFormat = "%dh"
         static let runtimeMinutesFormat = "%dm"
         static let runtimeCompleteFormat = runtimeHoursFormat + " " + runtimeMinutesFormat
+        static let trailerSite = "YouTube"
+        static let trailerType = "Trailer"
     }
     
     // MARK: - Movie Details Constants
@@ -57,6 +59,7 @@ struct Constants {
         static let infoTabTag = 111
         static let castTabTag = 222
         static let trailerTabTag = 333
+        static let trailerErrorMessage = "Couldn't load the movie's trailer."
     }
     
     // MARK: - Images Constants
