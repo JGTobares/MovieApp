@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class MovieDetailsViewController: UIViewController {
     
@@ -37,6 +38,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var trailerContainer: UIView!
     @IBOutlet weak var tabsContainer: UIStackView!
     @IBOutlet var heartButton: UIButton!
+    @IBOutlet weak var trailerPlayer: YTPlayerView!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -45,6 +47,7 @@ class MovieDetailsViewController: UIViewController {
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
+        self.trailerPlayer.load(withVideoId: "47r8FXYZWNU")
     }
     
     // MARK: - Functions

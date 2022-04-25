@@ -7,12 +7,14 @@ PODS:
   - RealmSwift (10.25.1):
     - Realm (= 10.25.1)
   - SideMenu (6.5.0)
+  - youtube-ios-player-helper (1.0.4)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - ReachabilitySwift
   - RealmSwift (~> 10)
   - SideMenu
+  - youtube-ios-player-helper (~> 1.0.4)
 
 SPEC REPOS:
   trunk:
@@ -21,6 +23,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SideMenu
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Kingfisher: 7c084bebf7d548c623ad41bcf765fb200efed369
@@ -28,7 +31,8 @@ SPEC CHECKSUMS:
   Realm: 1a6e9b4f6983711655d8c0bcb6d2d29c3afbb1f3
   RealmSwift: e72669550d27082aa4fad5d176f5076cfe806245
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: 70d1e95574ffd40e1272a889e1c0884924bca3c8
+PODFILE CHECKSUM: e8465bf6f10181bc26f1679512eceee673b64363
 
 COCOAPODS: 1.11.3

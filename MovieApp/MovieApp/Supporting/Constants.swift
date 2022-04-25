@@ -45,6 +45,8 @@ struct Constants {
         static let runtimeHoursFormat = "%dh"
         static let runtimeMinutesFormat = "%dm"
         static let runtimeCompleteFormat = runtimeHoursFormat + " " + runtimeMinutesFormat
+        static let trailerSite = "YouTube"
+        static let trailerType = "Trailer"
     }
     
     // MARK: - Movie Details Constants
