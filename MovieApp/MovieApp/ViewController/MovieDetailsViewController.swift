@@ -48,6 +48,7 @@ class MovieDetailsViewController: UIViewController {
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
+        manager.setErrorDelegate(self)
         self.trailerPlayer.delegate = self
     }
     
@@ -219,7 +220,6 @@ extension MovieDetailsViewController: YTPlayerViewDelegate {
     }
     
     func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
-        print(error)
         self.trailerPlayer.isHidden = true
         self.trailerErrorLabel.text = Constants.MovieDetails.trailerErrorMessage
     }

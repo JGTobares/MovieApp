@@ -67,3 +67,9 @@ protocol MovieDetailsViewControllerDelegate {
     // MARK: - Functions
     func didSetMovie(_ movie: Movie)
 }
+
+protocol ErrorAlertDelegate {
+    
+    // MARK: - Functions
+    func showAlertMessage(title: String, message: String)
+}

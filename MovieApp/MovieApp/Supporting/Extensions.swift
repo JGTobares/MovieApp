@@ -29,3 +29,16 @@ extension UIImageView {
         }
     }
 }
+
+extension UIViewController: ErrorAlertDelegate {
+    
+    func showAlertMessage(title: String, message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Constants.General.okLabel, style: .cancel, handler: { _ in
+                alert.dismiss(animated: true)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}

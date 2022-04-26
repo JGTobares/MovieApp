@@ -23,6 +23,9 @@ class FavoritesManager {
         return favoriteMovies.isEmpty && favoriteTvShows.isEmpty
     }
     var delegate: FavoritesManagerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.delegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -43,7 +46,7 @@ class FavoritesManager {
             self.delegate?.onLoadFavorites()
             break
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     
@@ -60,7 +63,7 @@ class FavoritesManager {
         switch self.service.getMovieByID(id) {
         case .success(let movie):
             if let response = self.service.updateMovie(movie, isFavorite: favorite) {
-                print(response.localizedDescription)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
             } else {
                 if !favorite {
                     self.favoriteMovies.removeAll(where: { $0.id == id })
@@ -69,25 +72,25 @@ class FavoritesManager {
             }
             break
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     
     func addFavorite(movie: Movie) {
         if let response = self.service.addFavorite(movie) {
-            print(response.localizedDescription)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
         }
     }
     
     func removeFavorite(movie: Movie) {
         if let response = self.service.deleteMovie(movie) {
-            print(response.localizedDescription)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
         }
     }
     
     func removeFavorite(id: Int?) {
         if let response = self.service.deleteMovie(withID: id) {
-            print(response.localizedDescription)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
         } else {
             self.favoriteMovies.removeAll(where: { $0.id == id })
             self.delegate?.onUpdateFavorites()
@@ -122,7 +125,7 @@ class FavoritesManager {
     func deleteAll() {
         if let service = self.service as? RealmService {
             if let response = service.deleteAll() {
-                print(response.localizedDescription)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
             }
         }
     }

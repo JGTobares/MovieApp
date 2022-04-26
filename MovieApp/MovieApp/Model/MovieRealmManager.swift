@@ -13,6 +13,10 @@ class MovieRealmManager {
     let service: RealmServiceProtocol
     
     
+    // MARK: - Variables
+    var errorDelegate: ErrorAlertDelegate?
+    
+    
     // MARK: - Initializers
     init() {
         service = RealmService()
@@ -28,19 +32,21 @@ class MovieRealmManager {
         case .success(let movie):
             return movie
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
         return nil
     }
     
     func addMovieDetails(movie: Movie) {
-        if let movieRealm = self.getMovieDetails(id: movie.id) {
+        switch self.service.getMovieByID(movie.id) {
+        case .success(let movieRealm):
             if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false) {
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
-        } else {
+            break
+        case .failure:
             if let error = service.addMovie(movie) {
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
