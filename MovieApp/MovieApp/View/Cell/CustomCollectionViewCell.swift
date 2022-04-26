@@ -23,11 +23,22 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
     
     // MARK: - Functions
     static func nib() -> UINib {
         return UINib(nibName: Constants.Cell.collectionCell, bundle: nil)
+    }
+    
+    func setCast(_ cast: Cast) {
+        self.imageView.setImage(imageurl: cast.profilePath)
+        if let name = cast.name {
+            if let character = cast.character {
+                self.labelTitle.text = String(format: Constants.Cell.castLabelFormat, name, character)
+            } else {
+                self.labelTitle.text = name
+            }
+        }
+        self.labelTitle.font = self.labelTitle.font.withSize(10.0)
     }
 }

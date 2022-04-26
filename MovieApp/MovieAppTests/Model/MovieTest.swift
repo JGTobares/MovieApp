@@ -84,25 +84,25 @@ class MovieTest: XCTestCase {
                               credits: nil)
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
-                              credits: Credits(crew: nil))
+                              credits: Credits(crew: nil, cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                                 Crew(id: nil, gender: nil, name: "Jeff Fowler", profilePath: nil, job: "")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                                 Crew(id: nil, gender: nil, name: nil, profilePath: nil, job: "Director")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Director"),
                                 Crew(id: nil, gender: nil, name: "Jeff Fowler", profilePath: nil, job: "Director")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("Shuji Utsumi", movieTest.getDirector())
     }
     

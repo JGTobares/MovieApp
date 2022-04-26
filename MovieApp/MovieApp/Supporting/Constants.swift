@@ -81,7 +81,7 @@ struct Constants {
         static let height = 230
         static let collectionCell = "CustomCollectionViewCell"
         static let tableCell = "CustomTableViewCell"
-        
+        static let castLabelFormat = "%@ as %@"
     }
     
     // MARK: - Search for Movie Constants

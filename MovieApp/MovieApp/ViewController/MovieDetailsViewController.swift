@@ -13,6 +13,7 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constants
     let manager = StorageManager()
     
+    
     // MARK: - Variables
     var movieID: Int?
     var tabShown: Int?
@@ -40,6 +41,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var heartButton: UIButton!
     @IBOutlet weak var trailerPlayer: YTPlayerView!
     @IBOutlet weak var trailerErrorLabel: UILabel!
+    @IBOutlet weak var castCollectionView: UICollectionView!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -50,6 +52,8 @@ class MovieDetailsViewController: UIViewController {
         manager.setDetailsDelegate(self)
         manager.setErrorDelegate(self)
         self.trailerPlayer.delegate = self
+        castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
+        castCollectionView.dataSource = self
     }
     
     // MARK: - Functions
@@ -180,6 +184,21 @@ class MovieDetailsViewController: UIViewController {
 }
 
 // MARK: - Extensions
+extension MovieDetailsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.manager.castCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setCast(self.manager.getMovieCast(at: indexPath.row))
+        return cell
+    }
+}
+
 extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie(_ movie: Movie) {
@@ -205,6 +224,12 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
             self.movieWebpageLabel.font = UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
             // Load YouTube trailer
             self.trailerPlayer.load(withVideoId: movie.getYouTubeTrailer()?.key ?? "")
+        }
+    }
+    
+    func didSetCast(_ cast: [Cast]) {
+        DispatchQueue.main.async {
+            self.castCollectionView.reloadData()
         }
     }
 }
