@@ -71,7 +71,10 @@ struct Movie: Codable {
         self.status = movie.status
         self.tagline = movie.tagline
         self.title = movie.title
-        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)], cast: nil)
+        let cast: [Cast] = movie.cast.map { member in
+            return Cast(cast: member)
+        }
+        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)], cast: cast)
     }
     
     // MARK: - Coding Keys

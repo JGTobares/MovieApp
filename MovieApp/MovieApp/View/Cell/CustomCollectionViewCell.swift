@@ -32,8 +32,8 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     func setCast(_ cast: Cast) {
         self.imageView.setImage(imageurl: cast.profilePath)
-        if let name = cast.name {
-            if let character = cast.character {
+        if let name = cast.name, !name.isEmpty {
+            if let character = cast.character, !character.isEmpty {
                 self.labelTitle.text = String(format: Constants.Cell.castLabelFormat, name, character)
             } else {
                 self.labelTitle.text = name
