@@ -26,6 +26,9 @@ final class MockAPIService: APIServiceProtocol {
               credits: Credits(crew: [
                 Crew(id: 3346056, gender: 0, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                 Crew(id: 93364, gender: 2, name: "Jeff Fowler", profilePath: "/wExdubFgeBkEUP8MojKPKoOcgdZ.jpg", job: "Director")
+              ],
+                               cast: [
+                Cast(id: 222121, name: "Ben Schwartz", profilePath: "/5vV52TSEIhe4ZZLWwv3i7nfv8we.jpg", character: "Sonic the Hedgehog (voice)")
               ]))
     ]
     

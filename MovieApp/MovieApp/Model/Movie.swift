@@ -22,7 +22,7 @@ struct Movie: Codable {
     let status: String?
     let tagline: String?
     let title: String?
-    let credits: Credits?
+    var credits: Credits?
     var videos: Videos? = nil
     
     // MARK: - Initializers
@@ -71,7 +71,10 @@ struct Movie: Codable {
         self.status = movie.status
         self.tagline = movie.tagline
         self.title = movie.title
-        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)])
+        let cast: [Cast] = movie.cast.map { member in
+            return Cast(cast: member)
+        }
+        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)], cast: cast)
     }
     
     // MARK: - Coding Keys
@@ -145,6 +148,7 @@ struct Genre: Codable {
 
 struct Credits: Codable {
     let crew: [Crew]?
+    let cast: [Cast]?
 }
 
 struct Videos: Codable {

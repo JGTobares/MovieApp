@@ -26,6 +26,7 @@ class MovieRealm: Object {
     @Persisted var director: String
     @Persisted var category: Int?
     @Persisted var favorite: Bool?
+    @Persisted var cast: List<CastRealm> = List()
     
     // MARK: - Initializers
     convenience init(movie: Movie) {
@@ -43,6 +44,11 @@ class MovieRealm: Object {
         self.tagline = movie.tagline ?? ""
         self.title = movie.title ?? ""
         self.director = movie.getDirector()
+        if let cast = movie.credits?.cast {
+            self.cast.append(objectsIn: cast.map { member in
+                return CastRealm(cast: member)
+            })
+        }
     }
     
     convenience init(movie: Movie, category: MoviesCategory) {

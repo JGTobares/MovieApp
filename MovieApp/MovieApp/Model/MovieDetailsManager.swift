@@ -18,6 +18,14 @@ class MovieDetailsManager {
         didSet {
             if let movie = movie {
                 self.movieDetailsVCDelegate?.didSetMovie(movie)
+                self.cast = movie.credits?.cast
+            }
+        }
+    }
+    var cast: [Cast]? {
+        didSet {
+            if let cast = cast {
+                self.movieDetailsVCDelegate?.didSetCast(cast)
             }
         }
     }

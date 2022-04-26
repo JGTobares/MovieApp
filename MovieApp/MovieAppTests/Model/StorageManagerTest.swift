@@ -27,6 +27,16 @@ class StorageManagerTest: XCTestCase {
         XCTAssertEqual(2, manager.nowMovieCount)
         XCTAssertEqual(2, manager.popularMovieCount)
         XCTAssertEqual(2, manager.upcomingMovieCount)
+        manager.detailsManager.cast = nil
+        XCTAssertTrue(manager.movieCast.isEmpty)
+        XCTAssertEqual(manager.castCount, 0)
+        manager.detailsManager.cast = []
+        XCTAssertTrue(manager.movieCast.isEmpty)
+        XCTAssertEqual(manager.castCount, 0)
+        manager.getMovieDetails(id: 1)
+        XCTAssertFalse(manager.movieCast.isEmpty)
+        XCTAssertEqual(manager.castCount, 1)
+        XCTAssertEqual(manager.movieCast[0].id, 222121)
     }
     
     func testGetMovies() throws {
@@ -57,6 +67,13 @@ class StorageManagerTest: XCTestCase {
         XCTAssertEqual(675353, manager.getNowMovie(at: 1).id)
     }
     
+    func testGetMovieCast() throws {
+        manager.getMovieDetails(id: 1)
+        XCTAssertTrue(manager.castCount > 0)
+        let cast = manager.getMovieCast(at: 0)
+        XCTAssertEqual(cast.id, 222121)
+    }
+    
     func testGetMovieDetails() throws {
         manager.getMovieDetails(id: 1)
         XCTAssertNotNil(manager.detailsManager.movie)
@@ -65,9 +82,9 @@ class StorageManagerTest: XCTestCase {
     
     func testGetMovieDetailsRealm() throws {
         manager.detailsManager.movie = nil
-        manager.getMovieDetailsRealm(id: nil)
+        let _ = manager.getMovieDetailsRealm(id: nil)
         XCTAssertNil(manager.detailsManager.movie)
-        manager.getMovieDetailsRealm(id: 1)
+        let _ = manager.getMovieDetailsRealm(id: 1)
         XCTAssertNotNil(manager.detailsManager.movie)
         XCTAssertEqual(675353, manager.detailsManager.movie?.id)
     }

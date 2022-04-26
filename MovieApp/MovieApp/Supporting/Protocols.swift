@@ -66,6 +66,7 @@ protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - Functions
     func didSetMovie(_ movie: Movie)
+    func didSetCast(_ cast: [Cast])
 }
 
 protocol ErrorAlertDelegate {
