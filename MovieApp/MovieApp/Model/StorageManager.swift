@@ -83,6 +83,10 @@ class StorageManager {
         self.favoritesManager.delegate = delegate
     }
     
+    func setErrorDelegate(_ delegate: ErrorAlertDelegate) {
+        self.realmManager.errorDelegate = delegate
+    }
+    
     func getMovies() {
         self.movieManager.loadNowMovies()
         self.movieManager.loadPopularMovies()

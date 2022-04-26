@@ -18,6 +18,7 @@ struct Constants {
         static let alertError = "Alert error"
         static let validationError = "Validation error"
         static let inputErrorMessage = "Your input text is wrong. Please input corectly your search query."
+        static let errorTitle = "Error!"
     }
     
     // MARK: - API Constants

@@ -138,16 +138,6 @@ class ViewController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
-    func showAlertMessage(title: String, message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: Constants.General.okLabel, style: .cancel, handler: { _ in
-                alert.dismiss(animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
     @objc func onSearchPressed() {
         let alert = UIAlertController(title: Constants.SearchFor.dialogTitle, message: Constants.SearchFor.dialogMessage, preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textField in

@@ -19,6 +19,9 @@ class MovieManager {
     var upcomingMovies: [Movie] = []
     var bannerMovie: Movie!
     var delegate: MovieManagerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.delegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -38,7 +41,7 @@ class MovieManager {
                 self.bannerMovie = movies.randomElement()
                 self.delegate?.onNowLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
@@ -50,7 +53,7 @@ class MovieManager {
                 self.popularMovies = movies
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
@@ -62,7 +65,7 @@ class MovieManager {
                 self.upcomingMovies = movies
                 self.delegate?.onUpcomingLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }

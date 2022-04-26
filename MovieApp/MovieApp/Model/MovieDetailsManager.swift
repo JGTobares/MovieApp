@@ -22,6 +22,9 @@ class MovieDetailsManager {
         }
     }
     var movieDetailsVCDelegate: MovieDetailsViewControllerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.movieDetailsVCDelegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -41,7 +44,7 @@ class MovieDetailsManager {
                 completion(movie)
                 break
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
