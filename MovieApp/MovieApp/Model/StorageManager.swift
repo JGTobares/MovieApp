@@ -97,7 +97,7 @@ class StorageManager {
         self.movieManager.loadNowMovies { movies in
             DispatchQueue.main.async {
                 self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
-                self.getMovieDetails(id: self.movieManager.bannerMovieID)
+                //self.getMovieDetails(id: self.movieManager.bannerMovieID)
             }
 
         }
@@ -151,7 +151,7 @@ class StorageManager {
         self.detailsManager.getMovieDetails(id: id) { movie in
             DispatchQueue.main.async {
                 self.realmManager.addMovieDetails(movie: movie)
-                self.movieManager.bannerOfflineMovieID = movie.id
+                //self.movieManager.bannerOfflineMovieID = movie.id
             }
             self.movieManager.delegate?.onBannerLoaded()
         }
