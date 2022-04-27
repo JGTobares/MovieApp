@@ -54,7 +54,7 @@ class RealmService: RealmServiceProtocol {
         }
         do {
             try realm.write {
-                realm.add(movies)
+                realm.add(movies, update: .modified)
             }
         } catch {
             return .realmAddError
@@ -79,6 +79,15 @@ class RealmService: RealmServiceProtocol {
     }
     
     // MARK: - Read
+    func getMovieOffline() -> Result<MovieRealm, CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let movie = realm.objects(MovieRealm.self)
+        guard let result = movie.randomElement() else { return .failure(.notFoundError) }
+        return .success(result)
+    }
+    
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError> {
         guard let realm = self.realm else {
             return .failure(.realmInstantiationError)
@@ -116,12 +125,13 @@ class RealmService: RealmServiceProtocol {
     }
     
     // MARK: - Update
-    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool) -> CustomError? {
+    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool, ofCategory category: MoviesCategory?) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
         let movie = MovieRealm(movie: movie)
         movie.favorite = favorite
+        movie.category = category?.rawValue
         do {
             try realm.write {
                 realm.add(movie, update: .modified)

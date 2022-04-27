@@ -35,7 +35,7 @@ class MovieRealmManager {
     
     func addMovieDetails(movie: Movie) {
         if let movieRealm = self.getMovieDetails(id: movie.id) {
-            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false) {
+            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false, ofCategory: MoviesCategory(rawValue: movieRealm.category ?? 0)) {
                 print(error.rawValue)
             }
         } else {
@@ -43,5 +43,34 @@ class MovieRealmManager {
                 print(error.rawValue)
             }
         }
+    }
+    
+    func addMovies(movies: [Movie], category: MoviesCategory) {
+        if let error = service.addMovies(movies, ofCategory: category) {
+            print(error.rawValue)
+        }
+    }
+    
+    func getMovieList(category: MoviesCategory?) -> [Movie]? {
+        switch self.service.getMovieByCategory(_: category) {
+        case .success(let moviesRealm):
+            let movies = moviesRealm.map { movRealm in
+                Movie(movie: movRealm)
+            }
+            return movies
+        case .failure(let error):
+            print(error.rawValue)
+        }
+        return nil
+    }
+    
+    func getMovieOffline() -> Movie? {
+        switch self.service.getMovieOffline() {
+        case .success(let movie):
+            return Movie(movie: movie)
+        case .failure(let error):
+            print(error.rawValue)
+        }
+        return nil
     }
 }

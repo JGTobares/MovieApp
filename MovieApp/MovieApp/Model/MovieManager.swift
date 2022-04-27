@@ -12,12 +12,12 @@ class MovieManager {
     // MARK: - Constants
     let apiService: APIServiceProtocol
     
-    
     // MARK: - Variables
     var nowMovies: [Movie] = []
     var popularMovies: [Movie] = []
     var upcomingMovies: [Movie] = []
-    var bannerMovie: Movie!
+    var bannerMovieID: Int?
+    var bannerOfflineMovieID: Int?
     var delegate: MovieManagerDelegate?
     
     // MARK: - Initializers
@@ -30,12 +30,13 @@ class MovieManager {
     }
     
     // MARK: - Functions
-    func loadNowMovies() {
+    func loadNowMovies(completion: @escaping ([Movie]) -> Void) {
         apiService.getMoviesNowPlaying { result in
             switch result {
             case .success(let movies):
                 self.nowMovies = movies
-                self.bannerMovie = movies.randomElement()
+                self.bannerMovieID = movies.randomElement()?.id
+                completion(movies)
                 self.delegate?.onNowLoaded()
             case .failure(let error):
                 print(error.rawValue)
@@ -43,11 +44,12 @@ class MovieManager {
         }
     }
     
-    func loadPopularMovies() {
+    func loadPopularMovies(completion: @escaping ([Movie]) -> Void) {
         apiService.getMoviesPopular { result in
             switch result {
             case .success(let movies):
                 self.popularMovies = movies
+                completion(movies)
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
                 print(error.rawValue)
@@ -55,11 +57,12 @@ class MovieManager {
         }
     }
     
-    func loadUpcomingMovies() {
+    func loadUpcomingMovies(completion: @escaping ([Movie]) -> Void) {
         apiService.getMoviesUpcoming { result in
             switch result {
             case .success(let movies):
                 self.upcomingMovies = movies
+                completion(movies)
                 self.delegate?.onUpcomingLoaded()
             case .failure(let error):
                 print(error.rawValue)
