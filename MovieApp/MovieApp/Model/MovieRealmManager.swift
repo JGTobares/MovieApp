@@ -40,7 +40,7 @@ class MovieRealmManager {
     func addMovieDetails(movie: Movie) {
         switch self.service.getMovieByID(movie.id) {
         case .success(let movieRealm):
-            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false) {
+            if let error = service.updateMovie(movie, byID: movie.id, isFavorite: movieRealm.favorite ?? false, ofCategory: MoviesCategory(rawValue: movieRealm.category ?? 0)) {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
             break
@@ -49,5 +49,34 @@ class MovieRealmManager {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
+    }
+    
+    func addMovies(movies: [Movie], category: MoviesCategory) {
+        if let error = service.addMovies(movies, ofCategory: category) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+    }
+    
+    func getMovieList(category: MoviesCategory?) -> [Movie]? {
+        switch self.service.getMovieByCategory(_: category) {
+        case .success(let moviesRealm):
+            let movies = moviesRealm.map { movRealm in
+                Movie(movie: movRealm)
+            }
+            return movies
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
+    }
+    
+    func getMovieOffline() -> Movie? {
+        switch self.service.getMovieOffline() {
+        case .success(let movie):
+            return Movie(movie: movie)
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
     }
 }

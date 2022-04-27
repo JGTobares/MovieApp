@@ -14,16 +14,14 @@ class StorageManagerTest: XCTestCase {
     let manager = StorageManager(apiService: MockAPIService(), realmService: MockRealmService())
     
     func testLazyVariables() throws {
-        manager.movieManager.bannerMovie = nil
+        manager.detailsManager.movie = nil
         manager.movieManager.nowMovies = []
         manager.movieManager.popularMovies = []
         manager.movieManager.upcomingMovies = []
-        XCTAssertNil(manager.movieBanner)
         XCTAssertEqual(0, manager.nowMovieCount)
         XCTAssertEqual(0, manager.popularMovieCount)
         XCTAssertEqual(0, manager.upcomingMovieCount)
         manager.getMovies()
-        XCTAssertNotNil(manager.movieBanner)
         XCTAssertEqual(2, manager.nowMovieCount)
         XCTAssertEqual(2, manager.popularMovieCount)
         XCTAssertEqual(2, manager.upcomingMovieCount)
@@ -87,5 +85,15 @@ class StorageManagerTest: XCTestCase {
         let _ = manager.getMovieDetailsRealm(id: 1)
         XCTAssertNotNil(manager.detailsManager.movie)
         XCTAssertEqual(675353, manager.detailsManager.movie?.id)
+    }
+    
+    func testGetMoviesRealm() throws {
+        manager.getMoviesRealm()
+        XCTAssertNotNil(manager.movieManager.nowMovies)
+        XCTAssertNotNil(manager.movieManager.popularMovies)
+        XCTAssertNotNil(manager.movieManager.upcomingMovies)
+        XCTAssertFalse(manager.movieManager.nowMovies.isEmpty)
+        XCTAssertFalse(manager.movieManager.popularMovies.isEmpty)
+        XCTAssertFalse(manager.movieManager.upcomingMovies.isEmpty)
     }
 }

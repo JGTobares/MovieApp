@@ -52,9 +52,10 @@ class ViewController: UIViewController {
             if statusNetwork == Constants.Network.statusOnline {
                 movieManager.getMovies()
             } else {
-                //GET DATA FROM REALM
+                movieManager.getMoviesRealm()
                 CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
             }
+        NotificationCenter.default.removeObserver(self)
     }
     
     func configureCollections() {
@@ -80,7 +81,6 @@ class ViewController: UIViewController {
     
     func configureButtons() {
         self.searchButtonIcon.addTarget(self, action: #selector(self.onSearchPressed), for: .touchUpInside)
-        
         self.nowSeeAllButton.addAction(UIAction(handler: { [weak self] action in
             self?.onSeeAllPressed(category: .now)
         }), for: .touchUpInside)
@@ -97,27 +97,28 @@ class ViewController: UIViewController {
             self?.nowMovies.reloadData()
             self?.popularMovies.reloadData()
             self?.upcomingMovies.reloadData()
-            self?.refreshBanner()
         }
     }
     
     func refreshBanner() {
-        guard let movie: Movie = movieManager.movieBanner else {
-            self.bannerPoster.setImage(imageurl: nil)
-            self.bannerBackground.setBackground(imageurl: nil)
-            self.bannerTitle.text = ""
-            self.bannerCategory.text = ""
-            self.bannerRating.isHidden = true
-            self.bannerDescription.text = ""
-            self.bannerDetails.isHidden = true
-            return
+        DispatchQueue.main.async { [weak self] in
+            guard let movie: Movie = self?.movieManager.movieBanner else {
+                self?.bannerPoster.setImage(imageurl: nil)
+                self?.bannerBackground.setBackground(imageurl: nil)
+                self?.bannerTitle.text = ""
+                self?.bannerCategory.text = ""
+                self?.bannerRating.isHidden = true
+                self?.bannerDescription.text = ""
+                self?.bannerDetails.isHidden = true
+                return
+            }
+            self?.bannerPoster.setImage(imageurl: movie.posterPath)
+            self?.bannerBackground.setBackground(imageurl: movie.backdropPath)
+            self?.bannerTitle.text = movie.title
+            self?.bannerCategory.text = movie.getGenres()
+            self?.bannerRating.isHidden = true
+            self?.bannerDescription.text = movie.overview
         }
-        self.bannerPoster.setImage(imageurl: movie.posterPath)
-        self.bannerBackground.setBackground(imageurl: movie.backdropPath)
-        self.bannerTitle.text = movie.title
-        self.bannerCategory.text = movie.releaseDate
-        self.bannerRating.isHidden = true
-        self.bannerDescription.text = movie.overview
     }
     
     // MARK: - Actions
@@ -221,6 +222,9 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 extension ViewController: MovieManagerDelegate {
+    func onBannerLoaded() {
+        refreshBanner()
+    }
     
     func onNowLoaded() {
         refreshMovies()

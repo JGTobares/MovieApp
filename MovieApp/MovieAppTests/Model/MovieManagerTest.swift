@@ -14,19 +14,25 @@ class MovieManagerTest: XCTestCase {
     let manager = MovieManager(apiService: MockAPIService())
     
     func testLoadNowMovies() throws {
-        manager.loadNowMovies()
+        manager.loadNowMovies { movies in
+            self.manager.nowMovies = movies
+        }
         XCTAssertNotNil(manager.nowMovies)
         XCTAssertEqual(manager.nowMovies.count, 2)
     }
     
     func testLoadPopularMovies() throws {
-        manager.loadPopularMovies()
+        manager.loadPopularMovies { movies in
+            self.manager.popularMovies = movies
+        }
         XCTAssertNotNil(manager.popularMovies)
         XCTAssertEqual(manager.popularMovies.count, 2)
     }
     
     func testLoadUpcomingMovies() throws {
-        manager.loadUpcomingMovies()
+        manager.loadUpcomingMovies { movies in
+            self.manager.upcomingMovies = movies
+        }
         XCTAssertNotNil(manager.upcomingMovies)
         XCTAssertEqual(manager.upcomingMovies.count, 2)
     }
