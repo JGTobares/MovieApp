@@ -18,4 +18,15 @@ class MovieRealmManagerTest: XCTestCase {
         let movie = manager.getMovieDetails(id: 1)
         XCTAssertEqual(675353, movie?.id)
     }
+    
+    func testGetMovieLists() throws {
+        XCTAssertNil(manager.getMovieList(category: nil))
+        let movie = manager.getMovieList(category: MoviesCategory.now)
+        XCTAssertEqual(3, movie?.count)
+    }
+    
+    func testGetMovieOffline() throws {
+        let movie = manager.getMovieOffline()
+        XCTAssertEqual(675353, movie?.id)
+    }
 }

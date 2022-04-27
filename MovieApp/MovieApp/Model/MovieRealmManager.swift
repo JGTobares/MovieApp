@@ -53,7 +53,7 @@ class MovieRealmManager {
     
     func addMovies(movies: [Movie], category: MoviesCategory) {
         if let error = service.addMovies(movies, ofCategory: category) {
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     
@@ -65,7 +65,7 @@ class MovieRealmManager {
             }
             return movies
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
         return nil
     }
@@ -75,7 +75,7 @@ class MovieRealmManager {
         case .success(let movie):
             return Movie(movie: movie)
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
         return nil
     }

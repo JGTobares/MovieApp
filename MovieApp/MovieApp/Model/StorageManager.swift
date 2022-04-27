@@ -99,7 +99,6 @@ class StorageManager {
                 self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
                 self.getMovieDetails(id: self.movieManager.bannerMovieID)
             }
-
         }
         self.movieManager.loadPopularMovies { movies in
             DispatchQueue.main.async {

@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class RealmService: RealmServiceProtocol {
-    
     // MARK: - Constants
     let realm = try? Realm(queue: DispatchQueue.main)
     
