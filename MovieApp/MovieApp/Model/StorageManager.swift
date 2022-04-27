@@ -46,12 +46,12 @@ class StorageManager {
         self.configureNetwork()
     }
     
-    init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
-        self.movieManager = MovieManager(apiService: apiService)
-        self.detailsManager = MovieDetailsManager(apiService: apiService)
-        self.realmManager = MovieRealmManager(service: realmService)
-        self.favoritesManager = FavoritesManager(service: realmService)
-    }
+//    init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol) {
+//        self.movieManager = MovieManager(apiService: apiService)
+//        self.detailsManager = MovieDetailsManager(apiService: apiService)
+//        self.realmManager = MovieRealmManager(service: realmService)
+//        self.favoritesManager = FavoritesManager(service: realmService)
+//    }
     
     // MARK: - Functions
     func configureNetwork() {

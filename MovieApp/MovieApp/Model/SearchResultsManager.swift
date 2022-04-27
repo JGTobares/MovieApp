@@ -10,8 +10,8 @@ import Foundation
 class SearchResultsManager {
     
     // MARK: - Constants
-    let apiService: APIServiceProtocol
-    let repository = MovieRepository()
+//    let apiService: APIServiceProtocol
+    let repository = MovieResponseRepository()
     
     
     // MARK: - Variables
@@ -28,13 +28,13 @@ class SearchResultsManager {
     }
     
     // MARK: - Initializers
-    init() {
-        self.apiService = APIService.shared
-    }
-    
-    init(apiService: APIServiceProtocol) {
-        self.apiService = apiService
-    }
+//    init() {
+//        self.apiService = APIService.shared
+//    }
+//
+//    init(apiService: APIServiceProtocol) {
+//        self.apiService = apiService
+//    }
     
     // MARK: - Functions
     func getTitleLabel(category: MoviesCategory?) -> String {
@@ -59,7 +59,10 @@ class SearchResultsManager {
     }
     
     func getMovieResponse(category: MoviesCategory?) {
-        self.apiService.getMoviesResponse(category: category) { result in
+        guard let category = category else {
+            return
+        }
+        self.repository.getListOfMovies(page: self.currentPage, category: category) { result in
             switch result {
             case .success(let response):
                 self.currentPage = response.page
@@ -73,7 +76,7 @@ class SearchResultsManager {
     }
     
     func searchFor(query: String) {
-        self.repository.searchFor(query: query, page: self.currentPage) { result in
+        self.repository.searchFor(query: query.replacingOccurrences(of: "%20", with: "+"), page: self.currentPage) { result in
             switch result {
             case .success(let response):
                 self.currentPage = response.page
@@ -86,31 +89,31 @@ class SearchResultsManager {
         }
     }
     
-    func loadMoviesFromCategory(_ category: MoviesCategory?) {
-        switch category {
-        case .now:
-            self.apiService.getMoviesNowPlaying(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        case .popular:
-            self.apiService.getMoviesPopular(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        case .upcoming:
-            self.apiService.getMoviesUpcoming(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        default:
-            break
-        }
-    }
-    
-    func loadResult(_ result: Result<[Movie], CustomError>) {
-        switch result {
-        case .success(let movies):
-            self.movies = movies
-            break
-        case .failure(let error):
-            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
-        }
-    }
+//    func loadMoviesFromCategory(_ category: MoviesCategory?) {
+//        switch category {
+//        case .now:
+//            self.apiService.getMoviesNowPlaying(page: self.currentPage, completion: self.loadResult(_:))
+//            break
+//        case .popular:
+//            self.apiService.getMoviesPopular(page: self.currentPage, completion: self.loadResult(_:))
+//            break
+//        case .upcoming:
+//            self.apiService.getMoviesUpcoming(page: self.currentPage, completion: self.loadResult(_:))
+//            break
+//        default:
+//            break
+//        }
+//    }
+//
+//    func loadResult(_ result: Result<[Movie], CustomError>) {
+//        switch result {
+//        case .success(let movies):
+//            self.movies = movies
+//            break
+//        case .failure(let error):
+//            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+//        }
+//    }
     
     func nextPage() {
         if self.currentPage != nil {

@@ -47,6 +47,7 @@
 		C1E48120280E17EB009A625F /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E4811F280E17EB009A625F /* SearchResultsManager.swift */; };
 		D404208D2819BFC800CCEA7B /* BaseAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404208C2819BFC800CCEA7B /* BaseAPIService.swift */; };
 		D404208F2819C56E00CCEA7B /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404208E2819C56E00CCEA7B /* MovieRepository.swift */; };
+		D40420922819EA7000CCEA7B /* MovieResponseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40420912819EA7000CCEA7B /* MovieResponseRepository.swift */; };
 		D46F4F902810529D003848CC /* MovieRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F8F2810529D003848CC /* MovieRealm.swift */; };
 		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 		D46F4F9428106B73003848CC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9328106B73003848CC /* StorageManager.swift */; };
@@ -130,6 +131,7 @@
 		C1E4811F280E17EB009A625F /* SearchResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
 		D404208C2819BFC800CCEA7B /* BaseAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIService.swift; sourceTree = "<group>"; };
 		D404208E2819C56E00CCEA7B /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
+		D40420912819EA7000CCEA7B /* MovieResponseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponseRepository.swift; sourceTree = "<group>"; };
 		D46F4F8F2810529D003848CC /* MovieRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealm.swift; sourceTree = "<group>"; };
 		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		D46F4F9328106B73003848CC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		C102C09A2807248B0025AEAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D40420902819EA4000CCEA7B /* Repositories */,
 				C102C09F280728D10025AEAE /* Movie.swift */,
 				C06E5DA128089B74005C713E /* MovieManager.swift */,
 				C1781C4F2808587000D060C3 /* Crew.swift */,
@@ -306,7 +309,6 @@
 				D4BBC2062816FCA2006BFA53 /* Video.swift */,
 				D4DCC45428183F2900D0429D /* Cast.swift */,
 				D4C0911528186D3600356315 /* CastRealm.swift */,
-				D404208E2819C56E00CCEA7B /* MovieRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,6 +365,15 @@
 				3C62ECF6A4A41527C26BF181 /* Pods_MovieAppTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D40420902819EA4000CCEA7B /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D404208E2819C56E00CCEA7B /* MovieRepository.swift */,
+				D40420912819EA7000CCEA7B /* MovieResponseRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0602CE52811F0FB00D924F6 /* CustomToast.swift in Sources */,
+				D40420922819EA7000CCEA7B /* MovieResponseRepository.swift in Sources */,
 				C1781C55280862BE00D060C3 /* MovieDetailsViewController.swift in Sources */,
 				C1781C5228085E9800D060C3 /* MovieDetailsManager.swift in Sources */,
 				D46F4F9628106CE3003848CC /* MovieRealmManager.swift in Sources */,
