@@ -55,6 +55,7 @@ class ViewController: UIViewController {
                 movieManager.getMoviesRealm()
                 CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
             }
+        NotificationCenter.default.removeObserver(self)
     }
     
     func configureCollections() {

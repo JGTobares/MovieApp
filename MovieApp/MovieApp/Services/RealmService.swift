@@ -49,8 +49,19 @@ class RealmService: RealmServiceProtocol {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
+        let favorites: [MovieRealm]
+        switch self.getFavoriteMovies() {
+        case .success(let moviesRealm):
+            favorites = moviesRealm
+            break
+        case .failure:
+            favorites = []
+        }
         let movies = movies.map {
             MovieRealm(movie: $0, category: category)
+        }
+        favorites.forEach { favorite in
+            movies.first(where: { $0.id == favorite.id})?.favorite = favorite.favorite
         }
         do {
             try realm.write {
