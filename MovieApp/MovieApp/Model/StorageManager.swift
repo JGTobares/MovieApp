@@ -19,7 +19,7 @@ class StorageManager {
   
     // MARK: - Variables
     var movieBanner: Movie! {
-        return self.movieManager.bannerMovie
+        return self.detailsManager.movie
     }
     var nowMovieCount: Int {
         return self.movieManager.nowMovies.count
@@ -94,9 +94,40 @@ class StorageManager {
     }
     
     func getMovies() {
-        self.movieManager.loadNowMovies()
-        self.movieManager.loadPopularMovies()
-        self.movieManager.loadUpcomingMovies()
+        self.movieManager.loadNowMovies { movies in
+            DispatchQueue.main.async {
+                self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
+                self.getMovieDetails(id: self.movieManager.bannerMovieID)
+            }
+        }
+        self.movieManager.loadPopularMovies { movies in
+            DispatchQueue.main.async {
+                self.realmManager.addMovies(movies: movies, category: MoviesCategory.popular)
+            }
+        }
+        self.movieManager.loadUpcomingMovies { movies in
+            DispatchQueue.main.async {
+                self.realmManager.addMovies(movies: movies, category: MoviesCategory.upcoming)
+            }
+        }
+    }
+    
+    func getMoviesRealm() {
+        guard let nowList = self.realmManager.getMovieList(category: MoviesCategory.now) else {
+            return
+        }
+        self.movieManager.nowMovies = nowList
+        self.detailsManager.movie = self.realmManager.getMovieOffline()
+        guard let popularList = self.realmManager.getMovieList(category: MoviesCategory.popular) else {
+            return
+        }
+        self.movieManager.popularMovies = popularList
+        guard let upcomingList = self.realmManager.getMovieList(category: MoviesCategory.upcoming) else {
+            return
+        }
+        self.movieManager.upcomingMovies = upcomingList
+        self.movieManager.delegate?.onNowLoaded()
+        self.movieManager.delegate?.onBannerLoaded()
     }
     
     func getNowMovie(at index: Int) -> Movie {
@@ -119,7 +150,9 @@ class StorageManager {
         self.detailsManager.getMovieDetails(id: id) { movie in
             DispatchQueue.main.async {
                 self.realmManager.addMovieDetails(movie: movie)
+                self.movieManager.bannerOfflineMovieID = movie.id
             }
+            self.movieManager.delegate?.onBannerLoaded()
         }
     }
     
@@ -128,6 +161,7 @@ class StorageManager {
             return false
         }
         self.detailsManager.movie = Movie(movie: movieRealm)
+        self.movieManager.delegate?.onBannerLoaded()
         return true
     }
     

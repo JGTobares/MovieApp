@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class RealmService: RealmServiceProtocol {
-    
     // MARK: - Constants
     let realm = try? Realm(queue: DispatchQueue.main)
     
@@ -49,12 +48,23 @@ class RealmService: RealmServiceProtocol {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
+        let favorites: [MovieRealm]
+        switch self.getFavoriteMovies() {
+        case .success(let moviesRealm):
+            favorites = moviesRealm
+            break
+        case .failure:
+            favorites = []
+        }
         let movies = movies.map {
             MovieRealm(movie: $0, category: category)
         }
+        favorites.forEach { favorite in
+            movies.first(where: { $0.id == favorite.id})?.favorite = favorite.favorite
+        }
         do {
             try realm.write {
-                realm.add(movies)
+                realm.add(movies, update: .modified)
             }
         } catch {
             return .realmAddError
@@ -79,6 +89,15 @@ class RealmService: RealmServiceProtocol {
     }
     
     // MARK: - Read
+    func getMovieOffline() -> Result<MovieRealm, CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let movie = realm.objects(MovieRealm.self)
+        guard let result = movie.randomElement() else { return .failure(.notFoundError) }
+        return .success(result)
+    }
+    
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError> {
         guard let realm = self.realm else {
             return .failure(.realmInstantiationError)
@@ -116,12 +135,13 @@ class RealmService: RealmServiceProtocol {
     }
     
     // MARK: - Update
-    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool) -> CustomError? {
+    func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool, ofCategory category: MoviesCategory?) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
         let movie = MovieRealm(movie: movie)
         movie.favorite = favorite
+        movie.category = category?.rawValue
         do {
             try realm.write {
                 realm.add(movie, update: .modified)
