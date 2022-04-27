@@ -97,7 +97,7 @@ class StorageManager {
         self.movieManager.loadNowMovies { movies in
             DispatchQueue.main.async {
                 self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
-                //self.getMovieDetails(id: self.movieManager.bannerMovieID)
+                self.getMovieDetails(id: self.movieManager.bannerMovieID)
             }
 
         }
