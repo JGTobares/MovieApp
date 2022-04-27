@@ -22,7 +22,8 @@ struct Movie: Codable {
     let status: String?
     let tagline: String?
     let title: String?
-    let credits: Credits?
+    var credits: Credits?
+    var videos: Videos? = nil
     
     // MARK: - Initializers
     init(id: Int?, backdropPath: String?, genres: [Genre]?, homepage: String?,
@@ -70,12 +71,15 @@ struct Movie: Codable {
         self.status = movie.status
         self.tagline = movie.tagline
         self.title = movie.title
-        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)])
+        let cast: [Cast] = movie.cast.map { member in
+            return Cast(cast: member)
+        }
+        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: movie.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)], cast: cast)
     }
     
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
-        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits
+        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits, videos
         case backdropPath = "backdrop_path"
         case posterPath = "poster_path"
         case releaseDate = "release_date"
@@ -128,6 +132,13 @@ struct Movie: Codable {
                 String.localizedStringWithFormat(Constants.Movie.runtimeHoursFormat, hours) :
                 String.localizedStringWithFormat(Constants.Movie.runtimeMinutesFormat, minutes)
     }
+    
+    func getYouTubeTrailer() -> Video? {
+        guard let videos = videos?.results else {
+            return nil
+        }
+        return videos.first(where: { $0.isYouTubeTrailer() })
+    }
 }
 
 struct Genre: Codable {
@@ -137,6 +148,11 @@ struct Genre: Codable {
 
 struct Credits: Codable {
     let crew: [Crew]?
+    let cast: [Cast]?
+}
+
+struct Videos: Codable {
+    let results: [Video]?
 }
 
 struct MoviesResponse: Codable {

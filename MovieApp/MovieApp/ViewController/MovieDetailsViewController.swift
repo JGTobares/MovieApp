@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class MovieDetailsViewController: UIViewController {
     
     // MARK: - Constants
     let manager = StorageManager()
+    
     
     // MARK: - Variables
     var movieID: Int?
@@ -37,6 +39,9 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var trailerContainer: UIView!
     @IBOutlet weak var tabsContainer: UIStackView!
     @IBOutlet var heartButton: UIButton!
+    @IBOutlet weak var trailerPlayer: YTPlayerView!
+    @IBOutlet weak var trailerErrorLabel: UILabel!
+    @IBOutlet weak var castCollectionView: UICollectionView!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -45,6 +50,10 @@ class MovieDetailsViewController: UIViewController {
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
+        manager.setErrorDelegate(self)
+        self.trailerPlayer.delegate = self
+        castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
+        castCollectionView.dataSource = self
     }
     
     // MARK: - Functions
@@ -81,6 +90,8 @@ class MovieDetailsViewController: UIViewController {
             if !manager.getMovieDetailsRealm(id: self.movieID) {
                 CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
             }
+            self.trailerPlayer.isHidden = true
+            self.trailerErrorLabel.text = Constants.MovieDetails.trailerErrorMessage
         }
     }
     
@@ -173,6 +184,21 @@ class MovieDetailsViewController: UIViewController {
 }
 
 // MARK: - Extensions
+extension MovieDetailsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.manager.castCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setCast(self.manager.getMovieCast(at: indexPath.row))
+        return cell
+    }
+}
+
 extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie(_ movie: Movie) {
@@ -196,6 +222,30 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
             // Make text italics and underlined
             self.movieWebpageLabel.attributedText = NSAttributedString(string: movie.homepage ?? "", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
             self.movieWebpageLabel.font = UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
+            // Load YouTube trailer
+            self.trailerPlayer.load(withVideoId: movie.getYouTubeTrailer()?.key ?? "")
         }
+    }
+    
+    func didSetCast(_ cast: [Cast]) {
+        DispatchQueue.main.async {
+            self.castCollectionView.reloadData()
+        }
+    }
+}
+
+extension MovieDetailsViewController: YTPlayerViewDelegate {
+    
+    func playerViewPreferredWebViewBackgroundColor(_ playerView: YTPlayerView) -> UIColor {
+        return .black
+    }
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        self.trailerPlayer.isHidden = false
+        self.trailerErrorLabel.text = ""
+    }
+    
+    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+        self.trailerPlayer.isHidden = true
+        self.trailerErrorLabel.text = Constants.MovieDetails.trailerErrorMessage
     }
 }

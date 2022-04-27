@@ -30,6 +30,12 @@ class StorageManager {
     var upcomingMovieCount: Int {
         return self.movieManager.upcomingMovies.count
     }
+    var movieCast: [Cast] {
+        return self.detailsManager.cast ?? []
+    }
+    var castCount: Int {
+        return self.movieCast.count
+    }
     
     // MARK: Initializers
     init() {
@@ -83,6 +89,10 @@ class StorageManager {
         self.favoritesManager.delegate = delegate
     }
     
+    func setErrorDelegate(_ delegate: ErrorAlertDelegate) {
+        self.realmManager.errorDelegate = delegate
+    }
+    
     func getMovies() {
         self.movieManager.loadNowMovies { movies in
             DispatchQueue.main.async {
@@ -131,6 +141,10 @@ class StorageManager {
     
     func getUpcomingMovie(at index: Int) -> Movie {
         return self.movieManager.upcomingMovies[index]
+    }
+    
+    func getMovieCast(at index: Int) -> Cast {
+        return self.movieCast[index]
     }
     
     func getMovieDetails(id: Int?) {

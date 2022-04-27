@@ -29,7 +29,7 @@ final class MockRealmService: RealmServiceProtocol {
                 credits: Credits(crew: [
                     Crew(id: 3346056, gender: 0, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                     Crew(id: 93364, gender: 2, name: "Jeff Fowler", profilePath: "/wExdubFgeBkEUP8MojKPKoOcgdZ.jpg", job: "Director")
-                ])
+                ], cast: nil)
         ), category: .now)
     ]
     

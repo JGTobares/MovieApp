@@ -19,6 +19,9 @@ class MovieManager {
     var bannerMovieID: Int?
     var bannerOfflineMovieID: Int?
     var delegate: MovieManagerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.delegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -39,7 +42,7 @@ class MovieManager {
                 completion(movies)
                 self.delegate?.onNowLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
@@ -52,7 +55,7 @@ class MovieManager {
                 completion(movies)
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
@@ -65,7 +68,7 @@ class MovieManager {
                 completion(movies)
                 self.delegate?.onUpcomingLoaded()
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }

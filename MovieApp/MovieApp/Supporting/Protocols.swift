@@ -20,6 +20,7 @@ protocol APIServiceProtocol {
     func getMoviesPopular(page: Int?, completion: @escaping (Result<[Movie], CustomError>) -> Void)
     func getListOfMovies(page: Int?, endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
     func getMoviesResponse(category: MoviesCategory?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
+    func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
 }
 
 protocol RealmServiceProtocol {
@@ -67,4 +68,11 @@ protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - Functions
     func didSetMovie(_ movie: Movie)
+    func didSetCast(_ cast: [Cast])
+}
+
+protocol ErrorAlertDelegate {
+    
+    // MARK: - Functions
+    func showAlertMessage(title: String, message: String)
 }

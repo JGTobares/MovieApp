@@ -22,6 +22,9 @@ class SearchResultsManager {
     var currentPage: Int? = 1
     var totalPages: Int?
     var delegate: SearchResultsManagerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.delegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -63,7 +66,21 @@ class SearchResultsManager {
                 self.movies = response.results ?? []
                 break
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+            }
+        }
+    }
+    
+    func searchFor(query: String) {
+        self.apiService.searchFor(query: query, page: self.currentPage) { result in
+            switch result {
+            case .success(let response):
+                self.currentPage = response.page
+                self.setTotalPages(total: response.totalPages)
+                self.movies = response.results ?? []
+                break
+            case .failure(let error):
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }
@@ -90,7 +107,7 @@ class SearchResultsManager {
             self.movies = movies
             break
         case .failure(let error):
-            print(error.rawValue)
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     

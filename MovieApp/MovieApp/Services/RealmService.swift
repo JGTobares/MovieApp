@@ -22,7 +22,7 @@ class RealmService: RealmServiceProtocol {
         let movie = MovieRealm(movie: movie)
         do {
             try realm.write {
-                realm.add(movie)
+                realm.add(movie, update: .modified)
             }
         } catch {
             return .realmAddError

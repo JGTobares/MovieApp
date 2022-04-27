@@ -18,10 +18,21 @@ class MovieDetailsManager {
         didSet {
             if let movie = movie {
                 self.movieDetailsVCDelegate?.didSetMovie(movie)
+                self.cast = movie.credits?.cast
+            }
+        }
+    }
+    var cast: [Cast]? {
+        didSet {
+            if let cast = cast {
+                self.movieDetailsVCDelegate?.didSetCast(cast)
             }
         }
     }
     var movieDetailsVCDelegate: MovieDetailsViewControllerDelegate?
+    var errorDelegate: ErrorAlertDelegate? {
+        return self.movieDetailsVCDelegate as? ErrorAlertDelegate
+    }
     
     // MARK: - Initializers
     init() {
@@ -41,7 +52,7 @@ class MovieDetailsManager {
                 completion(movie)
                 break
             case .failure(let error):
-                print(error.rawValue)
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
     }

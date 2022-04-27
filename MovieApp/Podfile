@@ -10,6 +10,7 @@ target 'MovieApp' do
   pod 'SideMenu'
   pod 'RealmSwift', '~>10'
   pod 'ReachabilitySwift'
+  pod 'youtube-ios-player-helper', '~> 1.0.4'
 
   target 'MovieAppTests' do
     inherit! :search_paths

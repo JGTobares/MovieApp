@@ -18,6 +18,7 @@ struct Constants {
         static let alertError = "Alert error"
         static let validationError = "Validation error"
         static let inputErrorMessage = "Your input text is wrong. Please input corectly your search query."
+        static let errorTitle = "Error!"
     }
     
     // MARK: - API Constants
@@ -30,6 +31,11 @@ struct Constants {
         static let maxTotalPages = 500
     }
     
+    // MARK: Nib Names
+    struct Nib {
+        static let searchResults = "SearchResultsViewController"
+    }
+    
     // MARK: - Movie Model Constants
     struct Movie {
         static let dateLocaleDefault = "en_US"
@@ -40,6 +46,8 @@ struct Constants {
         static let runtimeHoursFormat = "%dh"
         static let runtimeMinutesFormat = "%dm"
         static let runtimeCompleteFormat = runtimeHoursFormat + " " + runtimeMinutesFormat
+        static let trailerSite = "YouTube"
+        static let trailerType = "Trailer"
     }
     
     // MARK: - Movie Details Constants
@@ -52,6 +60,7 @@ struct Constants {
         static let infoTabTag = 111
         static let castTabTag = 222
         static let trailerTabTag = 333
+        static let trailerErrorMessage = "Couldn't load the movie's trailer."
     }
     
     // MARK: - Images Constants
@@ -72,7 +81,7 @@ struct Constants {
         static let height = 230
         static let collectionCell = "CustomCollectionViewCell"
         static let tableCell = "CustomTableViewCell"
-        
+        static let castLabelFormat = "%@ as %@"
     }
     
     // MARK: - Search for Movie Constants
@@ -80,6 +89,7 @@ struct Constants {
         static let dialogTitle = "Search"
         static let dialogMessage = "Name of Movie"
         static let dialogInput = "Input a Movie's name"
+        static let searchedForTitle = "Searched for: \"%@\""
     }
     
     // MARK: - Side Menu

@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class MovieTest: XCTestCase {
     
-    let movie = MockAPIService().movies[1]
+    var movie = MockAPIService().movies[1]
     
     func testProperties() throws {
         XCTAssertEqual(675353, movie.id)
@@ -84,25 +84,25 @@ class MovieTest: XCTestCase {
                               credits: nil)
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
-                              credits: Credits(crew: nil))
+                              credits: Credits(crew: nil, cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                                 Crew(id: nil, gender: nil, name: "Jeff Fowler", profilePath: nil, job: "")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Executive Producer"),
                                 Crew(id: nil, gender: nil, name: nil, profilePath: nil, job: "Director")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("", movieTest.getDirector())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "",
                               credits: Credits(crew: [
                                 Crew(id: nil, gender: nil, name: "Shuji Utsumi", profilePath: nil, job: "Director"),
                                 Crew(id: nil, gender: nil, name: "Jeff Fowler", profilePath: nil, job: "Director")
-                              ]))
+                              ], cast: nil))
         XCTAssertEqual("Shuji Utsumi", movieTest.getDirector())
     }
     
@@ -124,5 +124,37 @@ class MovieTest: XCTestCase {
         XCTAssertEqual("0m", movieTest.getRuntimeString())
         movieTest = Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: nil, status: "", tagline: "", title: "", credits: nil)
         XCTAssertEqual("0m", movieTest.getRuntimeString())
+    }
+    
+    func testIsYoutubeTrailer() throws {
+        var video = Video(key: "", site: nil, type: nil, official: true)
+        XCTAssertFalse(video.isYouTubeTrailer())
+        video = Video(key: "", site: "YouTube", type: nil, official: true)
+        XCTAssertFalse(video.isYouTubeTrailer())
+        video = Video(key: "", site: nil, type: "Trailer", official: true)
+        XCTAssertFalse(video.isYouTubeTrailer())
+        video = Video(key: "", site: "youtube", type: "Trailer", official: true)
+        XCTAssertFalse(video.isYouTubeTrailer())
+        video = Video(key: "", site: "YouTube", type: "teaser", official: true)
+        XCTAssertFalse(video.isYouTubeTrailer())
+        video = Video(key: "", site: "YouTube", type: "Trailer", official: true)
+        XCTAssertTrue(video.isYouTubeTrailer())
+    }
+    
+    func testGetYouTubeTrailer() throws {
+        let trailer = Video(key: "1", site: "YouTube", type: "Trailer", official: true)
+        let finalTrailer = Video(key: "2", site: "YouTube", type: "Trailer", official: true)
+        let notTrailer = Video(key: "", site: "YouTube", type: "Teaser", official: true)
+        XCTAssertNil(movie.getYouTubeTrailer())
+        movie.videos = Videos(results: nil)
+        XCTAssertNil(movie.getYouTubeTrailer())
+        movie.videos = Videos(results: [])
+        XCTAssertNil(movie.getYouTubeTrailer())
+        movie.videos = Videos(results: [notTrailer])
+        XCTAssertNil(movie.getYouTubeTrailer())
+        movie.videos = Videos(results: [notTrailer, trailer])
+        XCTAssertNotNil(movie.getYouTubeTrailer())
+        movie.videos = Videos(results: [notTrailer, trailer, finalTrailer])
+        XCTAssertEqual("1", movie.getYouTubeTrailer()?.key)
     }
 }

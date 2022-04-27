@@ -12,9 +12,6 @@ class SearchResultsViewController: UIViewController {
     // MARK: - Constants
     let manager = SearchResultsManager()
     
-    // MARK: - Variables
-    var input: String?
-    var category: MoviesCategory?
     
     // MARK: - Outlets
     @IBOutlet weak var collectionMovies: UICollectionView!
@@ -36,9 +33,6 @@ class SearchResultsViewController: UIViewController {
         collectionMovies.dataSource = self
         
         self.manager.delegate = self
-        self.manager.getMovieResponse(category: self.category)
-        
-        self.titleLabel.text = self.manager.getTitleLabel(category: self.category)
         
         self.nextButton.addTarget(self, action: #selector(onNextPressed), for: .touchUpInside)
         self.previousButton.addTarget(self, action: #selector(onPreviousPressed), for: .touchUpInside)
@@ -67,7 +61,6 @@ class SearchResultsViewController: UIViewController {
             return
         }
         self.manager.nextPage()
-        self.manager.loadMoviesFromCategory(self.category)
     }
     
     @objc func onPreviousPressed() {
@@ -75,7 +68,6 @@ class SearchResultsViewController: UIViewController {
             return
         }
         self.manager.previousPage()
-        self.manager.loadMoviesFromCategory(self.category)
     }
 }
 

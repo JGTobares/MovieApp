@@ -20,7 +20,7 @@ class APIService: APIServiceProtocol {
         guard let id = id else {
             return
         }
-        let urlString = "\(self.baseUrl)movie/\(id)?api_key=\(apiKey)&append_to_response=credits"
+        let urlString = "\(self.baseUrl)movie/\(id)?api_key=\(apiKey)&append_to_response=credits,videos"
         guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return
@@ -187,6 +187,43 @@ class APIService: APIServiceProtocol {
             return
         }
         let urlString = "\(self.baseUrl)movie/\(endpoint)?api_key=\(apiKey)&region=US"
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.urlError))
+            return
+        }
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                completion(.failure(.connectionError))
+                return
+            }
+            guard let safeResponse = response as? HTTPURLResponse else {
+                completion(.failure(.connectionError))
+                return
+            }
+            if safeResponse.statusCode != 200 {
+                if safeResponse.statusCode == 401 {
+                    completion(.failure(.authorizationError))
+                } else {
+                    completion(.failure(.notFoundError))
+                }
+                return
+            }
+            guard let safeData = data else {
+                completion(.failure(.connectionError))
+                return
+            }
+            do {
+                let moviesResponse = try JSONDecoder().decode(MoviesResponse.self, from: safeData)
+                completion(.success(moviesResponse))
+            } catch {
+                completion(.failure(.jsonError))
+            }
+        }.resume()
+    }
+    
+    func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
+        let urlString = "\(self.baseUrl)search/movie?api_key=\(apiKey)&region=US&query=\(query)&page=\(page ?? 1)"
         guard let url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return
