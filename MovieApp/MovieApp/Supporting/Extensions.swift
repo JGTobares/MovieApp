@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
+// MARK: - UIImageView
 extension UIImageView {
     
     func setImage(imageurl: String?) {
@@ -30,6 +31,7 @@ extension UIImageView {
     }
 }
 
+// MARK: - UIViewController
 extension UIViewController: ErrorAlertDelegate {
     
     func showAlertMessage(title: String, message: String) {
@@ -39,6 +41,21 @@ extension UIViewController: ErrorAlertDelegate {
                 alert.dismiss(animated: true)
             }))
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - URL
+extension URL {
+    
+    mutating func appendQueryItem(name: String, value: String?) {
+        guard var urlComponents = URLComponents(string: absoluteString) else { return }
+        var queryItems: [URLQueryItem] = urlComponents.queryItems ?? []
+        let queryItem = URLQueryItem(name: name, value: value)
+        queryItems.append(queryItem)
+        urlComponents.queryItems = queryItems
+        if let url = urlComponents.url {
+            self = url
         }
     }
 }

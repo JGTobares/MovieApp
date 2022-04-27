@@ -11,6 +11,7 @@ class SearchResultsManager {
     
     // MARK: - Constants
     let apiService: APIServiceProtocol
+    let repository = MovieRepository()
     
     
     // MARK: - Variables
@@ -72,7 +73,7 @@ class SearchResultsManager {
     }
     
     func searchFor(query: String) {
-        self.apiService.searchFor(query: query, page: self.currentPage) { result in
+        self.repository.searchFor(query: query, page: self.currentPage) { result in
             switch result {
             case .success(let response):
                 self.currentPage = response.page

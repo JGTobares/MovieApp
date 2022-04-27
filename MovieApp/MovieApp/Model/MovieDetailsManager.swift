@@ -11,6 +11,7 @@ class MovieDetailsManager {
     
     // MARK: - Constants
     let apiService: APIServiceProtocol
+    let repository = MovieRepository()
     
     
     // MARK: - Variables
@@ -45,7 +46,7 @@ class MovieDetailsManager {
     
     // MARK: - Functions
     func getMovieDetails(id: Int?, completion: @escaping (Movie) -> Void) {
-        self.apiService.getMovieDetails(id: id) { result in
+        self.repository.getMovieDetails(id: id) { result in
             switch(result) {
             case .success(let movie):
                 self.movie = movie

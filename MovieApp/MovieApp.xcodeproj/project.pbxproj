@@ -45,6 +45,8 @@
 		C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */; };
 		C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEF7E02809CDAA0002FCA4 /* Constants.swift */; };
 		C1E48120280E17EB009A625F /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E4811F280E17EB009A625F /* SearchResultsManager.swift */; };
+		D404208D2819BFC800CCEA7B /* BaseAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404208C2819BFC800CCEA7B /* BaseAPIService.swift */; };
+		D404208F2819C56E00CCEA7B /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404208E2819C56E00CCEA7B /* MovieRepository.swift */; };
 		D46F4F902810529D003848CC /* MovieRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F8F2810529D003848CC /* MovieRealm.swift */; };
 		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 		D46F4F9428106B73003848CC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9328106B73003848CC /* StorageManager.swift */; };
@@ -126,6 +128,8 @@
 		C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManagerTest.swift; sourceTree = "<group>"; };
 		C1DEF7E02809CDAA0002FCA4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C1E4811F280E17EB009A625F /* SearchResultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
+		D404208C2819BFC800CCEA7B /* BaseAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPIService.swift; sourceTree = "<group>"; };
+		D404208E2819C56E00CCEA7B /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		D46F4F8F2810529D003848CC /* MovieRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealm.swift; sourceTree = "<group>"; };
 		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		D46F4F9328106B73003848CC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 				D4BBC2062816FCA2006BFA53 /* Video.swift */,
 				D4DCC45428183F2900D0429D /* Cast.swift */,
 				D4C0911528186D3600356315 /* CastRealm.swift */,
+				D404208E2819C56E00CCEA7B /* MovieRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			children = (
 				C102C0A128074BFA0025AEAE /* APIService.swift */,
 				D46F4F9128105642003848CC /* RealmService.swift */,
+				D404208C2819BFC800CCEA7B /* BaseAPIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */,
 				C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */,
 				C102C09E280726DD0025AEAE /* Protocols.swift in Sources */,
+				D404208F2819C56E00CCEA7B /* MovieRepository.swift in Sources */,
 				C05E6EE7280EEE220074B72A /* MenuListController.swift in Sources */,
 				D4C0911628186D3600356315 /* CastRealm.swift in Sources */,
 				C05E6EEE280F00B40074B72A /* FavoritesViewController.swift in Sources */,
@@ -624,6 +631,7 @@
 				C1DEF7E12809CDAA0002FCA4 /* Constants.swift in Sources */,
 				D46F4F9428106B73003848CC /* StorageManager.swift in Sources */,
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
+				D404208D2819BFC800CCEA7B /* BaseAPIService.swift in Sources */,
 				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
 				C06E5DA228089B74005C713E /* MovieManager.swift in Sources */,
 				D4DCC45528183F2900D0429D /* Cast.swift in Sources */,
