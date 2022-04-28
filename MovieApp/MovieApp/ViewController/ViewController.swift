@@ -116,8 +116,13 @@ class ViewController: UIViewController {
             self?.bannerBackground.setBackground(imageurl: movie.backdropPath)
             self?.bannerTitle.text = movie.title
             self?.bannerCategory.text = movie.getGenres()
-            self?.bannerRating.isHidden = true
             self?.bannerDescription.text = movie.overview
+            if let rating = movie.rating, rating > 0 {
+                self?.bannerRating.isHidden = false
+                self?.bannerRating.text = "\(rating)"
+            } else {
+                self?.bannerRating.isHidden = true
+            }
         }
     }
     

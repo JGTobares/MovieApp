@@ -42,6 +42,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var trailerPlayer: YTPlayerView!
     @IBOutlet weak var trailerErrorLabel: UILabel!
     @IBOutlet weak var castCollectionView: UICollectionView!
+    @IBOutlet weak var ratingIcon: UIImageView!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     // MARK: - Constructors
     override func viewDidLoad() {
@@ -224,12 +226,24 @@ extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
             self.movieWebpageLabel.font = UIFont.italicSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize)
             // Load YouTube trailer
             self.trailerPlayer.load(withVideoId: movie.getYouTubeTrailer()?.key ?? "")
+            // Show rating
+            if let rating = movie.rating, rating > 0 {
+                self.ratingIcon.isHidden = false
+                self.ratingLabel.text = "\(rating)"
+            }
         }
     }
     
     func didSetCast(_ cast: [Cast]) {
         DispatchQueue.main.async {
             self.castCollectionView.reloadData()
+        }
+    }
+    
+    func didSetRating(_ rating: Double) {
+        DispatchQueue.main.async {
+            self.ratingIcon.isHidden = false
+            self.ratingLabel.text = "\(rating)"
         }
     }
 }

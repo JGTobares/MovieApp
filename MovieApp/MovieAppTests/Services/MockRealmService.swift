@@ -12,7 +12,7 @@ final class MockRealmService: RealmServiceProtocol {
     let movies: [MovieRealm] = [
         MovieRealm(),
         MovieRealm(
-            movie: Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil)),
+            movie: Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", rating: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil)),
         MovieRealm(
             movie: Movie(id: 675353, backdropPath: "/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg", genres: [
                 Genre(id: 28, name: "Action"),
@@ -22,7 +22,7 @@ final class MockRealmService: RealmServiceProtocol {
             ],
                 homepage: "https://www.sonicthehedgehogmovie.com",
                 overview: "... Sonic is eager to prove he has what it takes to be a true hero...",
-                popularity: 6401.627, posterPath: "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
+                rating: 6401.627, posterPath: "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
                 releaseDate: "2022-03-30", runtime: 122, status: "Released",
                 tagline: "Welcome to the next level.", title: "Sonic the Hedgehog 2",
                 credits: Credits(crew: [

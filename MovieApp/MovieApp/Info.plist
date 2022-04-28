@@ -6,6 +6,10 @@
 	<string>a33515733435ca5331352c7390b23ce8</string>
 	<key>urlBase</key>
 	<string>https://api.themoviedb.org/3/</string>
+	<key>omdbApiKey</key>
+	<string>e3b6e07f</string>
+	<key>omdbUrlBase</key>
+	<string>https://www.omdbapi.com/</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
