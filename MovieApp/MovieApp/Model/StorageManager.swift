@@ -62,18 +62,34 @@ class StorageManager {
         }
     }
 
-    func networkStatus(){
+    func getData(at index: String, movieID: Int? = nil){
         reachability.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                print( Constants.Network.toastWifiStatus )
-            } else {
-                print ( Constants.Network.toastCellularStatus )
+            switch (index) {
+            case Constants.Network.movieHome:
+                self.getMovies()
+                break
+            case Constants.Network.movieDetail:
+                self.getMovieDetails(id: movieID)
+                break
+            default:
+                break
             }
-            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOnline])
         }
         
         reachability.whenUnreachable = { _ in
-            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+            switch (index) {
+            case Constants.Network.movieHome:
+                self.getMoviesRealm()
+                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+                break
+            case Constants.Network.movieDetail:
+                if !self.getMovieDetailsRealm(id: movieID) {
+                    NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+                }
+                break
+            default:
+                break
+            }
         }
     }
     
