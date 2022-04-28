@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class StorageManagerTest: XCTestCase {
     
-    let manager = StorageManager(apiService: MockAPIService(), realmService: MockRealmService())
+    let manager = StorageManager(apiService: MockAPIService(), realmService: MockRealmService(), baseApiServiceMovie: MockBaseAPIService<Movie>(), baseApiServiceMoviesResponse: MockBaseAPIService<MoviesResponse>())
     
     func testLazyVariables() throws {
         manager.detailsManager.movie = nil
@@ -31,7 +31,7 @@ class StorageManagerTest: XCTestCase {
         manager.detailsManager.cast = []
         XCTAssertTrue(manager.movieCast.isEmpty)
         XCTAssertEqual(manager.castCount, 0)
-        manager.getMovieDetails(id: 1)
+        manager.getMovieDetails(id: 675353)
         XCTAssertFalse(manager.movieCast.isEmpty)
         XCTAssertEqual(manager.castCount, 1)
         XCTAssertEqual(manager.movieCast[0].id, 222121)
@@ -66,14 +66,14 @@ class StorageManagerTest: XCTestCase {
     }
     
     func testGetMovieCast() throws {
-        manager.getMovieDetails(id: 1)
+        manager.getMovieDetails(id: 675353)
         XCTAssertTrue(manager.castCount > 0)
         let cast = manager.getMovieCast(at: 0)
         XCTAssertEqual(cast.id, 222121)
     }
     
     func testGetMovieDetails() throws {
-        manager.getMovieDetails(id: 1)
+        manager.getMovieDetails(id: 675353)
         XCTAssertNotNil(manager.detailsManager.movie)
         XCTAssertEqual(675353, manager.detailsManager.movie?.id)
     }

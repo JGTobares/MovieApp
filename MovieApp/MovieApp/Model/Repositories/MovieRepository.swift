@@ -19,6 +19,10 @@ class MovieRepository {
         apiService = BaseAPIService(baseUrl: baseUrl)
     }
     
+    init(apiService: BaseAPIService<Movie>) {
+        self.apiService = apiService
+    }
+    
     // MARK: - Functions
     func getMovieDetails(id: Int?, completion: @escaping (Result<Movie, CustomError>) -> Void) {
         guard let id = id else {

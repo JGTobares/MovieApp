@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class SearchResultsManagerTest: XCTestCase {
     
-    let manager = SearchResultsManager(apiService: MockAPIService())
+    let manager = SearchResultsManager(apiService: MockAPIService(), baseApiService: MockBaseAPIService<MoviesResponse>())
     
     func testGetTitleLabel() throws {
         var title = manager.getTitleLabel(category: .now)

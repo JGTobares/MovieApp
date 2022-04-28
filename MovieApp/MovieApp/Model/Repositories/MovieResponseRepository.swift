@@ -19,6 +19,10 @@ class MovieResponseRepository {
         responseApiService = BaseAPIService(baseUrl: baseUrl)
     }
     
+    init(apiService: BaseAPIService<MoviesResponse>) {
+        self.responseApiService = apiService
+    }
+    
     // MARK: - Functions
     func getListOfMovies(page: Int? = nil, category: MoviesCategory, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
         var endpoint = "movie/"
