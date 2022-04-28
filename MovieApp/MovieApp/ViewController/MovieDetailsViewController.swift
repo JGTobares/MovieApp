@@ -13,7 +13,6 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constants
     let manager = StorageManager()
     
-    
     // MARK: - Variables
     var movieID: Int?
     var tabShown: Int?
@@ -46,7 +45,6 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.networkStatus()
         self.configureButtons()
         self.configureObservers()
         manager.setDetailsDelegate(self)
@@ -54,6 +52,8 @@ class MovieDetailsViewController: UIViewController {
         self.trailerPlayer.delegate = self
         castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         castCollectionView.dataSource = self
+        //manager.getData(at: Constants.Network.movieDetail, movieID: self.movieID)
+        manager.getData(movieID: self.movieID)
     }
     
     // MARK: - Functions
@@ -79,20 +79,14 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(checkNetworkStatus(notification: )), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showOfflineToast(notification: )), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
     }
     
-    @objc func checkNetworkStatus(notification: NSNotification) {
-        let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
-        if statusNetwork == Constants.Network.statusOnline {
-            manager.getMovieDetails(id: self.movieID)
-        } else {
-            if !manager.getMovieDetailsRealm(id: self.movieID) {
-                CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
-            }
-            self.trailerPlayer.isHidden = true
-            self.trailerErrorLabel.text = Constants.MovieDetails.trailerErrorMessage
-        }
+    @objc func showOfflineToast(notification: NSNotification) {
+        CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
+        self.trailerPlayer.isHidden = true
+        self.trailerErrorLabel.text = Constants.MovieDetails.trailerErrorMessage
+        NotificationCenter.default.removeObserver(self)
     }
     
     func configureButtons() {

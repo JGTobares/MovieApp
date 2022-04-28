@@ -136,9 +136,9 @@ struct Constants {
         static let updateNetworkStatus = "updateNetworkStatus"
         static let statusOnline = "statusOnline"
         static let statusOffline = "statusOffline"
-        static let toastWifiStatus = "STATUS: WIFI CONNECTED"
-        static let toastCellularStatus = "STATUS: CELLULAR CONNECTED"
         static let toastOfflineStatus = "STATUS: NO INTERNET CONNECTION"
         static let errorInit = "Unable to start notifier"
+        static let movieHome = "MovieHome"
+        static let movieDetail = "MovieDetail"
     }
 }
