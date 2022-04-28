@@ -23,11 +23,11 @@ class SeeAllViewController: SearchResultsViewController {
     // MARK: - Actions
     override func onNextPressed() {
         super.onNextPressed()
-        self.manager.loadMoviesFromCategory(self.category)
+        self.manager.getMovieResponse(category: self.category)
     }
     
     override func onPreviousPressed() {
         super.onPreviousPressed()
-        self.manager.loadMoviesFromCategory(self.category)
+        self.manager.getMovieResponse(category: self.category)
     }
 }
