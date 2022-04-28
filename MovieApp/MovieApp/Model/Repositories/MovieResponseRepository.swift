@@ -25,7 +25,7 @@ class MovieResponseRepository {
     
     // MARK: - Functions
     func getListOfMovies(page: Int? = nil, category: MoviesCategory, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
-        var endpoint = "movie/"
+        var endpoint = Constants.Api.movieEndpoint + "/"
         switch category {
         case .now:
             endpoint += Constants.Api.nowEndpoint
@@ -35,18 +35,18 @@ class MovieResponseRepository {
             endpoint += Constants.Api.upcomingEndpoint
         }
         let queryParams: [String: String] = [
-            "region": "US",
-            "page": "\(page ?? 1)"
+            Constants.Api.regionQueryKey: Constants.Api.regionQueryParamUS,
+            Constants.Api.pageQueryKey: "\(page ?? 1)"
         ]
         self.responseApiService.get(endpoint: endpoint, queryParams: queryParams, completion: completion)
     }
     
     func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void) {
-        let endpoint = "search/movie"
+        let endpoint = Constants.Api.searchMovieEndpoint
         let queryParams: [String: String] = [
-            "region": "US",
-            "query": query,
-            "page": "\(page ?? 1)"
+            Constants.Api.regionQueryKey: Constants.Api.regionQueryParamUS,
+            Constants.Api.queryQueryKey: query,
+            Constants.Api.pageQueryKey: "\(page ?? 1)"
         ]
         self.responseApiService.get(endpoint: endpoint, queryParams: queryParams, completion: completion)
     }

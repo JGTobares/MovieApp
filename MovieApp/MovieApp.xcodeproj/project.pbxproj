@@ -61,6 +61,8 @@
 		D4C0911628186D3600356315 /* CastRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0911528186D3600356315 /* CastRealm.swift */; };
 		D4DCC45528183F2900D0429D /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DCC45428183F2900D0429D /* Cast.swift */; };
 		D4E980F1281ACA43006F684C /* MockBaseAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E980F0281ACA43006F684C /* MockBaseAPIService.swift */; };
+		D4E980F3281AE28A006F684C /* MovieRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E980F2281AE28A006F684C /* MovieRepositoryTest.swift */; };
+		D4E980F5281AE4DA006F684C /* MovieResponseRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E980F4281AE4DA006F684C /* MovieResponseRepositoryTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +146,8 @@
 		D4C0911528186D3600356315 /* CastRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastRealm.swift; sourceTree = "<group>"; };
 		D4DCC45428183F2900D0429D /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		D4E980F0281ACA43006F684C /* MockBaseAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBaseAPIService.swift; sourceTree = "<group>"; };
+		D4E980F2281AE28A006F684C /* MovieRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepositoryTest.swift; sourceTree = "<group>"; };
+		D4E980F4281AE4DA006F684C /* MovieResponseRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponseRepositoryTest.swift; sourceTree = "<group>"; };
 		F2AD3C1F5CDD9F0F534C5E9C /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -350,6 +354,8 @@
 				D46F4F992810B614003848CC /* MovieRealmManagerTest.swift */,
 				D46F4F9B2810B737003848CC /* StorageManagerTest.swift */,
 				D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */,
+				D4E980F2281AE28A006F684C /* MovieRepositoryTest.swift */,
+				D4E980F4281AE4DA006F684C /* MovieResponseRepositoryTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -657,8 +663,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E980F5281AE4DA006F684C /* MovieResponseRepositoryTest.swift in Sources */,
 				C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */,
 				D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */,
+				D4E980F3281AE28A006F684C /* MovieRepositoryTest.swift in Sources */,
 				D46F4F9A2810B614003848CC /* MovieRealmManagerTest.swift in Sources */,
 				D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */,
 				C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */,

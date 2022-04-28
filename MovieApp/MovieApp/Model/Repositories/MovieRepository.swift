@@ -29,9 +29,9 @@ class MovieRepository {
             completion(.failure(.internalError))
             return
         }
-        let endpoint = "movie/\(id)"
+        let endpoint = "\(Constants.Api.movieEndpoint)/\(id)"
         let queryParams: [String: String] = [
-            "append_to_response": "credits,videos"
+            Constants.Api.appendQueryKey: Constants.Api.appendQueryParams
         ]
         self.apiService.get(endpoint: endpoint, queryParams: queryParams, completion: completion)
     }
