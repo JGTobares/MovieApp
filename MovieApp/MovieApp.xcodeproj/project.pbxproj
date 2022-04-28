@@ -31,9 +31,7 @@
 		C0871C6D2805CF5600D29103 /* MovieAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0871C6C2805CF5600D29103 /* MovieAppUITestsLaunchTests.swift */; };
 		C102C09E280726DD0025AEAE /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C09D280726DD0025AEAE /* Protocols.swift */; };
 		C102C0A0280728D10025AEAE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C09F280728D10025AEAE /* Movie.swift */; };
-		C102C0A228074BFA0025AEAE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A128074BFA0025AEAE /* APIService.swift */; };
 		C102C0A428074E820025AEAE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A328074E820025AEAE /* Enums.swift */; };
-		C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C102C0A628075F070025AEAE /* MockAPIService.swift */; };
 		C15B4DAC280A1FFE003F7161 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */; };
 		C15B4DAD280A1FFE003F7161 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C15B4DAB280A1FFE003F7161 /* SearchResultsViewController.xib */; };
 		C1781C502808587000D060C3 /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1781C4F2808587000D060C3 /* Crew.swift */; };
@@ -116,9 +114,7 @@
 		C0871C6C2805CF5600D29103 /* MovieAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C102C09D280726DD0025AEAE /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		C102C09F280728D10025AEAE /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		C102C0A128074BFA0025AEAE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C102C0A328074E820025AEAE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		C102C0A628075F070025AEAE /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 		C15B4DAA280A1FFE003F7161 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		C15B4DAB280A1FFE003F7161 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
 		C1781C4F2808587000D060C3 /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
@@ -318,7 +314,6 @@
 		C102C09B280724B80025AEAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C102C0A128074BFA0025AEAE /* APIService.swift */,
 				D46F4F9128105642003848CC /* RealmService.swift */,
 				D404208C2819BFC800CCEA7B /* BaseAPIService.swift */,
 			);
@@ -339,7 +334,6 @@
 		C102C0A528075ED00025AEAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C102C0A628075F070025AEAE /* MockAPIService.swift */,
 				D46F4F972810B33A003848CC /* MockRealmService.swift */,
 				D4E980F0281ACA43006F684C /* MockBaseAPIService.swift */,
 			);
@@ -647,7 +641,6 @@
 				D46F4F9428106B73003848CC /* StorageManager.swift in Sources */,
 				C102C0A428074E820025AEAE /* Enums.swift in Sources */,
 				D404208D2819BFC800CCEA7B /* BaseAPIService.swift in Sources */,
-				C102C0A228074BFA0025AEAE /* APIService.swift in Sources */,
 				C06E5DA228089B74005C713E /* MovieManager.swift in Sources */,
 				D4DCC45528183F2900D0429D /* Cast.swift in Sources */,
 				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
@@ -673,7 +666,6 @@
 				C1781C5B2808972E00D060C3 /* MovieDetailsManagerTest.swift in Sources */,
 				C1781C592808876200D060C3 /* MovieTest.swift in Sources */,
 				D495AE49281206C7006A5238 /* FavoritesManagerTest.swift in Sources */,
-				C102C0A728075F070025AEAE /* MockAPIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

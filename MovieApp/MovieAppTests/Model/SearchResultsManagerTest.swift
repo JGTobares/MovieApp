@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class SearchResultsManagerTest: XCTestCase {
     
-    let manager = SearchResultsManager(apiService: MockAPIService(), baseApiService: MockBaseAPIService<MoviesResponse>())
+    let manager = SearchResultsManager(baseApiService: MockBaseAPIService<MoviesResponse>())
     
     func testGetTitleLabel() throws {
         var title = manager.getTitleLabel(category: .now)
@@ -58,46 +58,6 @@ class SearchResultsManagerTest: XCTestCase {
         XCTAssertEqual(manager.currentPage, 1)
         XCTAssertNotNil(manager.totalPages)
         XCTAssertEqual(manager.totalPages, 10)
-    }
-    
-    func testLoadNowMovies() throws {
-        manager.movies = nil
-        manager.loadMoviesFromCategory(.now)
-        XCTAssertNotNil(manager.movies)
-        XCTAssertEqual(manager.movies?.count, 2)
-    }
-    
-    func testLoadPopularMovies() throws {
-        manager.movies = nil
-        manager.loadMoviesFromCategory(.popular)
-        XCTAssertNotNil(manager.movies)
-        XCTAssertEqual(manager.movies?.count, 2)
-    }
-    
-    func testLoadUpcomingMovies() throws {
-        manager.movies = nil
-        manager.loadMoviesFromCategory(.upcoming)
-        XCTAssertNotNil(manager.movies)
-        XCTAssertEqual(manager.movies?.count, 2)
-    }
-    
-    func testLoadMoviesNoCategory() throws {
-        manager.movies = nil
-        manager.loadMoviesFromCategory(nil)
-        XCTAssertNil(manager.movies)
-    }
-    
-    func testLoadResultSuccess() throws {
-        manager.movies = nil
-        manager.loadResult(.success([]))
-        XCTAssertNotNil(manager.movies)
-        XCTAssertEqual(manager.movies?.count, 0)
-    }
-    
-    func testLoadResultFailure() throws {
-        manager.movies = nil
-        manager.loadResult(.failure(.internalError))
-        XCTAssertNil(manager.movies)
     }
     
     func testNextPage() throws {

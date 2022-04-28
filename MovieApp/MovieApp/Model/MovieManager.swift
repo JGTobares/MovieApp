@@ -10,7 +10,6 @@ import Foundation
 class MovieManager {
     
     // MARK: - Constants
-    let apiService: APIServiceProtocol
     let repository: MovieResponseRepository
     
     // MARK: - Variables
@@ -26,17 +25,10 @@ class MovieManager {
     
     // MARK: - Initializers
     init() {
-        self.apiService = APIService.shared
-        self.repository = MovieResponseRepository()
-    }
-
-    init(apiService: APIServiceProtocol) {
-        self.apiService = apiService
         self.repository = MovieResponseRepository()
     }
     
     init(apiService: BaseAPIService<MoviesResponse>) {
-        self.apiService = APIService.shared
         self.repository = MovieResponseRepository(apiService: apiService)
     }
     

@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class MovieTest: XCTestCase {
     
-    var movie = MockAPIService().movies[1]
+    var movie = MockBaseAPIService<Movie>().movies[1]
     
     func testProperties() throws {
         XCTAssertEqual(675353, movie.id)

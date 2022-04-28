@@ -10,7 +10,6 @@ import Foundation
 class SearchResultsManager {
     
     // MARK: - Constants
-    let apiService: APIServiceProtocol
     let repository: MovieResponseRepository
     
     
@@ -29,17 +28,10 @@ class SearchResultsManager {
     
     // MARK: - Initializers
     init() {
-        self.apiService = APIService.shared
-        self.repository = MovieResponseRepository()
-    }
-
-    init(apiService: APIServiceProtocol) {
-        self.apiService = apiService
         self.repository = MovieResponseRepository()
     }
     
-    init(apiService: APIServiceProtocol, baseApiService: BaseAPIService<MoviesResponse>) {
-        self.apiService = apiService
+    init(baseApiService: BaseAPIService<MoviesResponse>) {
         self.repository = MovieResponseRepository(apiService: baseApiService)
     }
     
@@ -93,32 +85,6 @@ class SearchResultsManager {
             case .failure(let error):
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
-        }
-    }
-    
-    func loadMoviesFromCategory(_ category: MoviesCategory?) {
-        switch category {
-        case .now:
-            self.apiService.getMoviesNowPlaying(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        case .popular:
-            self.apiService.getMoviesPopular(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        case .upcoming:
-            self.apiService.getMoviesUpcoming(page: self.currentPage, completion: self.loadResult(_:))
-            break
-        default:
-            break
-        }
-    }
-
-    func loadResult(_ result: Result<[Movie], CustomError>) {
-        switch result {
-        case .success(let movies):
-            self.movies = movies
-            break
-        case .failure(let error):
-            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     

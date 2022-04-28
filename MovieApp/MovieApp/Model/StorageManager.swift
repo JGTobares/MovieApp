@@ -46,7 +46,7 @@ class StorageManager {
         self.configureNetwork()
     }
     
-    init(apiService: APIServiceProtocol, realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
+    init(realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.movieManager = MovieManager(apiService: baseApiServiceMoviesResponse)
         self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie)
         self.realmManager = MovieRealmManager(service: realmService)
