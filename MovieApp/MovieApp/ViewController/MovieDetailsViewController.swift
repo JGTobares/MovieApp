@@ -13,6 +13,7 @@ class MovieDetailsViewController: UIViewController {
     // MARK: - Constants
     let manager = StorageManager()
     
+    
     // MARK: - Variables
     var movieID: Int?
     var tabShown: Int?

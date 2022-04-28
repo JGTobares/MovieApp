@@ -29,8 +29,10 @@ class ViewController: UIViewController {
     // MARK: - Constants
     let movieManager = StorageManager()
     
+    
     // MARK: - Variables
     var menu: SideMenuNavigationController?
+    
     
     // MARK: - Constructors
     override func viewDidLoad() {

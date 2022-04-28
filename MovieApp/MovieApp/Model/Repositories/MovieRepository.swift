@@ -14,8 +14,8 @@ class MovieRepository {
     let omdbService: BaseAPIService<MovieOMDB>
     let baseUrl = Bundle.main.object(forInfoDictionaryKey: Constants.Api.baseUrlBundle) as? String ?? ""
     let apiKey = Bundle.main.object(forInfoDictionaryKey: Constants.Api.apiKeyBundle) as? String ?? ""
-    let omdbBaseUrl = Bundle.main.object(forInfoDictionaryKey: Constants.Api.baseUrlBundle) as? String ?? ""
-    let omdbApiKey = Bundle.main.object(forInfoDictionaryKey: Constants.Api.apiKeyBundle) as? String ?? ""
+    let omdbBaseUrl = Bundle.main.object(forInfoDictionaryKey: Constants.Api.omdbBaseUrlBundle) as? String ?? ""
+    let omdbApiKey = Bundle.main.object(forInfoDictionaryKey: Constants.Api.omdbApiKeyBundle) as? String ?? ""
     
     // MARK: - Initializers
     init() {
