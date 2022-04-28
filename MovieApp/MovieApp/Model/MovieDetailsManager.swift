@@ -10,7 +10,7 @@ import Foundation
 class MovieDetailsManager {
     
     // MARK: - Constants
-    let apiService: APIServiceProtocol
+    let repository: MovieRepository
     
     
     // MARK: - Variables
@@ -36,16 +36,16 @@ class MovieDetailsManager {
     
     // MARK: - Initializers
     init() {
-        self.apiService = APIService.shared
+        self.repository = MovieRepository()
     }
     
-    init(apiService: APIServiceProtocol) {
-        self.apiService = apiService
+    init(apiService: BaseAPIService<Movie>) {
+        self.repository = MovieRepository(apiService: apiService)
     }
     
     // MARK: - Functions
     func getMovieDetails(id: Int?, completion: @escaping (Movie) -> Void) {
-        self.apiService.getMovieDetails(id: id) { result in
+        self.repository.getMovieDetails(id: id) { result in
             switch(result) {
             case .success(let movie):
                 self.movie = movie

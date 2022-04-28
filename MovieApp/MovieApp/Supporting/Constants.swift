@@ -29,6 +29,14 @@ struct Constants {
         static let popularEndpoint = "popular"
         static let upcomingEndpoint = "upcoming"
         static let maxTotalPages = 500
+        static let movieEndpoint = "movie"
+        static let searchMovieEndpoint = "search/movie"
+        static let regionQueryKey = "region"
+        static let pageQueryKey = "page"
+        static let queryQueryKey = "query"
+        static let appendQueryKey = "append_to_response"
+        static let regionQueryParamUS = "US"
+        static let appendQueryParams = "credits,videos"
     }
     
     // MARK: Nib Names

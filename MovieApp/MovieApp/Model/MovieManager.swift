@@ -10,7 +10,7 @@ import Foundation
 class MovieManager {
     
     // MARK: - Constants
-    let apiService: APIServiceProtocol
+    let repository: MovieResponseRepository
     
     // MARK: - Variables
     var nowMovies: [Movie] = []
@@ -25,21 +25,21 @@ class MovieManager {
     
     // MARK: - Initializers
     init() {
-        self.apiService = APIService.shared
+        self.repository = MovieResponseRepository()
     }
     
-    init(apiService: APIServiceProtocol) {
-        self.apiService = apiService
+    init(apiService: BaseAPIService<MoviesResponse>) {
+        self.repository = MovieResponseRepository(apiService: apiService)
     }
     
     // MARK: - Functions
     func loadNowMovies(completion: @escaping ([Movie]) -> Void) {
-        apiService.getMoviesNowPlaying { result in
+        repository.getListOfMovies(category: .now) { result in
             switch result {
-            case .success(let movies):
-                self.nowMovies = movies
-                self.bannerMovieID = movies.randomElement()?.id
-                completion(movies)
+            case .success(let moviesResponse):
+                self.nowMovies = moviesResponse.results ?? []
+                self.bannerMovieID = self.nowMovies.randomElement()?.id
+                completion(self.nowMovies)
                 self.delegate?.onNowLoaded()
             case .failure(let error):
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
@@ -48,11 +48,11 @@ class MovieManager {
     }
     
     func loadPopularMovies(completion: @escaping ([Movie]) -> Void) {
-        apiService.getMoviesPopular { result in
+        repository.getListOfMovies(category: .popular) { result in
             switch result {
-            case .success(let movies):
-                self.popularMovies = movies
-                completion(movies)
+            case .success(let moviesResponse):
+                self.popularMovies = moviesResponse.results ?? []
+                completion(self.popularMovies)
                 self.delegate?.onPopularLoaded()
             case .failure(let error):
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
@@ -61,12 +61,12 @@ class MovieManager {
     }
     
     func loadUpcomingMovies(completion: @escaping ([Movie]) -> Void) {
-        apiService.getMoviesUpcoming { result in
+        repository.getListOfMovies(category: .upcoming) { result in
             switch result {
-            case .success(let movies):
-                self.upcomingMovies = movies
-                completion(movies)
-                self.delegate?.onUpcomingLoaded()
+            case .success(let moviesResponse):
+                self.upcomingMovies = moviesResponse.results ?? []
+                completion(self.upcomingMovies)
+                self.delegate?.onPopularLoaded()
             case .failure(let error):
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }

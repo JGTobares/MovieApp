@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class MovieDetailsManagerTest: XCTestCase {
     
-    let manager = MovieDetailsManager(apiService: MockAPIService())
+    let manager = MovieDetailsManager(apiService: MockBaseAPIService())
     
     func testGetMovieDetails() throws {
         manager.movie = nil

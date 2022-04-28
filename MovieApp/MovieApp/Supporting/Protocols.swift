@@ -7,25 +7,9 @@
 
 import Foundation
 
-protocol APIServiceProtocol {
-    
-    // MARK: - Functions
-    func getMovieDetails(id: Int?, completion: @escaping (Result<Movie, CustomError>) -> Void)
-    func getMoviesNowPlaying(completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesUpcoming(completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesPopular(completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getListOfMovies(endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesNowPlaying(page: Int?, completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesUpcoming(page: Int?, completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesPopular(page: Int?, completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getListOfMovies(page: Int?, endpoint: String, completion: @escaping (Result<[Movie], CustomError>) -> Void)
-    func getMoviesResponse(category: MoviesCategory?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
-    func searchFor(query: String, page: Int?, completion: @escaping (Result<MoviesResponse, CustomError>) -> Void)
-}
-
 protocol RealmServiceProtocol {
     
-    // MARK: - Functions
+    // MARK: - RealmService
     func addMovie(_ movie: Movie) -> CustomError?
     func addMovie(_ movie: Movie, withCategory category: MoviesCategory) -> CustomError?
     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError?
@@ -44,7 +28,7 @@ protocol RealmServiceProtocol {
 
 protocol MovieManagerDelegate {
     
-    // MARK: - Functions
+    // MARK: - MovieManager
     func onNowLoaded()
     func onPopularLoaded()
     func onUpcomingLoaded()
@@ -53,26 +37,26 @@ protocol MovieManagerDelegate {
 
 protocol SearchResultsManagerDelegate {
     
-    // MARK: - Functions
+    // MARK: - SearchResultsManager
     func onSeeAllLoaded()
 }
 
 protocol FavoritesManagerDelegate {
     
-    // MARK: - Functions
+    // MARK: - FavoritesManager
     func onLoadFavorites()
     func onUpdateFavorites()
 }
 
 protocol MovieDetailsViewControllerDelegate {
     
-    // MARK: - Functions
+    // MARK: - MovieDetailsViewController
     func didSetMovie(_ movie: Movie)
     func didSetCast(_ cast: [Cast])
 }
 
 protocol ErrorAlertDelegate {
     
-    // MARK: - Functions
+    // MARK: - ErrorAlert
     func showAlertMessage(title: String, message: String)
 }
