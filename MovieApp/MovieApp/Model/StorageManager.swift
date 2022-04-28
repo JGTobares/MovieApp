@@ -61,9 +61,10 @@ class StorageManager {
             print(Constants.Network.errorInit)
         }
     }
-
+    //MARK: - First Aproach
+    /*
     func getData(at index: String, movieID: Int? = nil){
-        reachability.whenReachable = { reachability in
+        reachability.whenReachable = { _ in
             switch (index) {
             case Constants.Network.movieHome:
                 self.getMovies()
@@ -89,6 +90,30 @@ class StorageManager {
                 break
             default:
                 break
+            }
+        }
+    }
+     */
+    //MARK: - Second Aproach
+    func getData(){
+        reachability.whenReachable = { _ in
+            self.getMovies()
+        }
+        
+        reachability.whenUnreachable = { _ in
+            self.getMoviesRealm()
+            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+        }
+    }
+    
+    func getData(movieID: Int?){
+        reachability.whenReachable = { _ in
+           self.getMovieDetails(id: movieID)
+        }
+        
+        reachability.whenUnreachable = { _ in
+            if !self.getMovieDetailsRealm(id: movieID) {
+                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
             }
         }
     }

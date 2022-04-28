@@ -52,7 +52,8 @@ class MovieDetailsViewController: UIViewController {
         self.trailerPlayer.delegate = self
         castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         castCollectionView.dataSource = self
-        manager.getData(at: Constants.Network.movieDetail, movieID: self.movieID)
+        //manager.getData(at: Constants.Network.movieDetail, movieID: self.movieID)
+        manager.getData(movieID: self.movieID)
     }
     
     // MARK: - Functions
