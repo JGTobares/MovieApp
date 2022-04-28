@@ -11,12 +11,13 @@ class MovieResponseRepository {
     
     // MARK: - Constants
     let responseApiService: BaseAPIService<MoviesResponse>
+    let baseUrl = Bundle.main.object(forInfoDictionaryKey: Constants.Api.baseUrlBundle) as? String ?? ""
+    let apiKey = Bundle.main.object(forInfoDictionaryKey: Constants.Api.apiKeyBundle) as? String ?? ""
     
     
     // MARK: - Initializers
     init() {
-        let baseUrl = Bundle.main.object(forInfoDictionaryKey: Constants.Api.baseUrlBundle) as? String ?? ""
-        responseApiService = BaseAPIService(baseUrl: baseUrl)
+        self.responseApiService = BaseAPIService(baseUrl: baseUrl)
     }
     
     init(apiService: BaseAPIService<MoviesResponse>) {
@@ -36,7 +37,8 @@ class MovieResponseRepository {
         }
         let queryParams: [String: String] = [
             Constants.Api.regionQueryKey: Constants.Api.regionQueryParamUS,
-            Constants.Api.pageQueryKey: "\(page ?? 1)"
+            Constants.Api.pageQueryKey: "\(page ?? 1)",
+            Constants.Api.apiKeyQueryKey: self.apiKey
         ]
         self.responseApiService.get(endpoint: endpoint, queryParams: queryParams, completion: completion)
     }
@@ -46,7 +48,8 @@ class MovieResponseRepository {
         let queryParams: [String: String] = [
             Constants.Api.regionQueryKey: Constants.Api.regionQueryParamUS,
             Constants.Api.queryQueryKey: query,
-            Constants.Api.pageQueryKey: "\(page ?? 1)"
+            Constants.Api.pageQueryKey: "\(page ?? 1)",
+            Constants.Api.apiKeyQueryKey: self.apiKey
         ]
         self.responseApiService.get(endpoint: endpoint, queryParams: queryParams, completion: completion)
     }

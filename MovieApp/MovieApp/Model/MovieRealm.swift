@@ -16,7 +16,7 @@ class MovieRealm: Object {
     @Persisted var genres: String
     @Persisted var homepage: String
     @Persisted var overview: String
-    @Persisted var popularity: Double
+    @Persisted var rating: Double
     @Persisted var posterPath: String
     @Persisted var releaseDate: String
     @Persisted var runtime: String
@@ -36,7 +36,7 @@ class MovieRealm: Object {
         self.genres = movie.getGenres()
         self.homepage = movie.homepage ?? ""
         self.overview = movie.overview ?? ""
-        self.popularity = movie.popularity ?? 0
+        self.rating = movie.rating ?? 0
         self.posterPath = movie.posterPath ?? ""
         self.releaseDate = movie.getFormattedReleaseDate()
         self.runtime = movie.getRuntimeString()

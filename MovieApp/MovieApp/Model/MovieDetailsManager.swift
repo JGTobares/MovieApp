@@ -46,10 +46,27 @@ class MovieDetailsManager {
     // MARK: - Functions
     func getMovieDetails(id: Int?, completion: @escaping (Movie) -> Void) {
         self.repository.getMovieDetails(id: id) { result in
-            switch(result) {
+            switch result {
             case .success(let movie):
                 self.movie = movie
                 completion(movie)
+                break
+            case .failure(let error):
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+            }
+        }
+    }
+    
+    func getMovieRating(completion: @escaping (Movie) -> Void) {
+        self.repository.getMovieRating(id: self.movie?.imdbID) { result in
+            switch result {
+            case .success(let movie):
+                guard let response = movie.response, response == "True", let rating = movie.rating else {
+                    self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: CustomError.notFoundError.rawValue)
+                    return
+                }
+                self.movie?.rating = Double(rating)
+                completion(self.movie!)
                 break
             case .failure(let error):
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)

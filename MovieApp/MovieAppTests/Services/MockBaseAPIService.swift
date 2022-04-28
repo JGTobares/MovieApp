@@ -11,7 +11,7 @@ import Foundation
 final class MockBaseAPIService<ApiModel: Codable>: BaseAPIService<ApiModel> {
     
     let movies: [Movie] = [
-        Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", popularity: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil),
+        Movie(id: 1, backdropPath: "", genres: [], homepage: "", overview: "", rating: 1, posterPath: "", releaseDate: "", runtime: 1, status: "", tagline: "", title: "", credits: nil),
         Movie(id: 675353, backdropPath: "/egoyMDLqCxzjnSrWOz50uLlJWmD.jpg", genres: [
                 Genre(id: 28, name: "Action"),
                 Genre(id: 878, name: "Science Fiction"),
@@ -20,7 +20,7 @@ final class MockBaseAPIService<ApiModel: Codable>: BaseAPIService<ApiModel> {
               ],
               homepage: "https://www.sonicthehedgehogmovie.com",
               overview: "... Sonic is eager to prove he has what it takes to be a true hero...",
-              popularity: 6401.627, posterPath: "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
+              rating: 6401.627, posterPath: "/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
               releaseDate: "2022-03-30", runtime: 122, status: "Released",
               tagline: "Welcome to the next level.", title: "Sonic the Hedgehog 2",
               credits: Credits(crew: [

@@ -192,7 +192,18 @@ class StorageManager {
             DispatchQueue.main.async {
                 self.realmManager.addMovieDetails(movie: movie)
                 self.movieManager.bannerOfflineMovieID = movie.id
+                self.detailsManager.getMovieRating(completion: self.saveMovieRating)
             }
+            self.movieManager.delegate?.onBannerLoaded()
+        }
+    }
+    
+    func saveMovieRating(movie: Movie) {
+        DispatchQueue.main.async {
+            self.realmManager.addMovieDetails(movie: movie)
+        }
+        if let rating = movie.rating {
+            self.detailsManager.movieDetailsVCDelegate?.didSetRating(rating)
             self.movieManager.delegate?.onBannerLoaded()
         }
     }

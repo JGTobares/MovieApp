@@ -11,17 +11,15 @@ class BaseAPIService<ApiModel: Codable> {
     
     // MARK: - Constants
     let baseUrl: String
-    let apiKey: String
     
     // MARK: - Initializers
     init(baseUrl: String) {
         self.baseUrl = baseUrl
-        self.apiKey = Bundle.main.object(forInfoDictionaryKey: Constants.Api.apiKeyBundle) as? String ?? ""
     }
     
     // MARK: - GET
     func get(endpoint: String, queryParams: [String: String], completion: @escaping (Result<ApiModel, CustomError>) -> Void) {
-        let urlString = "\(self.baseUrl)\(endpoint)?api_key=\(self.apiKey)"
+        let urlString = "\(self.baseUrl)\(endpoint)"
         guard var url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return
@@ -61,7 +59,7 @@ class BaseAPIService<ApiModel: Codable> {
     }
     
     func get(endpoint: String, queryParams: [String: String], completion: @escaping (Result<[ApiModel], CustomError>) -> Void) {
-        let urlString = "\(self.baseUrl)\(endpoint)?api_key=\(self.apiKey)"
+        let urlString = "\(self.baseUrl)\(endpoint)"
         guard var url = URL(string: urlString) else {
             completion(.failure(.urlError))
             return

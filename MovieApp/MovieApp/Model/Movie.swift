@@ -14,8 +14,9 @@ struct Movie: Codable {
     let backdropPath: String?
     let genres: [Genre]?
     let homepage: String?
+    var imdbID: String? = nil
     let overview: String?
-    let popularity: Double?
+    var rating: Double? = nil
     let posterPath: String?
     let releaseDate: String?
     let runtime: Int?
@@ -27,14 +28,14 @@ struct Movie: Codable {
     
     // MARK: - Initializers
     init(id: Int?, backdropPath: String?, genres: [Genre]?, homepage: String?,
-         overview: String?, popularity: Double?, posterPath: String?, releaseDate: String?,
+         overview: String?, rating: Double?, posterPath: String?, releaseDate: String?,
          runtime: Int?, status: String?, tagline: String?, title: String?, credits: Credits?) {
         self.id = id
         self.backdropPath = backdropPath
         self.genres = genres
         self.homepage = homepage
         self.overview = overview
-        self.popularity = popularity
+        self.rating = rating
         self.posterPath = posterPath
         self.releaseDate = releaseDate
         self.runtime = runtime
@@ -52,7 +53,7 @@ struct Movie: Codable {
         }
         self.homepage = movie.homepage
         self.overview = movie.overview
-        self.popularity = movie.popularity
+        self.rating = movie.rating
         self.posterPath = movie.posterPath
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.Movie.releaseDateFormat
@@ -79,8 +80,9 @@ struct Movie: Codable {
     
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
-        case id, genres, homepage, overview, popularity, runtime, status, tagline, title, credits, videos
+        case id, genres, homepage, overview, rating, runtime, status, tagline, title, credits, videos
         case backdropPath = "backdrop_path"
+        case imdbID = "imdb_id"
         case posterPath = "poster_path"
         case releaseDate = "release_date"
     }
@@ -166,5 +168,18 @@ struct MoviesResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case page, results
         case totalPages = "total_pages"
+    }
+}
+
+struct MovieOMDB: Codable {
+    
+    // MARK: - Constants
+    let response: String?
+    let rating: String?
+    
+    // MARK: - Coding Keys
+    enum CodingKeys: String, CodingKey {
+        case rating = "imdbRating"
+        case response = "Response"
     }
 }
