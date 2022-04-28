@@ -35,26 +35,21 @@ class ViewController: UIViewController {
     // MARK: - Constructors
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieManager.networkStatus()
         self.configureObservers()
         movieManager.setMoviesDelegate(self)
         self.configureButtons()
         self.configureCollections()
+        //movieManager.getData(at: Constants.Network.movieHome)
+        movieManager.getData()
     }
 
     // MARK: - Functions
     func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(checkNetworkStatus(notification:)), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showOfflineToast(notification:)), name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil)
     }
     
-    @objc func checkNetworkStatus(notification: NSNotification) {
-        let statusNetwork = notification.userInfo?[Constants.Network.updateNetworkStatus] as? String
-            if statusNetwork == Constants.Network.statusOnline {
-                movieManager.getMovies()
-            } else {
-                movieManager.getMoviesRealm()
-                CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
-            }
+    @objc func showOfflineToast(notification: NSNotification) {
+        CustomToast.show(message: Constants.Network.toastOfflineStatus, bgColor: .red, textColor: .white, labelFont: .boldSystemFont(ofSize: 16), showIn: .bottom, controller: self)
         NotificationCenter.default.removeObserver(self)
     }
     
