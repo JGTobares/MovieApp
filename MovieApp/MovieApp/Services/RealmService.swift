@@ -72,6 +72,21 @@ class RealmService: RealmServiceProtocol {
         return nil
     }
     
+    func addTVShow(_ tvShow: TVShow) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        let tvShowRealm = TVShowRealm(tvShow: tvShow)
+        do {
+            try realm.write {
+                realm.add(tvShowRealm, update: .modified)
+            }
+        } catch {
+            return .realmAddError
+        }
+        return nil
+    }
+    
     func addFavorite(_ movie: Movie) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
@@ -122,6 +137,19 @@ class RealmService: RealmServiceProtocol {
             $0.category == category.rawValue
         }
         return .success(Array(movies))
+    }
+    
+    func getTVShowByID(_ id: Int?) -> Result<TVShowRealm, CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        guard let id = id else {
+            return .failure(.internalError)
+        }
+        if let tvShow = realm.object(ofType: TVShowRealm.self, forPrimaryKey: id) {
+            return .success(tvShow)
+        }
+        return .failure(.notFoundError)
     }
     
     func getFavoriteMovies() -> Result<[MovieRealm], CustomError> {

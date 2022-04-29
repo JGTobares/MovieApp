@@ -33,6 +33,7 @@ struct Constants {
         static let maxTotalPages = 500
         static let movieEndpoint = "movie"
         static let searchMovieEndpoint = "search/movie"
+        static let tvShowEndpoint = "tv"
         static let apiKeyQueryKey = "api_key"
         static let omdbApiKeyQueryKey = "apikey"
         static let regionQueryKey = "region"
@@ -47,6 +48,7 @@ struct Constants {
     // MARK: Nib Names
     struct Nib {
         static let searchResults = "SearchResultsViewController"
+        static let details = "DetailsViewController"
     }
     
     // MARK: - Movie Model Constants
@@ -63,13 +65,14 @@ struct Constants {
         static let trailerType = "Trailer"
     }
     
-    // MARK: - Movie Details Constants
-    struct MovieDetails {
+    // MARK: - Details Constants
+    struct Details {
         static let directorLabel = "Director: %@"
         static let releaseDateLabel = "Release Date: %@"
         static let runtimeLabel = "Runtime: %@"
         static let statusLabel = "Status: %@"
         static let statusUnknown = "Unknown"
+        static let seasonsLabel = "Seasons: %d"
         static let infoTabTag = 111
         static let castTabTag = 222
         static let trailerTabTag = 333

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieRealmManager {
+class RealmManager {
     
     // MARK: - Constants
     let service: RealmServiceProtocol
@@ -48,6 +48,22 @@ class MovieRealmManager {
             if let error = service.addMovie(movie) {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
+        }
+    }
+    
+    func getTVShow(id: Int?) -> TVShowRealm? {
+        switch self.service.getTVShowByID(id) {
+        case .success(let tvShow):
+            return tvShow
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
+    }
+    
+    func addTVShowDetails(tvShow: TVShow) {
+        if let error = self.service.addTVShow(tvShow) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
     }
     
