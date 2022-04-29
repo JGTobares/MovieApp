@@ -9,9 +9,9 @@ import Foundation
 import XCTest
 
 @testable import MovieApp
-class MovieRealmManagerTest: XCTestCase {
+class RealmManagerTest: XCTestCase {
     
-    let manager = MovieRealmManager(service: MockRealmService())
+    let manager = RealmManager(service: MockRealmService())
     
     func testGetMovieDetails() throws {
         XCTAssertNil(manager.getMovieDetails(id: nil))

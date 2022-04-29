@@ -13,7 +13,7 @@ class StorageManager {
     // MARK: - Constants
     let movieManager: MovieManager
     let detailsManager: MovieDetailsManager
-    let realmManager: MovieRealmManager
+    let realmManager: RealmManager
     let reachability = try! Reachability()
     let favoritesManager: FavoritesManager
     let tvShowsManager: TVShowManager
@@ -42,7 +42,7 @@ class StorageManager {
     init() {
         self.movieManager = MovieManager()
         self.detailsManager = MovieDetailsManager()
-        self.realmManager = MovieRealmManager()
+        self.realmManager = RealmManager()
         self.favoritesManager = FavoritesManager()
         self.tvShowsManager = TVShowManager()
     }
@@ -50,7 +50,7 @@ class StorageManager {
     init(realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>, baseApiServiceTVShow: BaseAPIService<TVShow>) {
         self.movieManager = MovieManager(apiService: baseApiServiceMoviesResponse)
         self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie)
-        self.realmManager = MovieRealmManager(service: realmService)
+        self.realmManager = RealmManager(service: realmService)
         self.favoritesManager = FavoritesManager(service: realmService)
         self.tvShowsManager = TVShowManager(apiService: baseApiServiceTVShow)
     }

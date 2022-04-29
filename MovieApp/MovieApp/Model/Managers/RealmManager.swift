@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieRealmManager {
+class RealmManager {
     
     // MARK: - Constants
     let service: RealmServiceProtocol
