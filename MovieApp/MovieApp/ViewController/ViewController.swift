@@ -41,7 +41,6 @@ class ViewController: UIViewController {
         movieManager.setMoviesDelegate(self)
         self.configureButtons()
         self.configureCollections()
-        //movieManager.getData(at: Constants.Network.movieHome)
         movieManager.getData()
     }
 

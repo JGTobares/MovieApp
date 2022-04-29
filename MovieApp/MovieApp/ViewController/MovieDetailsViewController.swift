@@ -17,8 +17,8 @@ class MovieDetailsViewController: DetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.setDetailsDelegate(self)
-        //manager.getData(at: Constants.Network.movieDetail, movieID: self.movieID)
         manager.getData(movieID: self.movieID)
+        
         // Check if Movie is in Favorites
         self.heartButton.tintColor = .lightGray
         if manager.isMovieFavorite(movieId: self.movieID) {
