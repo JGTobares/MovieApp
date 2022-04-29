@@ -165,13 +165,11 @@ class DetailsViewController: UIViewController {
     
     //MARK: - Outlets
     @IBAction func didTapHeart(_ sender: Any) {
-//        if (self.heartButton.tintColor == .lightGray) {
-//            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: true)
-//            self.heartButton.tintColor = .red
-//        } else {
-//            manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: false)
-//            self.heartButton.tintColor = .lightGray
-//        }
+        if (self.heartButton.tintColor == .lightGray) {
+            self.heartButton.tintColor = .red
+        } else {
+            self.heartButton.tintColor = .lightGray
+        }
     }
 }
 
@@ -186,7 +184,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setCast(self.manager.getMovieCast(at: indexPath.row))
+        cell.setCast(self.manager.getCast(at: indexPath.row))
         return cell
     }
 }

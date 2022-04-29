@@ -31,11 +31,11 @@ class StorageManager {
     var upcomingMovieCount: Int {
         return self.movieManager.upcomingMovies.count
     }
-    var movieCast: [Cast] {
-        return self.detailsManager.cast ?? []
+    var cast: [Cast] {
+        return self.detailsManager.cast ?? self.tvShowsManager.cast ?? []
     }
     var castCount: Int {
-        return self.movieCast.count
+        return self.cast.count
     }
     
     // MARK: Initializers
@@ -45,7 +45,6 @@ class StorageManager {
         self.realmManager = MovieRealmManager()
         self.favoritesManager = FavoritesManager()
         self.tvShowsManager = TVShowManager()
-        self.configureNetwork()
     }
     
     init(realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>, baseApiServiceTVShow: BaseAPIService<TVShow>) {
@@ -98,7 +97,7 @@ class StorageManager {
     }
      */
     //MARK: - Second Aproach
-    func getData(){
+    func getData() {
         reachability.whenReachable = { _ in
             self.getMovies()
         }
@@ -107,9 +106,10 @@ class StorageManager {
             self.getMoviesRealm()
             NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
         }
+        self.configureNetwork()
     }
     
-    func getData(movieID: Int?){
+    func getData(movieID: Int?) {
         reachability.whenReachable = { _ in
            self.getMovieDetails(id: movieID)
         }
@@ -119,19 +119,20 @@ class StorageManager {
                 NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
             }
         }
+        self.configureNetwork()
     }
     
-    func getData(tvShowID: Int?){
-        self.getTVShow(id: tvShowID)
+    func getData(tvShowID: Int?) {
         reachability.whenReachable = { _ in
-//            self.getTVShow(id: tvShowID)
+            self.getTVShow(id: tvShowID)
         }
-        
+
         reachability.whenUnreachable = { _ in
-//            if !self.getMovieDetailsRealm(id: movieID) {
-//                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
-//            }
+            if !self.getTVShowRealm(id: tvShowID) {
+                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+            }
         }
+        self.configureNetwork()
     }
     
     func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
@@ -203,8 +204,8 @@ class StorageManager {
         return self.movieManager.upcomingMovies[index]
     }
     
-    func getMovieCast(at index: Int) -> Cast {
-        return self.movieCast[index]
+    func getCast(at index: Int) -> Cast {
+        return self.cast[index]
     }
     
     func getMovieDetails(id: Int?) {
@@ -240,9 +241,17 @@ class StorageManager {
     func getTVShow(id: Int?) {
         self.tvShowsManager.getTVShowDetails(id: id) { tvShow in
             DispatchQueue.main.async {
-//                self.realmManager.addTVShow(tvShow: tvShow)
+                self.realmManager.addTVShowDetails(tvShow: tvShow)
             }
         }
+    }
+    
+    func getTVShowRealm(id: Int?) -> Bool {
+        guard let tvShowRealm = self.realmManager.getTVShow(id: id) else {
+            return false
+        }
+        self.tvShowsManager.tvShow = TVShow(tvShow: tvShowRealm)
+        return true
     }
     
     func addFavorite() {

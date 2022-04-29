@@ -26,7 +26,7 @@ extension TVShowDetailsViewController: TVShowDetailsViewControllerDelegate {
     
     func didSetTVShow(_ tvShow: TVShow) {
         DispatchQueue.main.async {
-//            self.heartButton.isHidden = false
+            self.heartButton.isHidden = false
             self.backgroundImageView.setBackground(imageurl: tvShow.backdropPath)
             self.posterImageView.setImage(imageurl: tvShow.posterPath)
             self.movieTitleLabel.text = tvShow.title ?? ""

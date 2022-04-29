@@ -24,6 +24,44 @@ struct TVShow: Codable {
     var credits: Credits?
     var videos: Videos? = nil
     
+    // MARK: - Initializers
+    init(id: Int?, backdropPath: String?, genres: [Genre]?, homepage: String?,
+         overview: String?, posterPath: String?, releaseDate: String?,
+         runtime: Int?, status: String?, tagline: String?, title: String?, credits: Credits?) {
+        self.id = id
+        self.backdropPath = backdropPath
+        self.genres = genres
+        self.homepage = homepage
+        self.overview = overview
+        self.posterPath = posterPath
+        self.releaseDate = releaseDate
+        self.runtime = runtime
+        self.status = status
+        self.tagline = tagline
+        self.title = title
+        self.credits = credits
+    }
+    
+    init(tvShow: TVShowRealm) {
+        self.id = tvShow.id
+        self.backdropPath = tvShow.backdropPath
+        self.genres = tvShow.genres?.split(separator: " ").map { genre in
+            Genre(id: nil, name: "\(genre)")
+        }
+        self.homepage = tvShow.homepage
+        self.overview = tvShow.overview
+        self.posterPath = tvShow.posterPath
+        self.releaseDate = tvShow.releaseDate
+        self.runtime = tvShow.runtime
+        self.status = tvShow.status
+        self.tagline = tvShow.tagline
+        self.title = tvShow.title
+        let cast: [Cast] = tvShow.cast.map { member in
+            return Cast(cast: member)
+        }
+        self.credits = Credits(crew: [Crew(id: nil, gender: nil, name: tvShow.director, profilePath: nil, job: Constants.Movie.creditsJobDirector)], cast: cast)
+    }
+    
     // MARK: - Coding Keys
     enum CodingKeys: String, CodingKey {
         case id, genres, homepage, overview, status, tagline, credits, videos

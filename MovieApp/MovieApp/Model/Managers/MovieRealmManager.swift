@@ -51,6 +51,22 @@ class MovieRealmManager {
         }
     }
     
+    func getTVShow(id: Int?) -> TVShowRealm? {
+        switch self.service.getTVShowByID(id) {
+        case .success(let tvShow):
+            return tvShow
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
+    }
+    
+    func addTVShowDetails(tvShow: TVShow) {
+        if let error = self.service.addTVShow(tvShow) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+    }
+    
     func addMovies(movies: [Movie], category: MoviesCategory) {
         if let error = service.addMovies(movies, ofCategory: category) {
             self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)

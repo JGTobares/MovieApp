@@ -51,6 +51,7 @@
 		D40F0BC9281C1F2800D69C53 /* TVShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0BC8281C1F2800D69C53 /* TVShowDetailsViewController.swift */; };
 		D40F0BCC281C2E2800D69C53 /* TVShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0BCB281C2E2800D69C53 /* TVShowManager.swift */; };
 		D40F0BCE281C2F1400D69C53 /* TVShowRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0BCD281C2F1400D69C53 /* TVShowRepository.swift */; };
+		D40F0BD1281C3D6F00D69C53 /* TVShowRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F0BD0281C3D6F00D69C53 /* TVShowRealm.swift */; };
 		D46F4F902810529D003848CC /* MovieRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F8F2810529D003848CC /* MovieRealm.swift */; };
 		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 		D46F4F9428106B73003848CC /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9328106B73003848CC /* StorageManager.swift */; };
@@ -141,6 +142,7 @@
 		D40F0BC8281C1F2800D69C53 /* TVShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailsViewController.swift; sourceTree = "<group>"; };
 		D40F0BCB281C2E2800D69C53 /* TVShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowManager.swift; sourceTree = "<group>"; };
 		D40F0BCD281C2F1400D69C53 /* TVShowRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowRepository.swift; sourceTree = "<group>"; };
+		D40F0BD0281C3D6F00D69C53 /* TVShowRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowRealm.swift; sourceTree = "<group>"; };
 		D46F4F8F2810529D003848CC /* MovieRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRealm.swift; sourceTree = "<group>"; };
 		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		D46F4F9328106B73003848CC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -310,15 +312,10 @@
 		C102C09A2807248B0025AEAE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D40F0BD2281C725800D69C53 /* Models */,
+				D40F0BCF281C3D2500D69C53 /* RealmModels */,
 				D40F0BCA281C2C3900D69C53 /* Managers */,
 				D40420902819EA4000CCEA7B /* Repositories */,
-				C102C09F280728D10025AEAE /* Movie.swift */,
-				C1781C4F2808587000D060C3 /* Crew.swift */,
-				D46F4F8F2810529D003848CC /* MovieRealm.swift */,
-				D4BBC2062816FCA2006BFA53 /* Video.swift */,
-				D4DCC45428183F2900D0429D /* Cast.swift */,
-				D4C0911528186D3600356315 /* CastRealm.swift */,
-				D40F0BC4281C18BF00D69C53 /* TVShow.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,6 +397,28 @@
 				D40F0BCB281C2E2800D69C53 /* TVShowManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		D40F0BCF281C3D2500D69C53 /* RealmModels */ = {
+			isa = PBXGroup;
+			children = (
+				D46F4F8F2810529D003848CC /* MovieRealm.swift */,
+				D4C0911528186D3600356315 /* CastRealm.swift */,
+				D40F0BD0281C3D6F00D69C53 /* TVShowRealm.swift */,
+			);
+			path = RealmModels;
+			sourceTree = "<group>";
+		};
+		D40F0BD2281C725800D69C53 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C102C09F280728D10025AEAE /* Movie.swift */,
+				C1781C4F2808587000D060C3 /* Crew.swift */,
+				D4DCC45428183F2900D0429D /* Cast.swift */,
+				D4BBC2062816FCA2006BFA53 /* Video.swift */,
+				D40F0BC4281C18BF00D69C53 /* TVShow.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -676,6 +695,7 @@
 				D4DCC45528183F2900D0429D /* Cast.swift in Sources */,
 				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
 				D46F4F902810529D003848CC /* MovieRealm.swift in Sources */,
+				D40F0BD1281C3D6F00D69C53 /* TVShowRealm.swift in Sources */,
 				C1781C502808587000D060C3 /* Crew.swift in Sources */,
 				D4BBC2072816FCA2006BFA53 /* Video.swift in Sources */,
 				D40F0BC9281C1F2800D69C53 /* TVShowDetailsViewController.swift in Sources */,
