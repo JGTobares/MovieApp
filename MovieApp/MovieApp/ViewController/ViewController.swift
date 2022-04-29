@@ -128,7 +128,7 @@ class ViewController: UIViewController {
         guard let movie: Movie = movieManager.movieBanner else {
             return
         }
-        let vc = MovieDetailsViewController()
+        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
@@ -184,7 +184,7 @@ extension ViewController: UICollectionViewDelegate {
         } else {
             movie = self.movieManager.getUpcomingMovie(at: indexPath.row)
         }
-        let vc = MovieDetailsViewController()
+        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)

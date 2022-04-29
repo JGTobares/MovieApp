@@ -56,6 +56,13 @@ protocol MovieDetailsViewControllerDelegate {
     func didSetRating(_ rating: Double)
 }
 
+protocol TVShowDetailsViewControllerDelegate {
+    
+    // MARK: - TVShowDetailsViewController
+    func didSetTVShow(_ tvShow: TVShow)
+    func didSetCast(_ cast: [Cast])
+}
+
 protocol ErrorAlertDelegate {
     
     // MARK: - ErrorAlert

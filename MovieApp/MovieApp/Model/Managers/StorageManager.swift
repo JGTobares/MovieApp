@@ -16,6 +16,7 @@ class StorageManager {
     let realmManager: MovieRealmManager
     let reachability = try! Reachability()
     let favoritesManager: FavoritesManager
+    let tvShowsManager: TVShowManager
   
     // MARK: - Variables
     var movieBanner: Movie! {
@@ -43,14 +44,16 @@ class StorageManager {
         self.detailsManager = MovieDetailsManager()
         self.realmManager = MovieRealmManager()
         self.favoritesManager = FavoritesManager()
+        self.tvShowsManager = TVShowManager()
         self.configureNetwork()
     }
     
-    init(realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
+    init(realmService: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>, baseApiServiceTVShow: BaseAPIService<TVShow>) {
         self.movieManager = MovieManager(apiService: baseApiServiceMoviesResponse)
         self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie)
         self.realmManager = MovieRealmManager(service: realmService)
         self.favoritesManager = FavoritesManager(service: realmService)
+        self.tvShowsManager = TVShowManager(apiService: baseApiServiceTVShow)
     }
     
     // MARK: - Functions
@@ -118,12 +121,29 @@ class StorageManager {
         }
     }
     
+    func getData(tvShowID: Int?){
+        self.getTVShow(id: tvShowID)
+        reachability.whenReachable = { _ in
+//            self.getTVShow(id: tvShowID)
+        }
+        
+        reachability.whenUnreachable = { _ in
+//            if !self.getMovieDetailsRealm(id: movieID) {
+//                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+//            }
+        }
+    }
+    
     func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
         self.movieManager.delegate = delegate
     }
     
     func setDetailsDelegate(_ delegate: MovieDetailsViewControllerDelegate) {
         self.detailsManager.movieDetailsVCDelegate = delegate
+    }
+    
+    func setDetailsDelegate(_ delegate: TVShowDetailsViewControllerDelegate) {
+        self.tvShowsManager.detailsDelegate = delegate
     }
     
     func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
@@ -215,6 +235,14 @@ class StorageManager {
         self.detailsManager.movie = Movie(movie: movieRealm)
         self.movieManager.delegate?.onBannerLoaded()
         return true
+    }
+    
+    func getTVShow(id: Int?) {
+        self.tvShowsManager.getTVShowDetails(id: id) { tvShow in
+            DispatchQueue.main.async {
+//                self.realmManager.addTVShow(tvShow: tvShow)
+            }
+        }
     }
     
     func addFavorite() {

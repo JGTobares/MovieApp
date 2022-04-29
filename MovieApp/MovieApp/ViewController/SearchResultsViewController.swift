@@ -75,7 +75,7 @@ class SearchResultsViewController: UIViewController {
 extension SearchResultsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = MovieDetailsViewController()
+        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
         guard let movie = manager.movies?[indexPath.row], let movieID = movie.id else {
             return
         }

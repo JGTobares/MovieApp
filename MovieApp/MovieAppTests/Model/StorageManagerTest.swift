@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class StorageManagerTest: XCTestCase {
     
-    let manager = StorageManager(realmService: MockRealmService(), baseApiServiceMovie: MockBaseAPIService<Movie>(), baseApiServiceMoviesResponse: MockBaseAPIService<MoviesResponse>())
+    let manager = StorageManager(realmService: MockRealmService(), baseApiServiceMovie: MockBaseAPIService<Movie>(), baseApiServiceMoviesResponse: MockBaseAPIService<MoviesResponse>(), baseApiServiceTVShow: MockBaseAPIService<TVShow>())
     
     func testLazyVariables() throws {
         manager.detailsManager.movie = nil

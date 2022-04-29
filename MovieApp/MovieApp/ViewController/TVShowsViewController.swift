@@ -11,6 +11,13 @@ class TVShowsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        load()
 
+    }
+    
+    func load() {
+        let vc = TVShowDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 }

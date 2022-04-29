@@ -92,7 +92,7 @@ extension FavoritesViewController: UITableViewDelegate {
         guard let movie = self.manager.getFavorite(section: indexPath.section, row: indexPath.row) as? Movie else {
             return
         }
-        let vc = MovieDetailsViewController()
+        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
         vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
