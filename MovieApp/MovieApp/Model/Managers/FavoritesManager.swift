@@ -15,7 +15,7 @@ class FavoritesManager {
     
     // MARK: - Variables
     var favoriteMovies: [Movie] = []
-    var favoriteTvShows: [AnyObject] = []
+    var favoriteTvShows: [TVShow] = []
     var sections: Int {
         return !favoriteMovies.isEmpty && !favoriteTvShows.isEmpty ? 2 : favoriteMovies.isEmpty && favoriteTvShows.isEmpty ? 0 : 1
     }
@@ -48,12 +48,31 @@ class FavoritesManager {
         case .failure(let error):
             self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
         }
+        switch self.service.getFavoriteTVShows() {
+        case .success(let tvShows):
+            self.favoriteTvShows = tvShows.map { tvShow in
+                TVShow(tvShow: tvShow)
+            }
+            self.delegate?.onLoadFavorites()
+            break
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
     }
     
     func isMovieFavorite(id: Int?) -> Bool {
         switch self.service.getMovieByID(id) {
         case .success(let movie):
             return movie.favorite == true
+        case .failure:
+            return false
+        }
+    }
+    
+    func isTVShowFavorite(id: Int?) -> Bool {
+        switch self.service.getTVShowByID(id) {
+        case .success(let tvShow):
+            return tvShow.favorite == true
         case .failure:
             return false
         }
@@ -67,6 +86,23 @@ class FavoritesManager {
             } else {
                 if !favorite {
                     self.favoriteMovies.removeAll(where: { $0.id == id })
+                }
+                self.delegate?.onUpdateFavorites()
+            }
+            break
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+    }
+    
+    func updateFavoriteStatus(tvShowId: Int?, isFavorite favorite: Bool) {
+        switch self.service.getTVShowByID(tvShowId) {
+        case .success(let tvShow):
+            if let response = self.service.updateTVShow(tvShow, isFavorite: favorite) {
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
+            } else {
+                if !favorite {
+                    self.favoriteTvShows.removeAll(where: { $0.id == tvShowId })
                 }
                 self.delegate?.onUpdateFavorites()
             }
@@ -105,10 +141,10 @@ class FavoritesManager {
         }
     }
     
-    func getFavorite(section: Int, row: Int) -> AnyObject? {
+    func getFavorite(section: Int, row: Int) -> FavoritesType? {
         switch section {
-        case 0: return favoriteMovies.isEmpty ? favoriteTvShows[row] : favoriteMovies[row] as AnyObject
-        case 1: return favoriteTvShows[row]
+        case 0: return favoriteMovies.isEmpty ? .tvShow(favoriteTvShows[row]) : .movie(favoriteMovies[row])
+        case 1: return .tvShow(favoriteTvShows[row])
         default: return nil
         }
     }

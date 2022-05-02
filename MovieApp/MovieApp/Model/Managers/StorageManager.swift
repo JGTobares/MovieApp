@@ -301,7 +301,15 @@ class StorageManager {
         return self.favoritesManager.isMovieFavorite(id: movieId)
     }
     
+    func isTVShowFavorite(tvShowId: Int?) -> Bool {
+        return self.favoritesManager.isTVShowFavorite(id: tvShowId)
+    }
+    
     func updateFavoriteStatus(movieId: Int?, isFavorite favorite: Bool) {
         self.favoritesManager.updateFavoriteStatus(id: movieId, isFavorite: favorite)
+    }
+    
+    func updateFavoriteStatus(tvShowId: Int?, isFavorite favorite: Bool) {
+        self.favoritesManager.updateFavoriteStatus(tvShowId: tvShowId, isFavorite: favorite)
     }
 }

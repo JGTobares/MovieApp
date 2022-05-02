@@ -62,8 +62,12 @@ class FavoritesViewController: UIViewController {
     }
     
     @objc func deleteFavoriteItem(notification: NSNotification) {
-        if let itemId = notification.userInfo?[Constants.NotificationNameKeys.updateFavoriteItem] as? Int {
-            manager.updateFavoriteStatus(id: itemId, isFavorite: false)
+        if let itemId = notification.userInfo?[Constants.NotificationNameKeys.updateFavoriteItem] as? Int, let type = notification.userInfo?[Constants.NotificationNameKeys.favoriteTypeItem] as? String {
+            if type == Constants.SideMenu.movies {
+                manager.updateFavoriteStatus(id: itemId, isFavorite: false)
+            } else {
+                manager.updateFavoriteStatus(tvShowId: itemId, isFavorite: false)
+            }
         }
     }
 }
@@ -81,10 +85,16 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: Constants.Cell.tableCell, for: indexPath) as! CustomTableViewCell
-        guard let movie = self.manager.getFavorite(section: indexPath.section, row: indexPath.row) as? Movie else {
+        switch self.manager.getFavorite(section: indexPath.section, row: indexPath.row) {
+        case .movie(let movie):
+            cell.item = movie
+            break
+        case .tvShow(let tvShow):
+            cell.show = tvShow
+            break
+        default:
             return UITableViewCell()
         }
-        cell.item = movie
         cell.frame = cell.frame.inset(by: UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 0))
         return cell
     }
@@ -94,11 +104,19 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         favoritesTableView.deselectRow(at: indexPath, animated: true)
-        guard let movie = self.manager.getFavorite(section: indexPath.section, row: indexPath.row) as? Movie else {
+        let vc: DetailsViewController
+        switch self.manager.getFavorite(section: indexPath.section, row: indexPath.row) {
+        case .movie(let movie):
+            vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
+            (vc as! MovieDetailsViewController).movieID = movie.id
+            break
+        case .tvShow(let tvShow):
+            vc = TVShowDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
+            (vc as! TVShowDetailsViewController).tvShowId = tvShow.id
+            break
+        default:
             return
         }
-        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
-        vc.movieID = movie.id
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

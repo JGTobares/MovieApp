@@ -147,6 +147,7 @@ struct Constants {
     // MARK: - Notifications Constants
     struct NotificationNameKeys {
         static let updateFavoriteItem = "updateFavoriteItem"
+        static let favoriteTypeItem = "Type"
     }
     
     //MARK: - Network Constants

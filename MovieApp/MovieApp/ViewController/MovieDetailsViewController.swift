@@ -26,6 +26,7 @@ class MovieDetailsViewController: DetailsViewController {
         }
     }
     
+    // MARK: - Functions
     override func didTapHeart(_ sender: Any) {
         super.didTapHeart(sender)
         manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: self.heartButton.tintColor == .red)

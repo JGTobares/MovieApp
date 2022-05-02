@@ -12,18 +12,18 @@ import XCTest
 class FavoritesManagerTest: XCTestCase {
     
     let manager = FavoritesManager(service: MockRealmService())
-    let anyObjectArray: [AnyObject] = [1 as AnyObject]
     
     func testSections() throws {
         manager.favoriteMovies = []
         manager.favoriteTvShows = []
         XCTAssertEqual(0, manager.sections)
-        manager.favoriteTvShows = anyObjectArray
+        manager.getFavorites()
+        manager.favoriteMovies = []
         XCTAssertEqual(1, manager.sections)
         manager.getFavorites()
         manager.favoriteTvShows = []
         XCTAssertEqual(1, manager.sections)
-        manager.favoriteTvShows = anyObjectArray
+        manager.getFavorites()
         XCTAssertEqual(2, manager.sections)
     }
     
@@ -31,12 +31,13 @@ class FavoritesManagerTest: XCTestCase {
         manager.favoriteMovies = []
         manager.favoriteTvShows = []
         XCTAssertTrue(manager.noFavorites)
-        manager.favoriteTvShows = anyObjectArray
+        manager.getFavorites()
+        manager.favoriteMovies = []
         XCTAssertFalse(manager.noFavorites)
         manager.getFavorites()
         manager.favoriteTvShows = []
         XCTAssertFalse(manager.noFavorites)
-        manager.favoriteTvShows = anyObjectArray
+        manager.getFavorites()
         XCTAssertFalse(manager.noFavorites)
     }
     
@@ -71,18 +72,18 @@ class FavoritesManagerTest: XCTestCase {
         manager.favoriteTvShows = []
         XCTAssertEqual(0, manager.getRowsOfSection(0))
         XCTAssertEqual(0, manager.getRowsOfSection(1))
-        manager.favoriteTvShows = anyObjectArray
-        XCTAssertEqual(1, manager.getRowsOfSection(0))
-        XCTAssertEqual(1, manager.getRowsOfSection(1))
+        manager.getFavorites()
+        manager.favoriteMovies = []
+        XCTAssertEqual(3, manager.getRowsOfSection(0))
+        XCTAssertEqual(3, manager.getRowsOfSection(1))
         manager.getFavorites()
         XCTAssertEqual(3, manager.getRowsOfSection(0))
-        XCTAssertEqual(1, manager.getRowsOfSection(1))
+        XCTAssertEqual(3, manager.getRowsOfSection(1))
     }
     
     func testGetFavorite() throws {
         XCTAssertNil(manager.getFavorite(section: 10, row: 1))
         manager.getFavorites()
-        manager.favoriteTvShows = anyObjectArray
         XCTAssertNotNil(manager.getFavorite(section: 0, row:2))
         XCTAssertNotNil(manager.getFavorite(section: 1, row:0))
     }
@@ -95,7 +96,8 @@ class FavoritesManagerTest: XCTestCase {
         manager.favoriteTvShows = []
         XCTAssertEqual(tvTitle, manager.getTitleOfSection(0))
         XCTAssertEqual(tvTitle, manager.getTitleOfSection(1))
-        manager.favoriteTvShows = anyObjectArray
+        manager.getFavorites()
+        manager.favoriteMovies = []
         XCTAssertEqual(tvTitle, manager.getTitleOfSection(0))
         XCTAssertEqual(tvTitle, manager.getTitleOfSection(1))
         manager.getFavorites()
