@@ -16,12 +16,23 @@ class CustomTableViewCell: UITableViewCell {
     
     //MARK: - Variables
     var itemId: Int?
+    var type: String = ""
     var item: Movie! {
         didSet {
             self.itemId = self.item.id
+            self.type = Constants.SideMenu.movies
             self.favoriteTitle.text = self.item.title
             self.favoriteImage.setImage(imageurl: self.item.posterPath)
             self.favoriteCategory.text = self.item.tagline
+        }
+    }
+    var show: TVShow! {
+        didSet {
+            self.itemId = self.show.id
+            self.type = Constants.SideMenu.favorites
+            self.favoriteTitle.text = self.show.title
+            self.favoriteImage.setImage(imageurl: self.show.posterPath)
+            self.favoriteCategory.text = self.show.tagline
         }
     }
 
@@ -40,6 +51,8 @@ class CustomTableViewCell: UITableViewCell {
     
     //MARK: - Outlets
     @IBAction func didTapHeart(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name(Constants.NotificationNameKeys.updateFavoriteItem), object: nil, userInfo: [Constants.NotificationNameKeys.updateFavoriteItem : itemId ?? 0])
+        NotificationCenter.default.post(name: Notification.Name(Constants.NotificationNameKeys.updateFavoriteItem), object: nil, userInfo:
+                                            [Constants.NotificationNameKeys.updateFavoriteItem: itemId ?? 0,
+                                             Constants.NotificationNameKeys.favoriteTypeItem: type])
     }
 }

@@ -127,6 +127,11 @@ final class MockRealmService: RealmServiceProtocol {
         return .success(self.movies)
     }
     
+    func getFavoriteTVShows() -> Result<[TVShowRealm], CustomError> {
+        return .success(self.tvShows)
+    }
+
+    
     func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool, ofCategory category: MoviesCategory?) -> CustomError? {
         if id == nil {
             return .internalError
@@ -138,6 +143,10 @@ final class MockRealmService: RealmServiceProtocol {
         if movie.category == nil {
             return .internalError
         }
+        return nil
+    }
+    
+    func updateTVShow(_ tvShow: TVShowRealm, isFavorite favorite: Bool) -> CustomError? {
         return nil
     }
     
