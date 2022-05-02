@@ -14,13 +14,16 @@ protocol RealmServiceProtocol {
     func addMovie(_ movie: Movie, withCategory category: MoviesCategory) -> CustomError?
     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError?
     func addTVShow(_ tvShow: TVShow) -> CustomError?
+    func addTVShows(_ shows: [TVShow], ofCategory category: TVShowsCategory) -> CustomError?
     func addFavorite(_ movie: Movie) -> CustomError?
     func getMovieByID(_ id: Int?) -> Result<MovieRealm, CustomError>
     func getMovieByCategory(_ category: MoviesCategory?) -> Result<[MovieRealm], CustomError>
+    func getTVShowByCategory(_ category: TVShowsCategory?) -> Result<[TVShowRealm], CustomError>
     func getTVShowByID(_ id: Int?) -> Result<TVShowRealm, CustomError>
     func getFavoriteMovies() -> Result<[MovieRealm], CustomError>
     func getFavoriteTVShows() -> Result<[TVShowRealm], CustomError>
     func getMovieOffline() -> Result<MovieRealm, CustomError>
+    func getTVShowOffline() -> Result<TVShowRealm, CustomError>
     func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool, ofCategory category: MoviesCategory?) -> CustomError?
     func updateMovie(_ movie: MovieRealm, isFavorite favorite: Bool) -> CustomError?
     func updateTVShow(_ tvShow: TVShowRealm, isFavorite favorite: Bool) -> CustomError?
@@ -36,6 +39,14 @@ protocol MovieManagerDelegate {
     func onNowLoaded()
     func onPopularLoaded()
     func onUpcomingLoaded()
+    func onBannerLoaded()
+}
+
+protocol TVShowManagerDelegate {
+    
+    // MARK: - MovieManager
+    func onTheAirLoaded()
+    func onPopularLoaded()
     func onBannerLoaded()
 }
 

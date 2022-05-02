@@ -43,7 +43,7 @@ class RealmService: RealmServiceProtocol {
         }
         return nil
     }
-    
+
     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
@@ -82,6 +82,34 @@ class RealmService: RealmServiceProtocol {
                 let favorites = try? self.getFavoriteTVShows().get()
                 tvShowRealm.favorite = favorites?.first(where: { $0.id == tvShow.id })?.favorite
                 realm.add(tvShowRealm, update: .modified)
+            }
+        } catch {
+            return .realmAddError
+        }
+        return nil
+    }
+    
+    func addTVShows(_ shows: [TVShow], ofCategory category: TVShowsCategory) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        let favorites: [TVShowRealm]
+        switch self.getFavoriteTVShows() {
+        case .success(let tvShowRealm):
+            favorites = tvShowRealm
+            break
+        case .failure:
+            favorites = []
+        }
+        let shows = shows.map {
+            TVShowRealm(show: $0, category: category)
+        }
+        favorites.forEach { favorite in
+            shows.first(where: { $0.id == favorite.id})?.favorite = favorite.favorite
+        }
+        do {
+            try realm.write {
+                realm.add(shows, update: .modified)
             }
         } catch {
             return .realmAddError
@@ -139,6 +167,28 @@ class RealmService: RealmServiceProtocol {
             $0.category == category.rawValue
         }
         return .success(Array(movies))
+    }
+    
+    func getTVShowByCategory(_ category: TVShowsCategory?) -> Result<[TVShowRealm], CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        guard let category = category else {
+            return .failure(.internalError)
+        }
+        let shows = realm.objects(TVShowRealm.self).where {
+            $0.category == category.rawValue
+        }
+        return .success(Array(shows))
+    }
+    
+    func getTVShowOffline() -> Result<TVShowRealm, CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let show = realm.objects(TVShowRealm.self)
+        guard let result = show.randomElement() else { return .failure(.notFoundError) }
+        return .success(result)
     }
     
     func getTVShowByID(_ id: Int?) -> Result<TVShowRealm, CustomError> {

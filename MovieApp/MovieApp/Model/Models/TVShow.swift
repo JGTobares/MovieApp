@@ -115,3 +115,17 @@ struct TVShow: Codable {
         return videos.first(where: { $0.isYouTubeTrailer() })
     }
 }
+
+struct TVShowsResponse: Codable {
+    
+    // MARK: - Constants
+    let page: Int?
+    let results: [TVShow]?
+    let totalPages: Int?
+    
+    // MARK: - Coding Keys
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+    }
+}

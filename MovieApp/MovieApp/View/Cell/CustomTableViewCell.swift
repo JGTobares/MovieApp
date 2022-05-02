@@ -23,7 +23,7 @@ class CustomTableViewCell: UITableViewCell {
             self.type = Constants.SideMenu.movies
             self.favoriteTitle.text = self.item.title
             self.favoriteImage.setImage(imageurl: self.item.posterPath)
-            self.favoriteCategory.text = self.item.tagline
+            self.favoriteCategory.text = self.item.overview
         }
     }
     var show: TVShow! {
@@ -32,7 +32,7 @@ class CustomTableViewCell: UITableViewCell {
             self.type = Constants.SideMenu.favorites
             self.favoriteTitle.text = self.show.title
             self.favoriteImage.setImage(imageurl: self.show.posterPath)
-            self.favoriteCategory.text = self.show.tagline
+            self.favoriteCategory.text = self.show.overview
         }
     }
 

@@ -9,7 +9,6 @@ import Foundation
 
 @testable import MovieApp
 final class MockRealmService: RealmServiceProtocol {
-
     let movies: [MovieRealm] = [
         MovieRealm(),
         MovieRealm(
@@ -75,7 +74,7 @@ final class MockRealmService: RealmServiceProtocol {
         return nil
     }
     
-    func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
+     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
         if category == .upcoming {
             return .internalError
         }
@@ -190,5 +189,15 @@ final class MockRealmService: RealmServiceProtocol {
             Movie(movie: $0)
         }
         return moviesList
+    }
+    
+    func addTVShows(_ shows: [TVShow], ofCategory category: TVShowsCategory) -> CustomError? { return nil }
+    
+    func getTVShowByCategory(_ category: TVShowsCategory?) -> Result<[TVShowRealm], CustomError> {
+        return .success(self.tvShows)
+    }
+    
+    func getTVShowOffline() -> Result<TVShowRealm, CustomError> {
+        return .success(self.tvShows[0])
     }
 }

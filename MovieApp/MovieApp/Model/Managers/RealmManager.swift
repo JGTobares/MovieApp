@@ -95,4 +95,33 @@ class RealmManager {
         }
         return nil
     }
+    
+    func addTVShows(shows: [TVShow], category: TVShowsCategory) {
+        if let error = service.addTVShows(shows, ofCategory: category) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+    }
+     
+    func getTVShowList(category: TVShowsCategory?) -> [TVShow]? {
+        switch self.service.getTVShowByCategory(_: category) {
+        case .success(let showsRealm):
+            let shows = showsRealm.map { showRealm in
+                TVShow(tvShow: showRealm)
+            }
+            return shows
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
+    }
+    
+    func getTVShowOffline() -> TVShow? {
+        switch self.service.getTVShowOffline() {
+        case .success(let show):
+            return TVShow(tvShow: show)
+        case .failure(let error):
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+        }
+        return nil
+    }
 }

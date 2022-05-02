@@ -18,6 +18,7 @@
 		C05E6EEA280F00A00074B72A /* TVShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */; };
 		C05E6EEE280F00B40074B72A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */; };
 		C0602CE52811F0FB00D924F6 /* CustomToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0602CE42811F0FB00D924F6 /* CustomToast.swift */; };
+		C0664DAB28202D3800D69B9B /* TVShowsResponseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0664DAA28202D3700D69B9B /* TVShowsResponseRepository.swift */; };
 		C06E5D9F28088FD2005C713E /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E5D9D28088FD2005C713E /* CustomCollectionViewCell.swift */; };
 		C06E5DA028088FD2005C713E /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06E5D9E28088FD2005C713E /* CustomCollectionViewCell.xib */; };
 		C06E5DA228089B74005C713E /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E5DA128089B74005C713E /* MovieManager.swift */; };
@@ -105,6 +106,7 @@
 		C05E6EE8280F00A00074B72A /* TVShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsViewController.swift; sourceTree = "<group>"; };
 		C05E6EEC280F00B40074B72A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C0602CE42811F0FB00D924F6 /* CustomToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToast.swift; sourceTree = "<group>"; };
+		C0664DAA28202D3700D69B9B /* TVShowsResponseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsResponseRepository.swift; sourceTree = "<group>"; };
 		C06E5D9D28088FD2005C713E /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		C06E5D9E28088FD2005C713E /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		C06E5DA128089B74005C713E /* MovieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				D404208E2819C56E00CCEA7B /* MovieRepository.swift */,
 				D40420912819EA7000CCEA7B /* MovieResponseRepository.swift */,
 				D40F0BCD281C2F1400D69C53 /* TVShowRepository.swift */,
+				C0664DAA28202D3700D69B9B /* TVShowsResponseRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				D46F4F9228105642003848CC /* RealmService.swift in Sources */,
 				D46F4F902810529D003848CC /* MovieRealm.swift in Sources */,
 				D40F0BD1281C3D6F00D69C53 /* TVShowRealm.swift in Sources */,
+				C0664DAB28202D3800D69B9B /* TVShowsResponseRepository.swift in Sources */,
 				C1781C502808587000D060C3 /* Crew.swift in Sources */,
 				D4BBC2072816FCA2006BFA53 /* Video.swift in Sources */,
 				D40F0BC9281C1F2800D69C53 /* TVShowDetailsViewController.swift in Sources */,

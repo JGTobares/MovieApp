@@ -24,6 +24,7 @@ class TVShowRealm: Object {
     @Persisted var title: String?
     @Persisted var director: String?
     @Persisted var favorite: Bool?
+    @Persisted var category: Int?
     @Persisted var cast: List<CastRealm> = List()
     
     // MARK: - Initializers
@@ -46,5 +47,10 @@ class TVShowRealm: Object {
                 return CastRealm(cast: member)
             })
         }
+    }
+    
+    convenience init(show: TVShow, category: TVShowsCategory) {
+        self.init(tvShow: show)
+        self.category = category.rawValue
     }
 }
