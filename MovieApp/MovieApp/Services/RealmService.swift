@@ -76,9 +76,11 @@ class RealmService: RealmServiceProtocol {
         guard let realm = self.realm else {
             return .realmInstantiationError
         }
-        let tvShowRealm = TVShowRealm(tvShow: tvShow)
         do {
             try realm.write {
+                let tvShowRealm = TVShowRealm(tvShow: tvShow)
+                let favorites = try? self.getFavoriteTVShows().get()
+                tvShowRealm.favorite = favorites?.first(where: { $0.id == tvShow.id })?.favorite
                 realm.add(tvShowRealm, update: .modified)
             }
         } catch {
@@ -162,6 +164,16 @@ class RealmService: RealmServiceProtocol {
         return .success(Array(movies))
     }
     
+    func getFavoriteTVShows() -> Result<[TVShowRealm], CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let tvShows = realm.objects(TVShowRealm.self).where {
+            $0.favorite == true
+        }
+        return .success(Array(tvShows))
+    }
+    
     // MARK: - Update
     func updateMovie(_ movie: Movie, byID id: Int?, isFavorite favorite: Bool, ofCategory category: MoviesCategory?) -> CustomError? {
         guard let realm = self.realm else {
@@ -187,6 +199,20 @@ class RealmService: RealmServiceProtocol {
         do {
             try realm.write {
                 movie.favorite = favorite
+            }
+        } catch {
+            return .realmUpdateError
+        }
+        return nil
+    }
+    
+    func updateTVShow(_ tvShow: TVShowRealm, isFavorite favorite: Bool) -> CustomError? {
+        guard let realm = self.realm else {
+            return .realmInstantiationError
+        }
+        do {
+            try realm.write {
+                tvShow.favorite = favorite
             }
         } catch {
             return .realmUpdateError

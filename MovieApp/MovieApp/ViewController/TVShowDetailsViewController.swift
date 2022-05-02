@@ -18,6 +18,18 @@ class TVShowDetailsViewController: DetailsViewController {
         super.viewDidLoad()
         manager.setDetailsDelegate(self)
         manager.getData(tvShowID: self.tvShowId)
+        
+        // Check if TV Show is in Favorites
+        self.heartButton.tintColor = .lightGray
+        if manager.isTVShowFavorite(tvShowId: self.tvShowId) {
+            self.heartButton.tintColor = .red
+        }
+    }
+    
+    // MARK: - Functions
+    override func didTapHeart(_ sender: Any) {
+        super.didTapHeart(sender)
+        manager.updateFavoriteStatus(tvShowId: self.tvShowId, isFavorite: self.heartButton.tintColor == .red)
     }
 }
 
