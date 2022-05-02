@@ -43,7 +43,7 @@ class RealmService: RealmServiceProtocol {
         }
         return nil
     }
-    
+//
     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
         guard let realm = self.realm else {
             return .realmInstantiationError
@@ -137,6 +137,15 @@ class RealmService: RealmServiceProtocol {
             $0.category == category.rawValue
         }
         return .success(Array(movies))
+    }
+    
+    func getTVShowOffline() -> Result<TVShowRealm, CustomError> {
+        guard let realm = self.realm else {
+            return .failure(.realmInstantiationError)
+        }
+        let show = realm.objects(TVShowRealm.self)
+        guard let result = show.randomElement() else { return .failure(.notFoundError) }
+        return .success(result)
     }
     
     func getTVShowByID(_ id: Int?) -> Result<TVShowRealm, CustomError> {

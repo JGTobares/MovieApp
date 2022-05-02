@@ -27,6 +27,11 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = .white
+        self.navigationController?.navigationBar.backgroundColor = .black
+        let attributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font:UIFont(name: "Verdana-bold", size: 17)]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
+        
         favoritesTableView.register(CustomTableViewCell.nib(), forCellReuseIdentifier: Constants.Cell.tableCell)
         favoritesTableView.delegate = self
         favoritesTableView.dataSource = self

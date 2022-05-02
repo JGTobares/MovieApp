@@ -75,7 +75,7 @@ final class MockRealmService: RealmServiceProtocol {
         return nil
     }
     
-    func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
+     func addMovies(_ movies: [Movie], ofCategory category: MoviesCategory) -> CustomError? {
         if category == .upcoming {
             return .internalError
         }

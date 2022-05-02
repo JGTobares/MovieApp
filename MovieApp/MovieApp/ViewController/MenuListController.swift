@@ -39,19 +39,28 @@ class MenuListController: UITableViewController {
         let id = pages[indexPath.row]
         switch id {
         case Constants.SideMenu.movies:
+            
             let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: Constants.SideMenu.movieVC) as! ViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            
+            //self.showViewController(viewController: UINavigationController.self, storyboardId: "HomeNavID")
             break
         case Constants.SideMenu.tvShows:
+            
             let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: Constants.SideMenu.tvShowVC) as! TVShowsViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            
+            //self.showViewController(viewController: UINavigationController.self, storyboardId: "FavoriteNavID")
             break
         case Constants.SideMenu.favorites:
+            
             let story = UIStoryboard(name: Constants.SideMenu.main, bundle: nil)
             let vc = story.instantiateViewController(withIdentifier: Constants.SideMenu.favoritesVC) as! FavoritesViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            
+            //self.showViewController(viewController: UINavigationController.self, storyboardId: "TVShowNavID")
             break
         default:
             break

@@ -10,7 +10,7 @@ import UIKit
 class TVShowDetailsViewController: DetailsViewController {
     
     // MARK: - Variables
-    var tvShowId: Int? = 92749
+    var tvShowId: Int?
     
     
     // MARK: - Initializers

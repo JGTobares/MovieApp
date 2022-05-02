@@ -43,6 +43,8 @@ struct Constants {
         static let imdbIdQueryKey = "i"
         static let regionQueryParamUS = "US"
         static let appendQueryParams = "credits,videos"
+        static let popular = "popular"
+        static let onTheAir = "on_the_air"
     }
     
     // MARK: Nib Names
@@ -77,6 +79,14 @@ struct Constants {
         static let castTabTag = 222
         static let trailerTabTag = 333
         static let trailerErrorMessage = "Couldn't load the movie's trailer."
+    }
+    
+    // MARK: - TVShows Constants
+    struct TVShows {
+        static let onTheAir = "OnTheAir"
+        static let popular = "Popular"
+        static let onTheAirTag = 111
+        static let popularTag = 222
     }
     
     // MARK: - Images Constants

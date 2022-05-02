@@ -21,6 +21,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var tvShow: TVShow! {
+        didSet {
+            self.labelTitle.text = self.tvShow.title
+            self.imageView.setImage(imageurl: self.tvShow.posterPath)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
