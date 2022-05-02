@@ -90,10 +90,6 @@ extension FavoritesViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
-//        guard let movie = self.manager.getFavorite(section: indexPath.section, row: indexPath.row) as? Movie else {
-//            return UITableViewCell()
-//        }
-//        cell.item = movie
         cell.frame = cell.frame.inset(by: UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 0))
         return cell
     }
@@ -103,31 +99,21 @@ extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         favoritesTableView.deselectRow(at: indexPath, animated: true)
+        let vc: DetailsViewController
         switch self.manager.getFavorite(section: indexPath.section, row: indexPath.row) {
         case .movie(let movie):
-            let vc: MovieDetailsViewController
             vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
-            vc.movieID = movie.id
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+            (vc as! MovieDetailsViewController).movieID = movie.id
             break
         case .tvShow(let tvShow):
-            let vc: TVShowDetailsViewController
             vc = TVShowDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
-            vc.tvShowId = tvShow.id
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
+            (vc as! TVShowDetailsViewController).tvShowId = tvShow.id
             break
         default:
             return
         }
-//        guard let movie = self.manager.getFavorite(section: indexPath.section, row: indexPath.row) as? Movie else {
-//            return
-//        }
-//        let vc = MovieDetailsViewController.init(nibName: Constants.Nib.details, bundle: nil)
-//        vc.movieID = movie.id
-//        vc.modalPresentationStyle = .fullScreen
-//        present(vc, animated: true, completion: nil)
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
