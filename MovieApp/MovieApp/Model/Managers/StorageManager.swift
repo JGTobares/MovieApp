@@ -91,7 +91,7 @@ class StorageManager {
         }
         
         reachability.whenUnreachable = { _ in
-            self.getMoviesRealm()
+            self.getTVShowsRealm()
             NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
         }
         self.configureNetwork()
@@ -187,24 +187,24 @@ class StorageManager {
     func getTVShowsAPI() {
         self.tvShowsManager.getTVShowList(category: .onTheAir) { onTheAirShows in
             DispatchQueue.main.async {
-                //self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
+                self.realmManager.addTVShows(shows: onTheAirShows, category: TVShowsCategory.onTheAir)
                 self.getTVShow(id: self.tvShowsManager.bannerShowID)
             }
         }
         self.tvShowsManager.getTVShowList(category: .popular) { popularShows in
             DispatchQueue.main.async {
-                //self.realmManager.addMovies(movies: movies, category: MoviesCategory.now)
+                self.realmManager.addTVShows(shows: popularShows, category: TVShowsCategory.popular)
             }
         }
     }
     
     func getTVShowsRealm() {
-        guard let onAirList = self.realmManager.getMovieList(category: MoviesCategory.now) else {
+        guard let onAirList = self.realmManager.getTVShowList(category: TVShowsCategory.onTheAir) else {
             return
         }
         self.tvShowsManager.onTheAirList = onAirList
-        self.detailsManager.movie = self.realmManager.getMovieOffline()
-        guard let popularList = self.realmManager.getMovieList(category: MoviesCategory.popular) else {
+        self.tvShowsManager.tvShow = self.realmManager.getTVShowOffline()
+        guard let popularList = self.realmManager.getTVShowList(category: TVShowsCategory.popular) else {
             return
         }
         self.tvShowsManager.popularList = popularList
@@ -282,6 +282,7 @@ class StorageManager {
             return false
         }
         self.tvShowsManager.tvShow = TVShow(tvShow: tvShowRealm)
+        self.tvShowsManager.tvShowsDelegate?.onBannerLoaded()
         return true
     }
     

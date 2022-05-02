@@ -29,6 +29,7 @@ enum MoviesCategory: Int {
 enum TVShowsCategory: Int {
     case onTheAir = 1
     case popular = 2
+}
 
 enum FavoritesType {
     case movie(Movie)

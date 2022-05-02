@@ -85,8 +85,8 @@ struct Constants {
     struct TVShows {
         static let onTheAir = "OnTheAir"
         static let popular = "Popular"
-        static let onTheAirTag = 111
-        static let popularTag = 222
+        static let onTheAirTag = 444
+        static let popularTag = 555
     }
     
     // MARK: - Images Constants

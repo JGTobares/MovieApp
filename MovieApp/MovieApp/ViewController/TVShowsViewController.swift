@@ -49,11 +49,11 @@ class TVShowsViewController: UIViewController {
         switch self.tabShown {
         case Constants.TVShows.onTheAir:
             self.onTheAirButton.subviews.first(where: { $0.tag == Constants.TVShows.onTheAirTag })?.removeFromSuperview()
-            self.addBottomBorder(view: self.onTheAirButton, tag: Constants.TVShows.onTheAirTag, width: size.width / 3)
+            self.addBottomBorder(view: self.onTheAirButton, tag: Constants.TVShows.onTheAirTag, width: size.width / 2)
             break
         case Constants.TVShows.popular:
             self.popularButton.subviews.first(where: { $0.tag == Constants.TVShows.popularTag })?.removeFromSuperview()
-            self.addBottomBorder(view: self.popularButton, tag: Constants.TVShows.popularTag, width: size.width / 3)
+            self.addBottomBorder(view: self.popularButton, tag: Constants.TVShows.popularTag, width: size.width / 2)
             break
         default:
             break
@@ -93,7 +93,7 @@ class TVShowsViewController: UIViewController {
         self.onTheAirCollection.isHidden = false
         self.popularCollection.isHidden = true
         
-        self.addBottomBorder(view: self.onTheAirButton, tag: Constants.TVShows.onTheAirTag, width: UIScreen.main.bounds.width / 3)
+        self.addBottomBorder(view: self.onTheAirButton, tag: Constants.TVShows.onTheAirTag, width: UIScreen.main.bounds.width / 2)
         self.tabShown = Constants.TVShows.onTheAir
     }
     
