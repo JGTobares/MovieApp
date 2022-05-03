@@ -71,9 +71,9 @@ class MovieManager {
         self.realmRepository = RealmRepository()
     }
     
-    init(apiService: BaseAPIService<MoviesResponse>, apiServiceMovie: BaseAPIService<Movie>,  baseApiServiceMovie: BaseAPIService<Movie>, realmService: RealmServiceProtocol, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
-        self.responseRepository = MovieResponseRepository(apiService: apiService)
-        self.repository = MovieRepository(apiService: apiServiceMovie)
+    init(baseApiServiceMovie: BaseAPIService<Movie>, realmService: RealmServiceProtocol, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
+        self.responseRepository = MovieResponseRepository(apiService: baseApiServiceMoviesResponse)
+        self.repository = MovieRepository(apiService: baseApiServiceMovie)
         self.realmRepository = RealmRepository(service: realmService)
     }
     

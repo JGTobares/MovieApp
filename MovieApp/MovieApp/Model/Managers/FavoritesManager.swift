@@ -35,10 +35,10 @@ class FavoritesManager {
         self.movieManager = MovieManager()
     }
     
-    init(service: RealmServiceProtocol, apiService: BaseAPIService<MoviesResponse>, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
+    init(service: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.service = service
         self.realmRepository = RealmRepository(service: service)
-        self.movieManager = MovieManager(apiService: baseApiServiceMoviesResponse, apiServiceMovie: baseApiServiceMovie, baseApiServiceMovie: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse)
+        self.movieManager = MovieManager(baseApiServiceMovie: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse)
     }
     
     func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {

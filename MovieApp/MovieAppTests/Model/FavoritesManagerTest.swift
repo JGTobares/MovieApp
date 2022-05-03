@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class FavoritesManagerTest: XCTestCase {
     
-    let manager = FavoritesManager(service: MockRealmService())
+    let manager = FavoritesManager(service: MockRealmService(), baseApiServiceMovie: MockBaseAPIService<Movie>(), baseApiServiceMoviesResponse: MockBaseAPIService<MoviesResponse>())
     
     func testSections() throws {
         manager.favoriteMovies = []
