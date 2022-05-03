@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="140" id="KGk-i7-Jjw" customClass="CustomTableViewCell" customModule="MovieApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="360" height="138"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="360" height="138"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -25,10 +25,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2f-CU-KEl">
-                        <rect key="frame" x="119" y="16" width="180" height="50"/>
+                        <rect key="frame" x="119" y="16" width="180" height="20.5"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="EXg-4t-X2y"/>
                             <constraint firstAttribute="width" constant="180" id="QqG-ZW-WWj"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -48,12 +47,8 @@
                             <action selector="didTapHeart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yTf-hr-4Dm"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Favorite category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3o-WM-uHF">
-                        <rect key="frame" x="119" y="71" width="200" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="200" id="bON-4B-0N4"/>
-                            <constraint firstAttribute="height" constant="21" id="pc0-pr-VMg"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite category" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3o-WM-uHF">
+                        <rect key="frame" x="119" y="44.5" width="119" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -65,12 +60,13 @@
                     <constraint firstItem="pv9-RS-ANz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="1I8-Wv-itF"/>
                     <constraint firstItem="Xfd-fu-gvg" firstAttribute="leading" secondItem="Q2f-CU-KEl" secondAttribute="trailing" constant="16" id="7pC-X8-BG4"/>
                     <constraint firstItem="F3o-WM-uHF" firstAttribute="top" secondItem="Q2f-CU-KEl" secondAttribute="bottom" constant="8" symbolic="YES" id="9iN-xG-c5d"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F3o-WM-uHF" secondAttribute="trailing" constant="8" id="I6Z-j1-ZGv"/>
                     <constraint firstAttribute="bottom" secondItem="Xfd-fu-gvg" secondAttribute="bottom" constant="91" id="JMY-7Z-L4D"/>
                     <constraint firstItem="Q2f-CU-KEl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Lf6-z2-TIx"/>
                     <constraint firstItem="F3o-WM-uHF" firstAttribute="leading" secondItem="pv9-RS-ANz" secondAttribute="trailing" constant="19" id="Lpv-Po-GKJ"/>
                     <constraint firstItem="pv9-RS-ANz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PGL-QR-M35"/>
                     <constraint firstItem="Q2f-CU-KEl" firstAttribute="leading" secondItem="pv9-RS-ANz" secondAttribute="trailing" constant="19" id="XbY-xd-BF5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="F3o-WM-uHF" secondAttribute="bottom" constant="32" id="k7d-9Q-ZwR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="F3o-WM-uHF" secondAttribute="bottom" constant="8" id="k7d-9Q-ZwR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
