@@ -11,8 +11,8 @@ import Reachability
 class MovieManager {
     
     // MARK: - Constants
-    let repository: MovieResponseRepository
-    let detailsManager: MovieDetailsManager
+    let responseRepository: MovieResponseRepository
+    let repository: MovieRepository
     let reachability = try! Reachability()
     let realmRepository: RealmRepository
     
@@ -27,6 +27,9 @@ class MovieManager {
     var errorDelegate: ErrorAlertDelegate? {
         return self.delegate as? ErrorAlertDelegate
     }
+    func setErrorDelegate(_ delegate: ErrorAlertDelegate) {
+        self.realmRepository.errorDelegate = delegate
+    }
     var nowMovieCount: Int {
         return self.nowMovies.count
     }
@@ -37,25 +40,47 @@ class MovieManager {
         return self.upcomingMovies.count
     }
     var movieBanner: Movie! {
-        return self.detailsManager.movie
+        return self.movie
     }
+    
+    var movie: Movie? {
+        didSet {
+            if let movie = movie {
+                self.delegate?.didSetMovie(movie)
+                self.cast = movie.credits?.cast
+            }
+        }
+    }
+    var cast: [Cast]? {
+        didSet {
+            if let cast = cast {
+                self.delegate?.didSetCast(cast)
+            }
+        }
+    }
+    
+    var castCount: Int {
+        return self.cast?.count ?? 0
+    }
+    
     
     // MARK: - Initializers
     init() {
-        self.repository = MovieResponseRepository()
-        self.detailsManager = MovieDetailsManager()
+        self.responseRepository = MovieResponseRepository()
+        self.repository = MovieRepository()
         self.realmRepository = RealmRepository()
     }
     
-    init(apiService: BaseAPIService<MoviesResponse>, baseApiServiceMovie: BaseAPIService<Movie>, realmService: RealmServiceProtocol, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
-        self.repository = MovieResponseRepository(apiService: apiService)
-        self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie, realmService: realmService, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse, baseApiServiceMovie: baseApiServiceMovie)
+    init(apiService: BaseAPIService<MoviesResponse>, apiServiceMovie: BaseAPIService<Movie>,  baseApiServiceMovie: BaseAPIService<Movie>, realmService: RealmServiceProtocol, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
+        self.responseRepository = MovieResponseRepository(apiService: apiService)
+        self.repository = MovieRepository(apiService: apiServiceMovie)
         self.realmRepository = RealmRepository(service: realmService)
     }
     
     func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
         self.delegate = delegate
     }
+    
     
     // MARK: - Functions
     func configureNetwork() {
@@ -82,7 +107,7 @@ class MovieManager {
         self.loadNowMovies { movies in
             DispatchQueue.main.async {
                 self.realmRepository.addMovies(movies: movies, category: MoviesCategory.now)
-                self.detailsManager.getMovieDetails(id: self.bannerMovieID)
+                self.getMovieDetails(id: self.bannerMovieID)
             }
         }
         self.loadPopularMovies { movies in
@@ -102,7 +127,7 @@ class MovieManager {
             return
         }
         self.nowMovies = nowList
-        self.detailsManager.movie = self.realmRepository.getMovieOffline()
+        self.movie = self.realmRepository.getMovieOffline()
         guard let popularList = self.realmRepository.getMovieList(category: MoviesCategory.popular) else {
             return
         }
@@ -116,7 +141,7 @@ class MovieManager {
     }
     
     func loadNowMovies(completion: @escaping ([Movie]) -> Void) {
-        repository.getListOfMovies(category: .now) { result in
+        responseRepository.getListOfMovies(category: .now) { result in
             switch result {
             case .success(let moviesResponse):
                 self.nowMovies = moviesResponse.results ?? []
@@ -130,7 +155,7 @@ class MovieManager {
     }
     
     func loadPopularMovies(completion: @escaping ([Movie]) -> Void) {
-        repository.getListOfMovies(category: .popular) { result in
+        responseRepository.getListOfMovies(category: .popular) { result in
             switch result {
             case .success(let moviesResponse):
                 self.popularMovies = moviesResponse.results ?? []
@@ -143,7 +168,7 @@ class MovieManager {
     }
     
     func loadUpcomingMovies(completion: @escaping ([Movie]) -> Void) {
-        repository.getListOfMovies(category: .upcoming) { result in
+        responseRepository.getListOfMovies(category: .upcoming) { result in
             switch result {
             case .success(let moviesResponse):
                 self.upcomingMovies = moviesResponse.results ?? []
@@ -165,5 +190,84 @@ class MovieManager {
     
     func getUpcomingMovie(at index: Int) -> Movie {
         return self.upcomingMovies[index]
+    }
+    
+    //MARK: - MovieDetails Functions
+    
+    func getDetails(movieID: Int?) {
+        reachability.whenReachable = { _ in
+           self.getMovieDetails(id: movieID)
+        }
+        
+        reachability.whenUnreachable = { _ in
+            if !self.getMovieDetailsRealm(id: movieID) {
+                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+            }
+        }
+        self.configureNetwork()
+    }
+    
+    func getMovieDetails(id: Int?) {
+        self.getMovieDetailsAPI(id: id) { movie in
+            DispatchQueue.main.async {
+                self.realmRepository.addMovieDetails(movie: movie)
+                self.bannerOfflineMovieID = movie.id
+                self.getMovieRating(completion: self.saveMovieRating)
+            }
+            self.delegate?.onBannerLoaded()
+        }
+    }
+    
+    func getMovieDetailsAPI(id: Int?, completion: @escaping (Movie) -> Void) {
+        self.repository.getMovieDetails(id: id) { result in
+            switch result {
+            case .success(let movie):
+                self.movie = movie
+                completion(movie)
+                break
+            case .failure(let error):
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+            }
+        }
+    }
+    
+    func getMovieDetailsRealm(id: Int?) -> Bool {
+        guard let movieRealm = self.realmRepository.getMovieDetails(id: id) else {
+            return false
+        }
+        self.movie = Movie(movie: movieRealm)
+        self.delegate?.onBannerLoaded()
+        return true
+    }
+    
+    func getMovieRating(completion: @escaping (Movie) -> Void) {
+        self.repository.getMovieRating(id: self.movie?.imdbID) { result in
+            switch result {
+            case .success(let movie):
+                guard let response = movie.response, response == "True", let rating = movie.rating else {
+                    self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: CustomError.notFoundError.rawValue)
+                    return
+                }
+                self.movie?.rating = Double(rating)
+                completion(self.movie!)
+                break
+            case .failure(let error):
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
+            }
+        }
+    }
+    
+    func saveMovieRating(movie: Movie) {
+        DispatchQueue.main.async {
+            self.realmRepository.addMovieDetails(movie: movie)
+        }
+        if let rating = movie.rating {
+            self.delegate?.didSetRating(rating)
+            self.delegate?.onBannerLoaded()
+        }
+    }
+    
+    func getCast(at index: Int) -> Cast {
+        return self.cast?[index] ?? Cast(id: 9, name: "", profilePath: "", character: "")
     }
 }

@@ -11,8 +11,7 @@ import youtube_ios_player_helper
 class DetailsViewController: UIViewController {
     
     // MARK: - Constants
-    let manager = MovieDetailsManager()
-    
+    let manager = MovieManager()
     
     // MARK: - Variables
     var tabShown: Int?

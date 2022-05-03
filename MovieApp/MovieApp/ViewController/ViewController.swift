@@ -243,4 +243,10 @@ extension ViewController: MovieManagerDelegate {
     func onUpcomingLoaded() {
         refreshMovies()
     }
+    
+    func didSetMovie(_ movie: Movie) { }
+    
+    func didSetCast(_ cast: [Cast]) { }
+    
+    func didSetRating(_ rating: Double) { }
 }

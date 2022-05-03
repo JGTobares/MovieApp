@@ -36,6 +36,9 @@ class TVShowManager {
             }
         }
     }
+    var castCount: Int {
+        return self.cast?.count ?? 0
+    }
     var tvShowsDelegate: TVShowManagerDelegate?
     var detailsDelegate: TVShowDetailsViewControllerDelegate?
     var errorDelegate: ErrorAlertDelegate? {
@@ -44,7 +47,6 @@ class TVShowManager {
     var tvShowBanner: TVShow! {
         return self.tvShow
     }
-
     var onTheAirTVShowCount: Int {
         return self.onTheAirList.count
     }
@@ -57,14 +59,12 @@ class TVShowManager {
         self.repository = TVShowRepository()
         self.repositoryList = TVShowsResponseRepository()
         self.realmRepository = RealmRepository()
-        //self.detailsManager = MovieDetailsManager()
     }
     
     init(apiService: BaseAPIService<TVShow>, apiServiceList: BaseAPIService<TVShowsResponse>, service: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.repository = TVShowRepository(apiService: apiService)
         self.repositoryList = TVShowsResponseRepository(apiService: apiServiceList)
         self.realmRepository = RealmRepository(service: service)
-        //self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse, baseApiServiceMovie: baseApiServiceMovie)
     }
     
     func setDetailsDelegate(_ delegate: TVShowDetailsViewControllerDelegate) {
@@ -199,5 +199,9 @@ class TVShowManager {
     
     func getPopularTVShow(at index: Int) -> TVShow {
         return self.popularList[index]
+    }
+    
+    func getCast(at index: Int) -> Cast {
+        return self.cast?[index] ?? Cast(id: 9, name: "", profilePath: "", character: "")
     }
 }

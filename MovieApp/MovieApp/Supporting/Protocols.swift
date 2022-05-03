@@ -40,6 +40,11 @@ protocol MovieManagerDelegate {
     func onPopularLoaded()
     func onUpcomingLoaded()
     func onBannerLoaded()
+    
+    // MARK: - MovieDetailsViewController
+    func didSetMovie(_ movie: Movie)
+    func didSetCast(_ cast: [Cast])
+    func didSetRating(_ rating: Double)
 }
 
 protocol TVShowManagerDelegate {
@@ -61,14 +66,6 @@ protocol FavoritesManagerDelegate {
     // MARK: - FavoritesManager
     func onLoadFavorites()
     func onUpdateFavorites()
-}
-
-protocol MovieDetailsViewControllerDelegate {
-    
-    // MARK: - MovieDetailsViewController
-    func didSetMovie(_ movie: Movie)
-    func didSetCast(_ cast: [Cast])
-    func didSetRating(_ rating: Double)
 }
 
 protocol TVShowDetailsViewControllerDelegate {

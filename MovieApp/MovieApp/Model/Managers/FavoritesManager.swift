@@ -12,7 +12,7 @@ class FavoritesManager {
     // MARK: - Constants
     let service: RealmServiceProtocol
     let realmRepository: RealmRepository
-    let detailsManager: MovieDetailsManager
+    let movieManager: MovieManager
     
     // MARK: - Variables
     var favoriteMovies: [Movie] = []
@@ -32,13 +32,13 @@ class FavoritesManager {
     init() {
         service = RealmService()
         self.realmRepository = RealmRepository()
-        self.detailsManager = MovieDetailsManager()
+        self.movieManager = MovieManager()
     }
     
     init(service: RealmServiceProtocol, apiService: BaseAPIService<MoviesResponse>, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.service = service
         self.realmRepository = RealmRepository(service: service)
-        self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse, baseApiServiceMovie: baseApiServiceMovie)
+        self.movieManager = MovieManager(apiService: baseApiServiceMoviesResponse, apiServiceMovie: baseApiServiceMovie, baseApiServiceMovie: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse)
     }
     
     func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
@@ -177,13 +177,13 @@ class FavoritesManager {
     }
     
     func addFavorite() {
-        if let movie = self.detailsManager.movie {
+        if let movie = self.movieManager.movie {
             self.addFavorite(movie: movie)
         }
     }
     
     func removeFavorite() {
-        if let movie = self.detailsManager.movie {
+        if let movie = self.movieManager.movie {
             self.removeFavorite(movie: movie)
         }
     }
@@ -195,10 +195,4 @@ class FavoritesManager {
     func isTVShowFavorite(tvShowId: Int?) -> Bool {
         return self.isTVShowFavorite(id: tvShowId)
     }
-    
-    /*
-    func updateFavoriteStatus(movieId: Int?, isFavorite favorite: Bool) {
-        self.updateFavoriteStatus(id: movieId, isFavorite: favorite)
-    }
-     */
 }

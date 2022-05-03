@@ -8,10 +8,10 @@
 import UIKit
 
 class TVShowDetailsViewController: DetailsViewController {
-    
-    // MARK: - Variables
+    // MARK: - Constants
     let tvShowManager = TVShowManager()
     let favoritesManager = FavoritesManager()
+    
     
     // MARK: - Variables
     var tvShowId: Int?
@@ -70,5 +70,19 @@ extension TVShowDetailsViewController: TVShowDetailsViewControllerDelegate {
         DispatchQueue.main.async {
             self.castCollectionView.reloadData()
         }
+    }
+}
+
+extension TVShowDetailsViewController {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.tvShowManager.castCount
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.setCast(self.tvShowManager.getCast(at: indexPath.row))
+        return cell
     }
 }
