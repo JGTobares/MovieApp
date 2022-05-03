@@ -11,7 +11,8 @@ class FavoritesManager {
     
     // MARK: - Constants
     let service: RealmServiceProtocol
-    
+    let realmRepository: RealmRepository
+    let detailsManager: MovieDetailsManager
     
     // MARK: - Variables
     var favoriteMovies: [Movie] = []
@@ -30,11 +31,20 @@ class FavoritesManager {
     // MARK: - Initializers
     init() {
         service = RealmService()
+        self.realmRepository = RealmRepository()
+        self.detailsManager = MovieDetailsManager()
     }
     
-    init(service: RealmServiceProtocol) {
+    init(service: RealmServiceProtocol, apiService: BaseAPIService<MoviesResponse>, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.service = service
+        self.realmRepository = RealmRepository(service: service)
+        self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse, baseApiServiceMovie: baseApiServiceMovie)
     }
+    
+    func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
+        self.delegate = delegate
+    }
+    
     
     // MARK: - Functions
     func getFavorites() {
@@ -165,4 +175,30 @@ class FavoritesManager {
             }
         }
     }
+    
+    func addFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.addFavorite(movie: movie)
+        }
+    }
+    
+    func removeFavorite() {
+        if let movie = self.detailsManager.movie {
+            self.removeFavorite(movie: movie)
+        }
+    }
+    
+    func isMovieFavorite(movieId: Int?) -> Bool {
+        return self.isMovieFavorite(id: movieId)
+    }
+    
+    func isTVShowFavorite(tvShowId: Int?) -> Bool {
+        return self.isTVShowFavorite(id: tvShowId)
+    }
+    
+    /*
+    func updateFavoriteStatus(movieId: Int?, isFavorite favorite: Bool) {
+        self.updateFavoriteStatus(id: movieId, isFavorite: favorite)
+    }
+     */
 }

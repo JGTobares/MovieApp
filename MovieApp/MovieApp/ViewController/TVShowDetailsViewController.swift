@@ -10,18 +10,22 @@ import UIKit
 class TVShowDetailsViewController: DetailsViewController {
     
     // MARK: - Variables
+    let tvShowManager = TVShowManager()
+    let favoritesManager = FavoritesManager()
+    
+    // MARK: - Variables
     var tvShowId: Int?
     
     
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.setDetailsDelegate(self)
-        manager.getData(tvShowID: self.tvShowId)
+        tvShowManager.setDetailsDelegate(self)
+        tvShowManager.getData(tvShowID: self.tvShowId)
         
         // Check if TV Show is in Favorites
         self.heartButton.tintColor = .lightGray
-        if manager.isTVShowFavorite(tvShowId: self.tvShowId) {
+        if favoritesManager.isTVShowFavorite(tvShowId: self.tvShowId) {
             self.heartButton.tintColor = .red
         }
     }
@@ -29,7 +33,7 @@ class TVShowDetailsViewController: DetailsViewController {
     // MARK: - Functions
     override func didTapHeart(_ sender: Any) {
         super.didTapHeart(sender)
-        manager.updateFavoriteStatus(tvShowId: self.tvShowId, isFavorite: self.heartButton.tintColor == .red)
+        favoritesManager.updateFavoriteStatus(tvShowId: self.tvShowId, isFavorite: self.heartButton.tintColor == .red)
     }
 }
 

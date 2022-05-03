@@ -16,7 +16,6 @@ class FavoritesViewController: UIViewController {
     // MARK: - Constants
     let manager = FavoritesManager()
     
-    
     // MARK: - Initializers
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -8,6 +8,10 @@
 import UIKit
 
 class MovieDetailsViewController: DetailsViewController {
+
+    // MARK: - Constants
+    let favoritesManager = FavoritesManager()
+    
     
     // MARK: - Variables
     var movieID: Int?
@@ -17,11 +21,11 @@ class MovieDetailsViewController: DetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         manager.setDetailsDelegate(self)
-        manager.getData(movieID: self.movieID)
+        manager.getDetails(movieID: self.movieID)
         
         // Check if Movie is in Favorites
         self.heartButton.tintColor = .lightGray
-        if manager.isMovieFavorite(movieId: self.movieID) {
+        if favoritesManager.isMovieFavorite(movieId: self.movieID) {
             self.heartButton.tintColor = .red
         }
     }
@@ -29,7 +33,7 @@ class MovieDetailsViewController: DetailsViewController {
     // MARK: - Functions
     override func didTapHeart(_ sender: Any) {
         super.didTapHeart(sender)
-        manager.updateFavoriteStatus(movieId: self.movieID, isFavorite: self.heartButton.tintColor == .red)
+        favoritesManager.updateFavoriteStatus(id: self.movieID, isFavorite: (self.heartButton.tintColor == .red))
     }
 }
 

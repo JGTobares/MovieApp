@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class RealmManagerTest: XCTestCase {
     
-    let manager = RealmManager(service: MockRealmService())
+    let manager = RealmRepository(service: MockRealmService())
     
     func testGetMovieDetails() throws {
         XCTAssertNil(manager.getMovieDetails(id: nil))

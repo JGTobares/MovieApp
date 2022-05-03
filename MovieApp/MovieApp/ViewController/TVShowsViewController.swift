@@ -22,7 +22,7 @@ class TVShowsViewController: UIViewController {
     @IBOutlet var popularCollection: UICollectionView!
     
     // MARK: - Constants
-    let movieManager = StorageManager()
+    let movieManager = TVShowManager()
     
     // MARK: - Variables
     var tabShown: String?

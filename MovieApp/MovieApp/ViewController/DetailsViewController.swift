@@ -11,7 +11,7 @@ import youtube_ios_player_helper
 class DetailsViewController: UIViewController {
     
     // MARK: - Constants
-    let manager = StorageManager()
+    let manager = MovieDetailsManager()
     
     
     // MARK: - Variables

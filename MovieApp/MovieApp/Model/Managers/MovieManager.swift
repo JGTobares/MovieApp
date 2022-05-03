@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import Reachability
 
 class MovieManager {
     
     // MARK: - Constants
     let repository: MovieResponseRepository
+    let detailsManager: MovieDetailsManager
+    let reachability = try! Reachability()
+    let realmRepository: RealmRepository
+    
     
     // MARK: - Variables
     var nowMovies: [Movie] = []
@@ -22,17 +27,94 @@ class MovieManager {
     var errorDelegate: ErrorAlertDelegate? {
         return self.delegate as? ErrorAlertDelegate
     }
+    var nowMovieCount: Int {
+        return self.nowMovies.count
+    }
+    var popularMovieCount: Int {
+        return self.popularMovies.count
+    }
+    var upcomingMovieCount: Int {
+        return self.upcomingMovies.count
+    }
+    var movieBanner: Movie! {
+        return self.detailsManager.movie
+    }
     
     // MARK: - Initializers
     init() {
         self.repository = MovieResponseRepository()
+        self.detailsManager = MovieDetailsManager()
+        self.realmRepository = RealmRepository()
     }
     
-    init(apiService: BaseAPIService<MoviesResponse>) {
+    init(apiService: BaseAPIService<MoviesResponse>, baseApiServiceMovie: BaseAPIService<Movie>, realmService: RealmServiceProtocol, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.repository = MovieResponseRepository(apiService: apiService)
+        self.detailsManager = MovieDetailsManager(apiService: baseApiServiceMovie, realmService: realmService, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse, baseApiServiceMovie: baseApiServiceMovie)
+        self.realmRepository = RealmRepository(service: realmService)
+    }
+    
+    func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
+        self.delegate = delegate
     }
     
     // MARK: - Functions
+    func configureNetwork() {
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print(Constants.Network.errorInit)
+        }
+    }
+    
+    func getMovieList() {
+        reachability.whenReachable = { _ in
+            self.getMovies()
+        }
+        
+        reachability.whenUnreachable = { _ in
+            self.getMoviesRealm()
+            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+        }
+        self.configureNetwork()
+    }
+    
+    func getMovies() {
+        self.loadNowMovies { movies in
+            DispatchQueue.main.async {
+                self.realmRepository.addMovies(movies: movies, category: MoviesCategory.now)
+                self.detailsManager.getMovieDetails(id: self.bannerMovieID)
+            }
+        }
+        self.loadPopularMovies { movies in
+            DispatchQueue.main.async {
+                self.realmRepository.addMovies(movies: movies, category: MoviesCategory.popular)
+            }
+        }
+        self.loadUpcomingMovies { movies in
+            DispatchQueue.main.async {
+                self.realmRepository.addMovies(movies: movies, category: MoviesCategory.upcoming)
+            }
+        }
+    }
+    
+    func getMoviesRealm() {
+        guard let nowList = self.realmRepository.getMovieList(category: MoviesCategory.now) else {
+            return
+        }
+        self.nowMovies = nowList
+        self.detailsManager.movie = self.realmRepository.getMovieOffline()
+        guard let popularList = self.realmRepository.getMovieList(category: MoviesCategory.popular) else {
+            return
+        }
+        self.popularMovies = popularList
+        guard let upcomingList = self.realmRepository.getMovieList(category: MoviesCategory.upcoming) else {
+            return
+        }
+        self.upcomingMovies = upcomingList
+        self.delegate?.onNowLoaded()
+        self.delegate?.onBannerLoaded()
+    }
+    
     func loadNowMovies(completion: @escaping ([Movie]) -> Void) {
         repository.getListOfMovies(category: .now) { result in
             switch result {
@@ -71,5 +153,17 @@ class MovieManager {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
+    }
+    
+    func getNowMovie(at index: Int) -> Movie {
+        return self.nowMovies[index]
+    }
+    
+    func getPopularMovie(at index: Int) -> Movie {
+        return self.popularMovies[index]
+    }
+    
+    func getUpcomingMovie(at index: Int) -> Movie {
+        return self.upcomingMovies[index]
     }
 }
