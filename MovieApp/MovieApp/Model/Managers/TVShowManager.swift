@@ -66,11 +66,7 @@ class TVShowManager {
         self.repositoryList = TVShowsResponseRepository(apiService: apiServiceList)
         self.realmRepository = RealmRepository(service: service)
     }
-    /*
-    func setDetailsDelegate(_ delegate: TVShowDetailsViewControllerDelegate) {
-        self.detailsDelegate = delegate
-    }
-    */
+
     func setTVShowsDelegate(_ delegate: TVShowManagerDelegate) {
         self.tvShowsDelegate = delegate
     }

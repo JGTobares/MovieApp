@@ -24,14 +24,10 @@ class MovieManager {
     var bannerMovieID: Int?
     var bannerOfflineMovieID: Int?
     var delegate: MovieManagerDelegate?
+    var movieDetailsVCDelegate: MovieDetailsViewControllerDelegate?
     var errorDelegate: ErrorAlertDelegate? {
-        return self.delegate as? ErrorAlertDelegate
+        return self.movieDetailsVCDelegate as? ErrorAlertDelegate
     }
-    /*
-    func setErrorDelegate(_ delegate: ErrorAlertDelegate) {
-        self.realmRepository.errorDelegate = delegate
-    }
-     */
     var nowMovieCount: Int {
         return self.nowMovies.count
     }
@@ -48,7 +44,7 @@ class MovieManager {
     var movie: Movie? {
         didSet {
             if let movie = movie {
-                self.delegate?.didSetMovie(movie)
+                self.movieDetailsVCDelegate?.didSetMovie(movie)
                 self.cast = movie.credits?.cast
             }
         }
@@ -56,7 +52,7 @@ class MovieManager {
     var cast: [Cast]? {
         didSet {
             if let cast = cast {
-                self.delegate?.didSetCast(cast)
+                self.movieDetailsVCDelegate?.didSetCast(cast)
             }
         }
     }
@@ -78,13 +74,6 @@ class MovieManager {
         self.repository = MovieRepository(apiService: baseApiServiceMovie)
         self.realmRepository = RealmRepository(service: realmService)
     }
-    
-    /*
-    func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
-        self.delegate = delegate
-    }
-     */
-    
     
     // MARK: - Functions
     func configureNetwork() {
@@ -266,7 +255,7 @@ class MovieManager {
             self.realmRepository.addMovieDetails(movie: movie)
         }
         if let rating = movie.rating {
-            self.delegate?.didSetRating(rating)
+            self.movieDetailsVCDelegate?.didSetRating(rating)
             self.delegate?.onBannerLoaded()
         }
     }

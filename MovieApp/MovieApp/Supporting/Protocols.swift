@@ -40,6 +40,9 @@ protocol MovieManagerDelegate {
     func onPopularLoaded()
     func onUpcomingLoaded()
     func onBannerLoaded()
+}
+
+protocol MovieDetailsViewControllerDelegate {
     
     // MARK: - MovieDetailsViewController
     func didSetMovie(_ movie: Movie)

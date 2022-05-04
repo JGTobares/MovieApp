@@ -49,7 +49,6 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         self.configureButtons()
         self.configureObservers()
-        //manager.setErrorDelegate(self)
         self.trailerPlayer.delegate = self
         castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         castCollectionView.dataSource = self

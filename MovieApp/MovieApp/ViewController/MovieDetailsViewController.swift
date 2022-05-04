@@ -20,8 +20,7 @@ class MovieDetailsViewController: DetailsViewController {
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        //manager.setMoviesDelegate(self)
-        manager.delegate = self
+        manager.movieDetailsVCDelegate = self
         manager.getDetails(movieID: self.movieID)
         
         // Check if Movie is in Favorites
@@ -39,7 +38,7 @@ class MovieDetailsViewController: DetailsViewController {
 }
 
 // MARK: - Extensions
-extension MovieDetailsViewController: MovieManagerDelegate {
+extension MovieDetailsViewController: MovieDetailsViewControllerDelegate {
     
     func didSetMovie(_ movie: Movie) {
         DispatchQueue.main.async {
@@ -84,13 +83,4 @@ extension MovieDetailsViewController: MovieManagerDelegate {
             self.ratingLabel.text = "\(rating)"
         }
     }
-    
-    func onNowLoaded() { }
-    
-    func onPopularLoaded() { }
-    
-    func onUpcomingLoaded() { }
-    
-    func onBannerLoaded() { }
-    
 }
