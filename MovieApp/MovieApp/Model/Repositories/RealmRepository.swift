@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RealmManager {
+class RealmRepository {
     
     // MARK: - Constants
     let service: RealmServiceProtocol

@@ -11,7 +11,8 @@ class FavoritesManager {
     
     // MARK: - Constants
     let service: RealmServiceProtocol
-    
+    let realmRepository: RealmRepository
+    let movieManager: MovieManager
     
     // MARK: - Variables
     var favoriteMovies: [Movie] = []
@@ -30,10 +31,14 @@ class FavoritesManager {
     // MARK: - Initializers
     init() {
         service = RealmService()
+        self.realmRepository = RealmRepository()
+        self.movieManager = MovieManager()
     }
     
-    init(service: RealmServiceProtocol) {
+    init(service: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.service = service
+        self.realmRepository = RealmRepository(service: service)
+        self.movieManager = MovieManager(baseApiServiceMovie: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse)
     }
     
     // MARK: - Functions
@@ -163,6 +168,18 @@ class FavoritesManager {
             if let response = service.deleteAll() {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
             }
+        }
+    }
+    
+    func addFavorite() {
+        if let movie = self.movieManager.movie {
+            self.addFavorite(movie: movie)
+        }
+    }
+    
+    func removeFavorite() {
+        if let movie = self.movieManager.movie {
+            self.removeFavorite(movie: movie)
         }
     }
 }

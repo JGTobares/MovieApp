@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import Reachability
 
 class TVShowManager {
     
     // MARK: - Constants
     let repository: TVShowRepository
     let repositoryList: TVShowsResponseRepository
+    let realmRepository: RealmRepository
+    let reachability = try! Reachability()
     
     // MARK: - Variables
     var onTheAirList: [TVShow] = []
@@ -33,25 +36,105 @@ class TVShowManager {
             }
         }
     }
+    var castCount: Int {
+        return self.cast?.count ?? 0
+    }
     var tvShowsDelegate: TVShowManagerDelegate?
     var detailsDelegate: TVShowDetailsViewControllerDelegate?
     var errorDelegate: ErrorAlertDelegate? {
         return self.detailsDelegate as? ErrorAlertDelegate
+    }
+    var tvShowBanner: TVShow! {
+        return self.tvShow
+    }
+    var onTheAirTVShowCount: Int {
+        return self.onTheAirList.count
+    }
+    var popularTVShowCount: Int {
+        return self.popularList.count
     }
     
     // MARK: - Initializers
     init() {
         self.repository = TVShowRepository()
         self.repositoryList = TVShowsResponseRepository()
+        self.realmRepository = RealmRepository()
     }
     
-    init(apiService: BaseAPIService<TVShow>, apiServiceList: BaseAPIService<TVShowsResponse>) {
+    init(apiService: BaseAPIService<TVShow>, apiServiceList: BaseAPIService<TVShowsResponse>, service: RealmServiceProtocol, baseApiServiceMovie: BaseAPIService<Movie>, baseApiServiceMoviesResponse: BaseAPIService<MoviesResponse>) {
         self.repository = TVShowRepository(apiService: apiService)
         self.repositoryList = TVShowsResponseRepository(apiService: apiServiceList)
+        self.realmRepository = RealmRepository(service: service)
+    }
+
+    func setTVShowsDelegate(_ delegate: TVShowManagerDelegate) {
+        self.tvShowsDelegate = delegate
     }
     
 
     // MARK: - Functions
+    func configureNetwork() {
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print(Constants.Network.errorInit)
+        }
+    }
+    
+    func getTVShows() {
+        reachability.whenReachable = { _ in
+            self.getTVShowsAPI()
+        }
+        
+        reachability.whenUnreachable = { _ in
+            self.getTVShowsRealm()
+            NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+        }
+        self.configureNetwork()
+    }
+    
+    func getData(tvShowID: Int?) {
+        reachability.whenReachable = { _ in
+            self.getTVShow(id: tvShowID)
+        }
+
+        reachability.whenUnreachable = { _ in
+            if !self.getTVShowRealm(id: tvShowID) {
+                NotificationCenter.default.post(name: Notification.Name(Constants.Network.updateNetworkStatus), object: nil, userInfo: [Constants.Network.updateNetworkStatus : Constants.Network.statusOffline])
+            }
+        }
+        self.configureNetwork()
+    }
+    
+    //MARK: - TVShow Lists
+    func getTVShowsAPI() {
+        self.getTVShowList(category: .onTheAir) { onTheAirShows in
+            DispatchQueue.main.async {
+                self.realmRepository.addTVShows(shows: onTheAirShows, category: TVShowsCategory.onTheAir)
+                self.getTVShow(id: self.bannerShowID)
+            }
+        }
+        self.getTVShowList(category: .popular) { popularShows in
+            DispatchQueue.main.async {
+                self.realmRepository.addTVShows(shows: popularShows, category: TVShowsCategory.popular)
+            }
+        }
+    }
+    
+    func getTVShowsRealm() {
+        guard let onAirList = self.realmRepository.getTVShowList(category: TVShowsCategory.onTheAir) else {
+            return
+        }
+        self.onTheAirList = onAirList
+        self.tvShow = self.realmRepository.getTVShowOffline()
+        guard let popularList = self.realmRepository.getTVShowList(category: TVShowsCategory.popular) else {
+            return
+        }
+        self.popularList = popularList
+        self.tvShowsDelegate?.onTheAirLoaded()
+        self.tvShowsDelegate?.onPopularLoaded()
+    }
+    
     func getTVShowList(category: TVShowsCategory, completion: @escaping ([TVShow]) -> Void) {
         self.repositoryList.getListOfTVSHows(category: category) { result in
             switch result {
@@ -73,6 +156,26 @@ class TVShowManager {
         }
     }
     
+    //MARK: - TVShow Details
+    func getTVShow(id: Int?) {
+        self.getTVShowDetails(id: id) { tvShow in
+            DispatchQueue.main.async {
+                self.realmRepository.addTVShowDetails(tvShow: tvShow)
+                self.bannerOfflineShowID = tvShow.id
+            }
+            self.tvShowsDelegate?.onBannerLoaded()
+        }
+    }
+    
+    func getTVShowRealm(id: Int?) -> Bool {
+        guard let tvShowRealm = self.realmRepository.getTVShow(id: id) else {
+            return false
+        }
+        self.tvShow = TVShow(tvShow: tvShowRealm)
+        self.tvShowsDelegate?.onBannerLoaded()
+        return true
+    }
+    
     func getTVShowDetails(id: Int?, completion: @escaping (TVShow) -> Void) {
         self.repository.getTVShowDetails(id: id) { result in
             switch result {
@@ -84,5 +187,17 @@ class TVShowManager {
                 self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: error.rawValue)
             }
         }
+    }
+    
+    func getOnTheAirTVShow(at index: Int) -> TVShow {
+        return self.onTheAirList[index]
+    }
+    
+    func getPopularTVShow(at index: Int) -> TVShow {
+        return self.popularList[index]
+    }
+    
+    func getCast(at index: Int) -> Cast? {
+        return self.cast?[index]
     }
 }

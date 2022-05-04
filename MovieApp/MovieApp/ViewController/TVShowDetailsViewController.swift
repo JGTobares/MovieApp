@@ -8,6 +8,10 @@
 import UIKit
 
 class TVShowDetailsViewController: DetailsViewController {
+    // MARK: - Constants
+    let tvShowManager = TVShowManager()
+    let favoritesManager = FavoritesManager()
+    
     
     // MARK: - Variables
     var tvShowId: Int?
@@ -16,12 +20,12 @@ class TVShowDetailsViewController: DetailsViewController {
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.setDetailsDelegate(self)
-        manager.getData(tvShowID: self.tvShowId)
+        tvShowManager.detailsDelegate = self
+        tvShowManager.getData(tvShowID: self.tvShowId)
         
         // Check if TV Show is in Favorites
         self.heartButton.tintColor = .lightGray
-        if manager.isTVShowFavorite(tvShowId: self.tvShowId) {
+        if favoritesManager.isTVShowFavorite(id: self.tvShowId) {
             self.heartButton.tintColor = .red
         }
     }
@@ -29,7 +33,7 @@ class TVShowDetailsViewController: DetailsViewController {
     // MARK: - Functions
     override func didTapHeart(_ sender: Any) {
         super.didTapHeart(sender)
-        manager.updateFavoriteStatus(tvShowId: self.tvShowId, isFavorite: self.heartButton.tintColor == .red)
+        favoritesManager.updateFavoriteStatus(tvShowId: self.tvShowId, isFavorite: self.heartButton.tintColor == .red)
     }
 }
 
@@ -66,5 +70,20 @@ extension TVShowDetailsViewController: TVShowDetailsViewControllerDelegate {
         DispatchQueue.main.async {
             self.castCollectionView.reloadData()
         }
+    }
+}
+
+extension TVShowDetailsViewController {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.tvShowManager.castCount
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        guard let cast = self.tvShowManager.getCast(at: indexPath.row) else { return cell }
+        cell.setCast(cast)
+        return cell
     }
 }

@@ -27,8 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchButtonIcon: UIButton!
 
     // MARK: - Constants
-    let movieManager = StorageManager()
-    
+    let movieManager = MovieManager()
     
     // MARK: - Variables
     var menu: SideMenuNavigationController?
@@ -44,10 +43,10 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         
         self.configureObservers()
-        movieManager.setMoviesDelegate(self)
+        movieManager.delegate = self
         self.configureButtons()
         self.configureCollections()
-        movieManager.getData()
+        movieManager.getMovieList()
     }
 
     // MARK: - Functions

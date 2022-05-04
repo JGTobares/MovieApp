@@ -22,7 +22,7 @@ class TVShowsViewController: UIViewController {
     @IBOutlet var popularCollection: UICollectionView!
     
     // MARK: - Constants
-    let movieManager = StorageManager()
+    let movieManager = TVShowManager()
     
     // MARK: - Variables
     var tabShown: String?
@@ -35,8 +35,7 @@ class TVShowsViewController: UIViewController {
         let attributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font:UIFont(name: "Verdana-bold", size: 17)]
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
 
-        movieManager.setTVShowsDelegate(self)
-        
+        movieManager.tvShowsDelegate = self
         self.configureObservers()
         self.configureButtons()
         self.configureCollections()

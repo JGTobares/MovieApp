@@ -11,7 +11,7 @@ import XCTest
 @testable import MovieApp
 class MovieManagerTest: XCTestCase {
     
-    let manager = MovieManager(apiService: MockBaseAPIService<MoviesResponse>())
+    let manager = MovieManager(baseApiServiceMovie: MockBaseAPIService<Movie>(), realmService: MockRealmService(), baseApiServiceMoviesResponse: MockBaseAPIService<MoviesResponse>())
     
     func testLoadNowMovies() throws {
         manager.loadNowMovies { movies in

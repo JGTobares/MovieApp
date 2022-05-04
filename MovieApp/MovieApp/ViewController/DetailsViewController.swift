@@ -11,8 +11,7 @@ import youtube_ios_player_helper
 class DetailsViewController: UIViewController {
     
     // MARK: - Constants
-    let manager = StorageManager()
-    
+    let manager = MovieManager()
     
     // MARK: - Variables
     var tabShown: Int?
@@ -50,7 +49,6 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         self.configureButtons()
         self.configureObservers()
-        manager.setErrorDelegate(self)
         self.trailerPlayer.delegate = self
         castCollectionView.register(CustomCollectionViewCell.nib(), forCellWithReuseIdentifier: Constants.Cell.collectionCell)
         castCollectionView.dataSource = self
@@ -184,7 +182,8 @@ extension DetailsViewController: UICollectionViewDataSource {
         guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setCast(self.manager.getCast(at: indexPath.row))
+        guard let cast = self.manager.getCast(at: indexPath.row) else { return cell }
+        cell.setCast(cast)
         return cell
     }
 }
