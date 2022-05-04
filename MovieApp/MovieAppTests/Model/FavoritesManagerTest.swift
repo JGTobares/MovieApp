@@ -55,17 +55,6 @@ class FavoritesManagerTest: XCTestCase {
         XCTAssertFalse(manager.isMovieFavorite(id: 675353))
     }
     
-    func testRemoveFavorite() throws {
-        manager.getFavorites()
-        XCTAssertEqual(3, manager.favoriteMovies.count)
-        manager.removeFavorite(id: nil)
-        XCTAssertEqual(3, manager.favoriteMovies.count)
-        manager.removeFavorite(id: 3)
-        XCTAssertEqual(3, manager.favoriteMovies.count)
-        manager.removeFavorite(id: 675353)
-        XCTAssertEqual(2, manager.favoriteMovies.count)
-    }
-    
     func testGetRowsOfSection() throws {
         XCTAssertEqual(0, manager.getRowsOfSection(10))
         manager.favoriteMovies = []
