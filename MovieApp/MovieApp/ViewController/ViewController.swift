@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         
         self.configureObservers()
-        //movieManager.setMoviesDelegate(self)
         movieManager.delegate = self
         self.configureButtons()
         self.configureCollections()
@@ -244,10 +243,4 @@ extension ViewController: MovieManagerDelegate {
     func onUpcomingLoaded() {
         refreshMovies()
     }
-    
-    func didSetMovie(_ movie: Movie) { }
-    
-    func didSetCast(_ cast: [Cast]) { }
-    
-    func didSetRating(_ rating: Double) { }
 }

@@ -30,5 +30,4 @@ class SearchForViewController: SearchResultsViewController {
         super.onPreviousPressed()
         self.manager.searchFor(query: input ?? "")
     }
-    
 }

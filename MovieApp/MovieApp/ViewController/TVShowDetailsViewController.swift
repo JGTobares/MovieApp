@@ -20,7 +20,6 @@ class TVShowDetailsViewController: DetailsViewController {
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tvShowManager.setDetailsDelegate(self)
         tvShowManager.detailsDelegate = self
         tvShowManager.getData(tvShowID: self.tvShowId)
         
