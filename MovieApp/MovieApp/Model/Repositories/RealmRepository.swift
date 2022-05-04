@@ -124,4 +124,47 @@ class RealmRepository {
         }
         return nil
     }
+    
+    func getFavoriteMovies(completion: @escaping (Result<[MovieRealm], CustomError>) -> Void) {
+        completion(self.service.getFavoriteMovies())
+    }
+    
+    func getFavoriteTVShows(completion: @escaping (Result<[TVShowRealm], CustomError>) -> Void) {
+        completion(self.service.getFavoriteTVShows())
+    }
+    
+    func updateMovie(_ movie: MovieRealm, isFavorite favorite: Bool) -> CustomError? {
+        guard let error = self.service.updateMovie(movie, isFavorite: favorite) else {
+            return nil
+        }
+        return error
+    }
+    
+    func updateTVShow(_ tvShow: TVShowRealm, isFavorite favorite: Bool) -> CustomError? {
+        guard let error = self.service.updateTVShow(tvShow, isFavorite: favorite) else {
+            return nil
+        }
+        return error
+    }
+    
+    func addFavorite(movie: Movie) {
+        if let response = self.service.addFavorite(movie) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
+        }
+    }
+    
+    func removeFavorite(movie: Movie) {
+        if let response = self.service.deleteMovie(movie) {
+            self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
+        }
+    }
+    
+    // Convenience Function for development
+    func deleteAll() {
+        if let service = self.service as? RealmService {
+            if let response = service.deleteAll() {
+                self.errorDelegate?.showAlertMessage(title: Constants.General.errorTitle, message: response.rawValue)
+            }
+        }
+    }
 }
