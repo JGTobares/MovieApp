@@ -20,12 +20,13 @@ class TVShowDetailsViewController: DetailsViewController {
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        tvShowManager.setDetailsDelegate(self)
+        //tvShowManager.setDetailsDelegate(self)
+        tvShowManager.detailsDelegate = self
         tvShowManager.getData(tvShowID: self.tvShowId)
         
         // Check if TV Show is in Favorites
         self.heartButton.tintColor = .lightGray
-        if favoritesManager.isTVShowFavorite(tvShowId: self.tvShowId) {
+        if favoritesManager.isTVShowFavorite(id: self.tvShowId) {
             self.heartButton.tintColor = .red
         }
     }
@@ -82,7 +83,8 @@ extension TVShowDetailsViewController {
         guard let cell = self.castCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cell.collectionCell, for: indexPath) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.setCast(self.tvShowManager.getCast(at: indexPath.row))
+        guard let cast = self.tvShowManager.getCast(at: indexPath.row) else { return cell }
+        cell.setCast(cast)
         return cell
     }
 }

@@ -43,7 +43,8 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key : Any]
         
         self.configureObservers()
-        movieManager.setMoviesDelegate(self)
+        //movieManager.setMoviesDelegate(self)
+        movieManager.delegate = self
         self.configureButtons()
         self.configureCollections()
         movieManager.getMovieList()

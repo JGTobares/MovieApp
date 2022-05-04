@@ -66,11 +66,11 @@ class TVShowManager {
         self.repositoryList = TVShowsResponseRepository(apiService: apiServiceList)
         self.realmRepository = RealmRepository(service: service)
     }
-    
+    /*
     func setDetailsDelegate(_ delegate: TVShowDetailsViewControllerDelegate) {
         self.detailsDelegate = delegate
     }
-    
+    */
     func setTVShowsDelegate(_ delegate: TVShowManagerDelegate) {
         self.tvShowsDelegate = delegate
     }
@@ -201,7 +201,7 @@ class TVShowManager {
         return self.popularList[index]
     }
     
-    func getCast(at index: Int) -> Cast {
-        return self.cast?[index] ?? Cast(id: 9, name: "", profilePath: "", character: "")
+    func getCast(at index: Int) -> Cast? {
+        return self.cast?[index]
     }
 }

@@ -55,7 +55,7 @@
 		D46F4F9228105642003848CC /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9128105642003848CC /* RealmService.swift */; };
 		D46F4F9628106CE3003848CC /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9528106CE3003848CC /* RealmRepository.swift */; };
 		D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F972810B33A003848CC /* MockRealmService.swift */; };
-		D46F4F9A2810B614003848CC /* RealmManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F992810B614003848CC /* RealmManagerTest.swift */; };
+		D46F4F9A2810B614003848CC /* RealmRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F992810B614003848CC /* RealmRepositoryTest.swift */; };
 		D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46F4F9B2810B737003848CC /* StorageManagerTest.swift */; };
 		D495AE472811B126006A5238 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE462811B126006A5238 /* FavoritesManager.swift */; };
 		D495AE49281206C7006A5238 /* FavoritesManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */; };
@@ -144,7 +144,7 @@
 		D46F4F9128105642003848CC /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		D46F4F9528106CE3003848CC /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		D46F4F972810B33A003848CC /* MockRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmService.swift; sourceTree = "<group>"; };
-		D46F4F992810B614003848CC /* RealmManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManagerTest.swift; sourceTree = "<group>"; };
+		D46F4F992810B614003848CC /* RealmRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepositoryTest.swift; sourceTree = "<group>"; };
 		D46F4F9B2810B737003848CC /* StorageManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerTest.swift; sourceTree = "<group>"; };
 		D495AE462811B126006A5238 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerTest.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 				C1781C582808876200D060C3 /* MovieTest.swift */,
 				C05E6EE2280DE9480074B72A /* MovieManagerTest.swift */,
 				C1B9DEBA280EF31E0038C4D7 /* SearchResultsManagerTest.swift */,
-				D46F4F992810B614003848CC /* RealmManagerTest.swift */,
+				D46F4F992810B614003848CC /* RealmRepositoryTest.swift */,
 				D46F4F9B2810B737003848CC /* StorageManagerTest.swift */,
 				D495AE48281206C7006A5238 /* FavoritesManagerTest.swift */,
 				D4E980F2281AE28A006F684C /* MovieRepositoryTest.swift */,
@@ -708,7 +708,7 @@
 				C05E6EE5280E034C0074B72A /* MovieManagerTest.swift in Sources */,
 				D46F4F982810B33A003848CC /* MockRealmService.swift in Sources */,
 				D4E980F3281AE28A006F684C /* MovieRepositoryTest.swift in Sources */,
-				D46F4F9A2810B614003848CC /* RealmManagerTest.swift in Sources */,
+				D46F4F9A2810B614003848CC /* RealmRepositoryTest.swift in Sources */,
 				D46F4F9C2810B737003848CC /* StorageManagerTest.swift in Sources */,
 				C1B9DEBB280EF31E0038C4D7 /* SearchResultsManagerTest.swift in Sources */,
 				D4E980F1281ACA43006F684C /* MockBaseAPIService.swift in Sources */,

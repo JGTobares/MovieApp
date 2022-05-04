@@ -41,10 +41,11 @@ class FavoritesManager {
         self.movieManager = MovieManager(baseApiServiceMovie: baseApiServiceMovie, realmService: service, baseApiServiceMoviesResponse: baseApiServiceMoviesResponse)
     }
     
+    /*
     func setFavoritesDelegate(_ delegate: FavoritesManagerDelegate) {
         self.delegate = delegate
     }
-    
+     */
     
     // MARK: - Functions
     func getFavorites() {
@@ -188,11 +189,14 @@ class FavoritesManager {
         }
     }
     
+    /*
     func isMovieFavorite(movieId: Int?) -> Bool {
         return self.isMovieFavorite(id: movieId)
     }
     
+    
     func isTVShowFavorite(tvShowId: Int?) -> Bool {
         return self.isTVShowFavorite(id: tvShowId)
     }
+     */
 }

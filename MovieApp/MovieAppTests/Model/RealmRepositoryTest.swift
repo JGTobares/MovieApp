@@ -1,5 +1,5 @@
 //
-//  MovieRealmManagerTest.swift
+//  RealmRepositoryTest.swift
 //  MovieAppTests
 //
 //  Created by Fernando Guerrero on 20/04/22.
@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 
 @testable import MovieApp
-class RealmManagerTest: XCTestCase {
+class RealmRepositoryTest: XCTestCase {
     
     let manager = RealmRepository(service: MockRealmService())
     

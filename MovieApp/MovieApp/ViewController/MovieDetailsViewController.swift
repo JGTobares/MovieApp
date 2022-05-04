@@ -20,12 +20,13 @@ class MovieDetailsViewController: DetailsViewController {
     // MARK: - Initializers
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.setMoviesDelegate(self)
+        //manager.setMoviesDelegate(self)
+        manager.delegate = self
         manager.getDetails(movieID: self.movieID)
         
         // Check if Movie is in Favorites
         self.heartButton.tintColor = .lightGray
-        if favoritesManager.isMovieFavorite(movieId: self.movieID) {
+        if favoritesManager.isMovieFavorite(id: self.movieID) {
             self.heartButton.tintColor = .red
         }
     }

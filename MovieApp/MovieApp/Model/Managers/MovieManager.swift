@@ -27,9 +27,11 @@ class MovieManager {
     var errorDelegate: ErrorAlertDelegate? {
         return self.delegate as? ErrorAlertDelegate
     }
+    /*
     func setErrorDelegate(_ delegate: ErrorAlertDelegate) {
         self.realmRepository.errorDelegate = delegate
     }
+     */
     var nowMovieCount: Int {
         return self.nowMovies.count
     }
@@ -77,9 +79,11 @@ class MovieManager {
         self.realmRepository = RealmRepository(service: realmService)
     }
     
+    /*
     func setMoviesDelegate(_ delegate: MovieManagerDelegate) {
         self.delegate = delegate
     }
+     */
     
     
     // MARK: - Functions
@@ -267,7 +271,7 @@ class MovieManager {
         }
     }
     
-    func getCast(at index: Int) -> Cast {
-        return self.cast?[index] ?? Cast(id: 9, name: "", profilePath: "", character: "")
+    func getCast(at index: Int) -> Cast? {
+        return self.cast?[index]
     }
 }
